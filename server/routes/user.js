@@ -55,6 +55,6 @@ router.post("/login", async (req, res) => {
   const validPassword = await bc.compare(password, userExist.password);
   if (!validPassword)
     return res.status(500).json({ status: 1, mssg: "Password does not match" });
-  const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
+  const token = jwt.sign({ _id: userExist }, config.jwt_secret);
   return res.json({ token, user: userExist });
 });
