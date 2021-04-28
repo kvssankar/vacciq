@@ -9,7 +9,7 @@ const App = () => {
     <Router>
       {/* <Loading /> */}
       <Switch>
-      <Route path="/" component={Dashboard} />
+        <Route path="/" component={Dashboard} />
         {/*  <Route
           path="/about"
           render={(props) => (
