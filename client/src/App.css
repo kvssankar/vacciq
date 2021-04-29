@@ -11,53 +11,75 @@
     margin-top: 70px;
     margin-bottom: 16px;
     box-shadow: 0px 6px 5px #ccc;
-}
+} 
 
 .ProfileName {
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: Roboto;
-    font-size: 20px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: bold;
+    font-size: 20px;
     line-height: 23px;
-    letter-spacing: -0.30000001192092896px;
     text-align: center;
+    letter-spacing: -0.3px;
+    color: #595959;
 }
 
 .ProfileEmail {
     margin-top: 0px;
     margin-bottom: 50px;
     font-family: Roboto;
-    font-size: 17px;
+    font-family: Roboto;
     font-style: normal;
     font-weight: 500;
+    font-size: 17px;
     line-height: 20px;
-    letter-spacing: -0.30000001192092896px;
     text-align: center;
+    letter-spacing: -0.3px;
+    color: #AFAFAF;
 }
 
 .details {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .detail{
     display: flex;
 }
 
+.person-icon{
+margin-right: 40px;
+}
+
+.about-name{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: -0.3px;
+
+}
+
 .about-you{
     font-family: Roboto;
-    font-size: 16px;
     font-style: normal;
     font-weight: 500;
+    font-size: 16px;
     line-height: 19px;
-    letter-spacing: -0.30000001192092896px;
-    text-align: left;
-    padding: 0px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.3px;
     
+    color: #595959;
+    
+    opacity: 0.79;
 }
 
 @media (prefers-reduced-motion: no-preference) {

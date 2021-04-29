@@ -9,6 +9,7 @@ function App() {
     {
       name : "Vinamra Khoria",
       email : "vinamrakhoria@gmail.com",
+      phone:"8290469207",
       centreName : "Centre 1",
       centreAddress : "M.G. Road",
       centrePhone: "9756481230",
