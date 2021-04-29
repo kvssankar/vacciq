@@ -7,6 +7,37 @@
   pointer-events: none;
 }
 
+.ProfilePicture{
+  margin-top: 70px;
+  margin-bottom: 16px;
+}
+
+.ProfileName{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.ProfileEmail{
+  margin-top: 0px;
+  margin-bottom: 50px;
+}
+
+.details{
+  display: flex;  
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+}
+
+.detail{
+  padding: 10px;
+  margin-bottom: 25px; 
+}
+
+.icon-header{
+display: flex;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
