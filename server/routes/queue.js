@@ -56,7 +56,7 @@ const notify = async (notify_id, title, mssg) => {
     headers: {
       "Content-type": "application/json",
       Authorization:
-        "key=AAAAckuxAaY:APA91bHfO45tMPaoCeWF6g2g3Ck6BWIdTgyIMqA2F9aAbDmO1RzuVunB5KkGXj_QLK1Wwiy8yGMsyUbvLsBPxVi09Pr5XUXMlRWseGvPmH9abS7eLJGdcqkRCc6yWzra-EbMmac1NJ-V",
+        "key=AAAA17rD_-Q:APA91bE92fSSSJZO9LmGtShC8v43wiAUldddG-Dt572cP9nciVmDJ4CmHJiM5yGMsQOdC-EXKAm5C8FjDLrnd4eG62NX0RDnTzXJ5MJDOAW6p8vrnjqj0aqpKmrKpfCN9SlTD1NtYH3J",
     },
   };
   axios
@@ -115,3 +115,27 @@ const dischargeQ = async (user_id) => {
 };
 
 module.exports = { addToQ };
+
+// <!-- The core Firebase JS SDK is always required and must be listed first -->
+// <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+
+// <!-- TODO: Add SDKs for Firebase products that you want to use
+//      https://firebase.google.com/docs/web/setup#available-libraries -->
+// <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
+
+// <script>
+//   // Your web app's Firebase configuration
+//   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//   var firebaseConfig = {
+//     apiKey: "AIzaSyCgdoGOesEWA9xf4SYbfTm9m1TOH4WgpJ4",
+//     authDomain: "vacciq-90b12.firebaseapp.com",
+//     projectId: "vacciq-90b12",
+//     storageBucket: "vacciq-90b12.appspot.com",
+//     messagingSenderId: "926551375844",
+//     appId: "1:926551375844:web:2fd80e0af934a7cdad11f1",
+//     measurementId: "G-Y2DX6SPSJ7"
+//   };
+//   // Initialize Firebase
+//   firebase.initializeApp(firebaseConfig);
+//   firebase.analytics();
+// </script>
