@@ -7,9 +7,9 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown, DropdownToggle, DropdownItem, NavbarText, DropdownMenu
+  UncontrolledDropdown, DropdownToggle, DropdownItem, NavbarText, DropdownMenu,
 } from "reactstrap";
-
+import "./Navbar.css";
 const Example = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,32 +18,10 @@ const Example = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
+        <NavbarBrand href="/"><img className="logonav" src="/imgs/logo.png"></img></NavbarBrand>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
-            </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
-        </Collapse>
+          <NavLink href="https://www.google.com"><img className="barcodeimg" src="/imgs/barcode.png" alt="barcodeScanner"></img></NavLink>
       </Navbar>
     </div>
   );
