@@ -1,64 +1,54 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
-.queuenumbercontainer
-{
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap");
+.queuenumbercontainer {
   // background-color: red;
-  padding:0;
-  margin:0;
-  width:90%;
-  margin:auto;
-  background-image: url('wave.png');
-  background-repeat:no-repeat;
-  background-size:100vw 70px;
+  padding: 0;
+  margin: 0;
+  width: 90%;
+  margin: auto;
+  background-image: url("wave.png");
+  background-repeat: no-repeat;
+  background-size: 100vw 70px;
   background-position: bottom;
-
 }
-.texts
-{
+.texts {
   flex-direction: column;
 }
-.textcenter
-{
+.textcenter {
   text-align: center;
-  font-size:1.2rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
-.flexcolumn
-{
+.flexcolumn {
   flex-direction: column;
 }
-.queuenumberman
-{
-  padding:0;
-  margin:0;
-  float:right;
-  margin-right:auto;
+.queuenumberman {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
   // background-color: blue;
 }
-.row
-{
-  position:relative;
-  margin:0;
-  padding:0;
-  width:100%;
-  margin:auto;
+.row {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  margin: auto;
 }
-.fontstyle1
-{
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 21px;
-    line-height: 25px;
-    letter-spacing: -0.3px;
+.fontstyle1 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 25px;
+  letter-spacing: -0.3px;
 }
-.fontstyle1small
-{
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 18px;
-    line-height: 25px;
-    letter-spacing: -0.3px;
+.fontstyle1small {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: -0.3px;
 }
-
