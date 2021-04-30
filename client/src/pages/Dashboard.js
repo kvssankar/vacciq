@@ -10,8 +10,8 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar />
-      <div className="container" style={{ background: "#f8f9fa" }}>
-        <h5 className="fontstyle1 ml-1">
+      <div className="container" >
+        <h5 className="fontstyle1 mt-5 ml-2">
           Good Morning, <br></br>Sriesh
         </h5>
         <QueueNumber />

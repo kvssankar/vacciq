@@ -6,12 +6,11 @@ import QueueTable from "./QueueTable";
 const QueueNumber = (props) => {
   return (
     <div
-      className="row d-flex justify-content-between queuenumbercontainer"
-      style={{ background: "rgb(223 241 250)", borderRadius: "10px" }}
+      className=" row d-flex justify-content-between queuenumbercontainer"
     >
       <div className="p-2 col-example">
-        <div className="row texts">
-          <h6 className="fontstyle1small mt-5 ml-3">
+        <div className="texts ">
+          <h6 className="fontstyle1small pb-5 mt-3 ml-5">
             Waiting in Queue,<br></br>Anywhere and Anytime
           </h6>
         </div>
