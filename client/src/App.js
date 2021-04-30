@@ -1,11 +1,10 @@
 import './App.css';
 import React, { useState } from 'react';
-import { ProfilePicture } from './components/ProfilePicture';
+import { ProfilePage } from './components/ProfilePage';
 import { Details } from './components/Details';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import PrivateRoute from "./components/PrivateRote";
-import QueueNumber from "./components/Dashboard/QueueNumber";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
@@ -64,7 +63,7 @@ function App() {
         /> */}
 
 
-        <Route exact path='/pp' render={(props) => <ProfilePicture data={data} />}/>
+        <Route exact path='/profile' render={(props) => <ProfilePage data={data} />}/>
         <Route exact path='/stats' render={(props) => <Stats/>}/>
 
 

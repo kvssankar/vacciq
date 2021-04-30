@@ -2,7 +2,7 @@ import React from 'react'
 import img from './profile.png'
 import {Details} from './Details.js'
 
-export const ProfilePicture = (props) => {
+export const ProfilePage = (props) => {
     return (
         <div>
             <div className = "App">

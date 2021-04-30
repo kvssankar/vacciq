@@ -7,16 +7,14 @@ import QueueDetails from "./QueueDetails.jsx";
 import Footer from "./Footer.jsx";
 
 export const Stats = () => {
-    return (
-        <div>
-      <Navbar />
+  return (
+    <div>
+      <Navbar className = "navbar"/>
+     
       <div className="container" >
-        <h5 className="fontstyle1 mt-5 ml-2">
-          Good Morning, <br></br>Sriesh
-        </h5>
-        <QueueNumber image = "./imgs/Girl.png"/>
+        <QueueNumber image="./imgs/Girl.png" />
       </div>
-      <Footer />
+      <Footer/>
     </div>
-    )
+  )
 }

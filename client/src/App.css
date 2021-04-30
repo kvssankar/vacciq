@@ -41,6 +41,10 @@
     color: #AFAFAF;
 }
 
+.navbar{
+    margin-bottom: 90px;
+}
+
 .details {
     display: flex;
     flex-direction: column;
@@ -51,22 +55,34 @@
 
 .detail{
     display: flex;
+    margin-bottom: 26px;
 }
 
 .person-icon{
-margin-right: 40px;
+margin-right: 30px;
 }
 
+.log-out-btn{
+margin-right: 30px; 
+color: #DA4647;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 19px;
+letter-spacing: -0.30000001192092896px;
+text-align: left;
+
+}
 .about-you{
     font-family: Roboto;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
     line-height: 19px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.3px;
-    
+    letter-spacing: -0.30000001192092896px;
+    text-align: left;
+
     color: #595959;
     
     opacity: 0.79;
