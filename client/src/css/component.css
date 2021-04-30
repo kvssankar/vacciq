@@ -1,0 +1,21 @@
+.primary-button {
+  background-color: #42c3fc;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  margin: 10px;
+}
+
+.primary-outline {
+  border: 1px solid #42c3fc;
+  background: #ffffff;
+  border-radius: 10px;
+  color: #42c3fc;
+  margin: 10px;
+}
+
+.form-input {
+  background: #c7e6f3;
+  border-radius: 10px;
+  padding: 10px;
+}
