@@ -1,0 +1,18 @@
+.footer {
+  /* position: fixed; */
+  bottom: 0px;
+}
+.footer1 {
+    float:left;
+}
+.footer2 {
+  margin-left: 10rem;
+}
+
+.footer3 {
+  float: right;
+}
+
+.themed-container
+{
+}
