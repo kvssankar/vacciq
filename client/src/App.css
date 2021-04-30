@@ -1,3 +1,4 @@
+
 .App {
     text-align: center;
 }
@@ -56,17 +57,6 @@
 margin-right: 40px;
 }
 
-.about-name{
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 23px;
-    text-align: center;
-    letter-spacing: -0.3px;
-
-}
-
 .about-you{
     font-family: Roboto;
     font-style: normal;
@@ -111,3 +101,4 @@ margin-right: 40px;
         transform: rotate(360deg);
     }
 }
+
