@@ -5,6 +5,7 @@ import QueueNumber from "./components/Dashboard/QueueNumber";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
+import AdminPage from "./pages/Admin";
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" exact component={Landing} />
         <Route path="/app" exact component={Dashboard} />
         <Route path="/login" exact component={Auth} />
+        <Route path="/admin" exact component={AdminPage} />
         {/*  <Route
           path="/about"
           render={(props) => (

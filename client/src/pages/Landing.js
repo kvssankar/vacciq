@@ -17,7 +17,7 @@ const Landing = () => (
       className="primary-button"
       size="md"
     >
-      Register
+      Register 
     </CustomButton>
     <CustomButton
       style={{ width: "100%", padding: "10px" }}
