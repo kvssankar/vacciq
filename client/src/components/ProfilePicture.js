@@ -1,5 +1,6 @@
 import React from 'react'
 import img from './profile.png'
+import {Details} from './Details.js'
 
 export const ProfilePicture = (props) => {
     return (
@@ -9,6 +10,7 @@ export const ProfilePicture = (props) => {
                 <p class = "ProfileName">{props.data.name}</p>
                 <p class= "ProfileEmail text-muted" >{props.data.email}</p>
             </div>
+            <Details data = {props.data}/>
         </div>
     )
 }
