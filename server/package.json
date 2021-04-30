@@ -9,7 +9,13 @@
   "author": "kvssk",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
-    "mongoose": "^5.12.5"
+    "generate-password": "^1.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.5",
+    "mongoose-autopopulate": "^0.13.0",
+    "nodemailer": "^6.5.0"
   }
 }
