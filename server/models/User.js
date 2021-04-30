@@ -12,12 +12,13 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   address: { type: String },
   phone: { type: Number },
-  center: { type: String },
+  center: { type: Schema.Types.ObjectId },
   slot: { type: Date }, // length 1hr
   queue_no: { type: Number, default: -1 },
   entry_time: { type: Date },
   esitimated_time: { type: Date },
   notify_id: String,
+  location: String,
 });
 
 //TODO Add fields by admins

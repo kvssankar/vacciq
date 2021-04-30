@@ -14,6 +14,7 @@ const verify = async (req) => {
   }
 };
 
+//TODO:SANKAR
 const addToQ = async (token, center_name, time) => {
   const userid = await verify(token);
   const user = await User.findOne({ _id: userid, center: center_name });
@@ -29,6 +30,7 @@ const addToQ = async (token, center_name, time) => {
       $set: {
         queue_no: center.queue.length + 1,
         entry_time: time,
+        center: center_name,
       },
     },
     { new: true }
@@ -41,6 +43,7 @@ const addToQ = async (token, center_name, time) => {
 //           time.getTime() + center.queue.length * 5 * 60000
 //         ),
 
+//TODO:CALCULATE SRIESH
 const calculateEstimatedTime = async (center_name) => {
   const users = await User.find({ center: center_name });
   const center = await Center.find({ name: center_name });
