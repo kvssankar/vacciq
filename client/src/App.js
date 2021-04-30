@@ -13,6 +13,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/app" exact component={Dashboard} />
+        <Route path="/login" exact component={Login} />
         {/*  <Route
           path="/about"
           render={(props) => (

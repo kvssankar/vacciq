@@ -15,7 +15,16 @@
 }
 
 .form-input {
-  background: #c7e6f3;
-  border-radius: 10px;
+  background: #e9f4f8;
+  border-radius: 12px;
   padding: 10px;
+  border: none;
+  padding: 12px 15px;
+  margin: 10px 0;
+  width: 100%;
+}
+.form-input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(187, 183, 183);
+  opacity: 1; /* Firefox */
 }
