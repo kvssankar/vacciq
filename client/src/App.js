@@ -4,6 +4,7 @@ import PrivateRoute from "./components/PrivateRote";
 import QueueNumber from "./components/Dashboard/QueueNumber";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
