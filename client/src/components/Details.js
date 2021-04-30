@@ -10,7 +10,7 @@ export const Details = (props) => {
             <div className="details">
                 <div class="detail">
                     <PersonIcon className="person-icon" />
-                    <p className="about-name"> {props.data.name} </p>
+                    <p className="about-you"> {props.data.name} </p>
                 </div>
 
                 <div class="detail">

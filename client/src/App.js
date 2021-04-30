@@ -9,8 +9,8 @@ import QueueNumber from "./components/Dashboard/QueueNumber";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
+import {Stats} from './components/Dashboard/Stats.js'
 
-import QueueNumber from './components/QueueNumber';
 
 
 function App() {
@@ -26,9 +26,6 @@ function App() {
     date: "05/05/2021",
     time: "10:00AM"
   }
-
-
-
 
   return (
     <Router>
@@ -67,8 +64,8 @@ function App() {
         /> */}
 
 
-        <Route exactpath='/u/:pp/' render={(props) => <ProfilePicture data={data} />}/>
-        <Route exactpath='/u/:stats/' render={(props) => <QueueNumber/>}/>
+        <Route exact path='/pp' render={(props) => <ProfilePicture data={data} />}/>
+        <Route exact path='/stats' render={(props) => <Stats/>}/>
 
 
       </Switch>

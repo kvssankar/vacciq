@@ -14,7 +14,7 @@ const Dashboard = () => {
         <h5 className="fontstyle1 mt-5 ml-2">
           Good Morning, <br></br>Sriesh
         </h5>
-        <QueueNumber />
+        <QueueNumber image = "/imgs/man.png" />
         <QueueDetails />
         <QueueTable />
       </div>

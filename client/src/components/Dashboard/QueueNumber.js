@@ -15,7 +15,7 @@ const QueueNumber = (props) => {
       </div>
       <img
         className=" queuenumberman"
-        src="/imgs/man.png"
+        src={props.image}
         alt="loading..."
       ></img>
     </div>
