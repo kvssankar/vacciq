@@ -1,0 +1,30 @@
+.primary-button {
+  background-color: #42c3fc;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  margin: 10px;
+}
+
+.primary-outline {
+  border: 1px solid #42c3fc;
+  background: #ffffff;
+  border-radius: 10px;
+  color: #42c3fc;
+  margin: 10px;
+}
+
+.form-input {
+  background: #e9f4f8;
+  border-radius: 12px;
+  padding: 10px;
+  border: none;
+  padding: 12px 15px;
+  margin: 10px 0;
+  width: 100%;
+}
+.form-input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(187, 183, 183);
+  opacity: 1; /* Firefox */
+}

@@ -1,12 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRote";
+import QueueNumber from "./components/Dashboard/QueueNumber";
+import Dashboard from "./pages/Dashboard";
+import Landing from "./pages/Landing";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
     <Router>
       {/* <Loading /> */}
       <Switch>
+        <Route path="/" exact component={Landing} />
+        <Route path="/app" exact component={Dashboard} />
+        <Route path="/login" exact component={Login} />
         {/*  <Route
           path="/about"
           render={(props) => (
