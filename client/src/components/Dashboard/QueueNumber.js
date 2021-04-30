@@ -5,25 +5,22 @@ import QueueTable from "./QueueTable";
 
 const QueueNumber = (props) => {
   return (
-    <div className="row d-flex justify-content-between queuenumbercontainer">
+    <div
+      className="row d-flex justify-content-between queuenumbercontainer"
+      style={{ background: "rgb(223 241 250)", borderRadius: "10px" }}
+    >
       <div className="p-2 col-example">
         <div className="row texts">
-          <h5 className="fontstyle1 ml-1">
-            Good Morning, <br></br>Sriesh
-          </h5>
           <h6 className="fontstyle1small mt-5 ml-3">
             Waiting in Queue,<br></br>Anywhere and Anytime
           </h6>
         </div>
       </div>
-      <div className="p-2 col-example">
-        <div className="mr-auto"></div>
-        <img
-          className=" queuenumberman"
-          src="/imgs/man.png"
-          alt="loading..."
-        ></img>
-      </div>
+      <img
+        className=" queuenumberman"
+        src="/imgs/man.png"
+        alt="loading..."
+      ></img>
     </div>
   );
 };

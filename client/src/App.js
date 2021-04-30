@@ -11,7 +11,8 @@ const App = () => {
     <Router>
       {/* <Loading /> */}
       <Switch>
-        <Route path="/" component={Landing} />
+        <Route path="/" exact component={Landing} />
+        <Route path="/app" exact component={Dashboard} />
         {/*  <Route
           path="/about"
           render={(props) => (
