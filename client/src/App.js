@@ -4,7 +4,8 @@ import PrivateRoute from "./components/PrivateRote";
 import QueueNumber from "./components/Dashboard/QueueNumber";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
-import Login from "./pages/Login";
+import Auth from "./pages/Auth";
+
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/app" exact component={Dashboard} />
-        <Route path="/login" exact component={Login} />
+        <Route path="/login" exact component={Auth} />
         {/*  <Route
           path="/about"
           render={(props) => (
