@@ -6,7 +6,7 @@ const QueueDetails = (props) => {
     <div className="mt-4 queuedetailsconatiner">
         <div className="d-flex justify-content-between row">
             <div className="rectanglebackground2 flex-fill p-2 col-example ">
-                <div className="flexdirection">
+                <div className="flexdirection" style={{alignItems:"center"}}>
                 <div className="fontstyle1small textcenter p-2 col-example ">Estimated Time</div>
                 <div className="fontstyle1small textcenter p-2 col-example ">10:00:00</div>
                 </div>
