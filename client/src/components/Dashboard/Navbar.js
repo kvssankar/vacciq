@@ -17,7 +17,7 @@ const Example = (props) => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar color="white" light expand="md">
         <NavbarBrand href="/"><img className="logonav" src="/imgs/logo.png"></img></NavbarBrand>
           <Nav className="mr-auto" navbar>
           </Nav>

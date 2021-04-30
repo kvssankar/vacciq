@@ -1,17 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap");
 .queuenumbercontainer {
   // background-color: red;
   padding: 0;
   margin: 0;
   width: 90%;
+  height:140px;
   margin: auto;
-  background-image: url("wave.png");
+  background-image: url(wave.png), url(rectangle.png);
   background-repeat: no-repeat;
-  background-size: 100vw 70px;
-  background-position: bottom;
+  background-size: 100vw 70px, 100vw 230px;
+  background-position: bottom, top;
 }
 .texts {
   flex-direction: column;
+  margin:0;
 }
 .textcenter {
   text-align: center;
@@ -39,16 +40,45 @@
 .fontstyle1 {
   font-family: Roboto;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 21px;
   line-height: 25px;
   letter-spacing: -0.3px;
+  color:#595959;
 }
 .fontstyle1small {
   font-family: Roboto;
   font-style: normal;
-  font-weight: 900;
+  font-weight: bold;
   font-size: 18px;
-  line-height: 25px;
+  line-height: 24px;
   letter-spacing: -0.3px;
+  color:#595959;
+  // padding-bottom:30px ;
+}
+.rectanglebackground
+{
+  background-image: url(rectangle.png);
+  background-repeat: no-repeat;
+  background-size: 100vw 75px;
+  background-position:top;
+  border-radius: 5px;
+}
+.rectanglebackground2
+{
+  background-image: url(rectangle.png);
+  background-repeat: no-repeat;
+  background-size: 100vw 95px;
+  background-position:top;
+  border-radius: 5px;
+  margin-right:10px;
+}
+.rectanglebackground2_1
+{
+  background-image: url(rectangle.png);
+  background-repeat: no-repeat;
+  background-size: 100vw 95px;
+  background-position:top;
+  border-radius: 5px;
+  margin-left:10px;
 }
