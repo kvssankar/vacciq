@@ -1,19 +1,37 @@
-import React from "react";
+import "./App.css";
+import React, { useState } from "react";
+import { ProfilePicture } from "./components/ProfilePicture";
+import { Details } from "./components/Details";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import PrivateRoute from "./components/PrivateRote";
 import QueueNumber from "./components/Dashboard/QueueNumber";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
+import Register from "./pages/Register";
 import Login from "./pages/Login";
+import AdminPage from "./pages/Admin";
 
-const App = () => {
+function App() {
+  let data = {
+    name: "Vinamra Khoria",
+    email: "vinamrakhoria@gmail.com",
+    phone: "8290469207",
+    centreName: "Centre 1",
+    centreAddress: "M.G. Road",
+    centrePhone: "9756481230",
+    date: "05/05/2021",
+    time: "10:00AM",
+  };
+
   return (
     <Router>
-      {/* <Loading /> */}
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/app" exact component={Dashboard} />
         <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Register} />
+        <Route path="/admin" exact component={AdminPage} />
         {/*  <Route
           path="/about"
           render={(props) => (
@@ -41,9 +59,16 @@ const App = () => {
           component3={Login}
           component4={About}
         /> */}
+
+        <Route
+          exactpath="/u/:pp/"
+          render={(props) => <ProfilePicture data={data} />}
+        />
+        <Route exactpath="/u/:stats/" render={(props) => <QueueNumber />} />
       </Switch>
     </Router>
+    // <ProfilePicture data = {data}/>
   );
-};
+}
 
 export default App;

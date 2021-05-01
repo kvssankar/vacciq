@@ -10,7 +10,6 @@ const userSchema = new Schema({
   email: String,
   name: String,
   password: { type: String, required: true },
-  address: { type: String },
   phone: { type: Number },
   center: { type: Schema.Types.ObjectId },
   slot: { type: Date }, // length 1hr
@@ -20,8 +19,6 @@ const userSchema = new Schema({
   notify_id: String,
   location: String,
 });
-
-//TODO Add fields by admins
 
 const User = mongoose.model("user", userSchema);
 
