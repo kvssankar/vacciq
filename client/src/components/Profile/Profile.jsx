@@ -2,12 +2,19 @@ import React from "react";
 import "./Profile.css";
 import Navbar from "../Dashboard/Navbar";
 import Footer from "../Dashboard/Footer";
-
+import Button from "../CustomButton";
 const Profile = () => {
   return (
       
     <div className="signuppagecontainer container">
         <Navbar />
+        <div style={{marginTop:"30px"}} ></div>
+        <Button  style={{ margin:"auto",width: "40%", padding: "10px" }}
+      className="mt-2 primary-button"
+      size="sm" >Create Queue</Button>
+      <Button     style={{ float:"right",margin:"auto",width: "40%", padding: "10px" }}
+      className="mt-2 primary-button"
+      size="sm" >join Queue</Button>
       {/* <div className="row d-flex ml-3 mt-3 ">
         <img src="/imgs/back.png" alt="loading..."></img>
       </div> */}
