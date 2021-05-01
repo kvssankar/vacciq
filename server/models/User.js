@@ -10,17 +10,11 @@ const userSchema = new Schema({
   email: String,
   name: String,
   password: { type: String, required: true },
-  address: { type: String },
   phone: { type: Number },
-  center: { type: String },
-  slot: { type: Date }, // length 1hr
-  queue_no: { type: Number, default: -1 },
-  entry_time: { type: Date },
-  esitimated_time: { type: Date },
+  center_id: { type: Schema.Types.ObjectId, ref: "queue" },
+  queue_id: { type: Schema.Types.ObjectId, ref: "queue" },
   notify_id: String,
 });
-
-//TODO Add fields by admins
 
 const User = mongoose.model("user", userSchema);
 

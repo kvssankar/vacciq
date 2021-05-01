@@ -1,4 +1,4 @@
-const { Center } = require("../models/Center");
+const { Queue } = require("../models/Queue");
 const { User } = require("../models/User");
 const verify = require("../verify");
 
@@ -14,32 +14,56 @@ const verify = async (req) => {
   }
 };
 
-const addToQ = async (token, center_name, time) => {
-  const userid = await verify(token);
-  const user = await User.findOne({ _id: userid, center: center_name });
-  if (!user)
-    return { error: 1, mssg: `Not this center, your center is ${user.center}` };
-  const center = await Center.findOne({ name: center_name });
-  if (time.getHours() > user.slot.getHours() + 1)
-    return { error: 1, mssg: `Missed your slot` };
+//null : something went wrong
 
+const createQ = async ({ token, name, limit, line, time }) => {
+  const newQ = new Queue({ name, limit, line, time });
+  const addedQ = await newQ.save();
+  const userid = await verify(token);
+  if (!userid) return null;
+  const user = await User.findByIdAndUpdate(
+    userid,
+    { $set: { center_id: addedQ._id } },
+    { new: true }
+  );
+  return { addedQ: addedQ, user: user };
+};
+
+const addToQ = async (token, center_id) => {
+  const userid = await verify(token);
+  if (!userid) return null;
+  const user = await User.findOne({ _id: userid });
+  const center = await Queue.findByIdAndUpdate(center_id, {
+    $push: { line: { user: userid } },
+  });
   const updatedUser = await User.findByIdAndUpdate(
     user._id,
     {
       $set: {
-        queue_no: center.queue.length + 1,
-        entry_time: time,
+        queue_id: center_id,
       },
     },
     { new: true }
   );
-  return updatedUser;
+  return { user: updatedUser, center: center };
 };
 
-// ,
-//         estimated_time: new Date(
-//           time.getTime() + center.queue.length * 5 * 60000
-//         ),
+const removeFromQ = async (user_id, queue_id, token) => {
+  const ownerid = await verify(token);
+  if (!ownerid) return null;
+  let owner = await User.findOne({ _id: ownerid, center_id: queue_id });
+  if (!owner) return null;
+  const center = await Queue.findByIdAndUpdate(
+    owner.center_id,
+    { $pull: { "line.user": user_id } },
+    { new: true }
+  );
+  const user = await User.findByIdAndRemove(user_id, {
+    $set: { queue_id: null },
+  });
+  owner = await User.findOne({ _id: ownerid, center_id: queue_id });
+  return { user: owner };
+};
 
 const calculateEstimatedTime = async (center_name) => {
   const users = await User.find({ center: center_name });
