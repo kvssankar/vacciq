@@ -3,8 +3,8 @@ import axios from "axios"
 const QueueDetails = ({user}) => {
   const [qno,setQno]=useState(0);
   const [rt,setRt]=useState(0);
+  const [et,setEt]=useState(0);
   useEffect(()=>{
-    setQno();
     for(var i=0;i<user.queue_id.line.length;i++){
       setQno(i+1);
       console.log(user.queue_id.line[i].user._id)
@@ -12,10 +12,17 @@ const QueueDetails = ({user}) => {
         break;
       }
     }
-    axios.post("/api/user/directions",{user_id:user._id,center_id:user.center_id}).then(res=>{
-      console.log(res.data)
-      setRt(res.data)
-    })
+    // axios.post("/api/user/directions",{user_id:user._id,center_id:user.center_id}).then(res=>{
+    //   console.log(res.data)
+    //   setRt(res.data);
+    // })
+    let dt=new Date();
+      console.log(qno)
+      axios.get(`https://devsoc2021.herokuapp.com/predict/?pos=${qno}&avg=${user.queue_id.limit}&day=${dt.getDay()}`).then(res=>{
+        console.log(res.data.MESSAGE)
+        //setEt(res.data)
+      })
+    
   },[user])
   return (
     <div className="mt-4 queuedetailsconatiner">
@@ -23,7 +30,7 @@ const QueueDetails = ({user}) => {
             <div className="rectanglebackground2 flex-fill p-2 col-example ">
                 <div className="flexdirection" style={{alignItems:"center"}}>
                 <div className="fontstyle1small textcenter p-2 col-example ">Estimated Time</div>
-                <div className="fontstyle1small textcenter p-2 col-example ">{}</div>
+                <div className="fontstyle1small textcenter p-2 col-example ">{et}</div>
                 </div>
             </div>
             <div className="rectanglebackground2 flex-fill p-2 col-example ">
