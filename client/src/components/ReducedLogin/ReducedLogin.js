@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addToQ } from "../../actions/queueActions";
+
 const ReducedLogin = ({ qid }) => {
   const [q, setQ] = useState();
   const [name, setName] = useState("");
@@ -10,15 +10,40 @@ const ReducedLogin = ({ qid }) => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.userReducer.isLogin);
   const user = useSelector((state) => state.userReducer.user);
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+  if (token) config.headers["auth-token"] = token;
+  const addToQ = (center_id) => (dispatch) => {
+    axios
+      .post("/api/q/add", { center_id }, config)
+      .then(async (res) => {
+        await dispatch({
+          type: "UPDATE_USER",
+          payload: res.data.user,
+        });
+        history.push("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        dispatch({
+          type: "ERROR",
+          payload: err.response.data,
+        });
+        setTimeout(() => {
+          dispatch({ type: "CLEAR_ERROR" });
+        }, [5000]);
+      });
+  };
   useEffect(() => {
     async function aq() {
       if (isLogin) {
         setName(user.name);
         setPhone(user.phone);
-        await dispatch(addToQ(qid));
-        setTimeout(() => {
-          history.push("/dashboard");
-        }, [3000]);
+        addToQ(qid);
       }
     }
     aq();
