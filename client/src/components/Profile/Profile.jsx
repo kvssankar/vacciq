@@ -1,43 +1,90 @@
 import React from "react";
 import "./Profile.css";
+import Navbar from "../Dashboard/Navbar";
+import Footer from "../Dashboard/Footer";
 import Button from "../CustomButton";
 const Profile = () => {
   return (
-    <div class="customqueuecontainer">
-      <div className="row d-flex ml-3 mt-3 ">
+      
+    <div className="signuppagecontainer container">
+        <Navbar />
+        <div style={{marginTop:"30px"}} ></div>
+        <Button  style={{ margin:"auto",width: "40%", padding: "10px" }}
+      className="mt-2 primary-button"
+      size="sm" >Create Queue</Button>
+      <Button     style={{ float:"right",margin:"auto",width: "40%", padding: "10px" }}
+      className="mt-2 primary-button"
+      size="sm" >join Queue</Button>
+      {/* <div className="row d-flex ml-3 mt-3 ">
+        <img src="/imgs/back.png" alt="loading..."></img>
+      </div> */}
+      <div className="mt-5 row justify-content-center d-flex">
         <img
-          src="/imgs/back.png"
+          className="profilebigimg"
+          src="/imgs/profilebig.png"
           alt="loading..."
-          //   onClick={() => history.push("/")}
         ></img>
       </div>
-      <div className="row d-flex ml-4 mt-3 ">
-        <h5>
-          Create your own Queue <br></br> INSTANTLY !
-        </h5>
+      <div className="mt-5 row justify-content-center d-flex">
+        <p className="fontstyle1">Param Sharma</p>
       </div>
-      <div className="mt-3 ml-4 mr-4 signupform">
-        <input type="text" className="form-input" placeholder="Name" />
-        <input
-          type="text"
-          className="form-input"
-          placeholder="Maximum number of people"
-        />
-        <input
-          type="text"
-          className="form-input"
-          placeholder="Average time per person"
-        />
-        {/* <input type="text" className="form-input" placeholder="Password" /> */}
-        {/* <input type="checkbox" className="ml-auto form-input" placeholder="Password" /> */}
-        <Button
-          style={{ margin: "auto", width: "100%", padding: "10px" }}
-          className="mt-5 primary-button"
-          size="md"
-        >
-          Create
-        </Button>
+      <div className="mb-5  row justify-content-center d-flex">
+        <p style={{color:"#AFAFAF"}}className="fontstyle1">Param.sharma@gmail.com</p>
       </div>
+      <div className="mt-1 row justify-content-center d-flex"></div>
+      <div className="profile d-flex justify-content-between align-items-center">
+        <div className="queuetablepart1 p-2 col-example text-left">
+          <img className="profilepictable" src="/imgs/smicon.png"></img>
+        </div>
+        <div className="queuetablepart2 p-2 col-example text-left align-items-center">
+          <div className=" d-flex flexcolumn">
+            <h6 className="fontstyle1 queuetablepart2h6">Sriesh Agrawal</h6>
+          </div>
+        </div>
+        <div className="queuetablepart3 p-2 col-example text-left">
+          <img className="profilepictable" src="/imgs/smicon2.png"></img>
+        </div>
+      </div>
+      <div className="mt-1 profile d-flex justify-content-between align-items-center">
+        <div className="queuetablepart1 p-2 col-example text-left">
+          <img className="profilepictable" src="/imgs/smicon.png"></img>
+        </div>
+        <div className="queuetablepart2 p-2 col-example text-left align-items-center">
+          <div className=" d-flex flexcolumn">
+            <h6 className="fontstyle1 queuetablepart2h6">Sriesh Agrawal</h6>
+          </div>
+        </div>
+        <div className="queuetablepart3 p-2 col-example text-left">
+          <img className="profilepictable" src="/imgs/smicon2.png"></img>
+        </div>
+      </div>
+      <div className="mt-1 profile d-flex justify-content-between align-items-center">
+        <div className="queuetablepart1 p-2 col-example text-left">
+          <img className="profilepictable" src="/imgs/smicon.png"></img>
+        </div>
+        <div className="queuetablepart2 p-2 col-example text-left align-items-center">
+          <div className=" d-flex flexcolumn">
+            <h6 className="fontstyle1 queuetablepart2h6">Sriesh Agrawal</h6>
+          </div>
+        </div>
+        <div className="queuetablepart3 p-2 col-example text-left">
+          <img className="profilepictable" src="/imgs/smicon2.png"></img>
+        </div>
+      </div>
+      <div className="mt-1 profile d-flex justify-content-between align-items-center">
+        <div className="queuetablepart1 p-2 col-example text-left">
+          <img className="profilepictable" src="/imgs/smicon.png"></img>
+        </div>
+        <div className="queuetablepart2 p-2 col-example text-left align-items-center">
+          <div className=" d-flex flexcolumn">
+            <h6 className="fontstyle1 queuetablepart2h6">Sriesh Agrawal</h6>
+          </div>
+        </div>
+        <div className="queuetablepart3 p-2 col-example text-left">
+          <img className="profilepictable" src="/imgs/smicon2.png"></img>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
