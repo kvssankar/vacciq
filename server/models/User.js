@@ -9,7 +9,7 @@ const userSchema = new Schema({
   },
   email: String,
   name: String,
-  password: { type: String, required: true },
+  password: { type: String },
   phone: { type: String },
   sex: { type: Number, default: 1 },
   center_id: { type: Schema.Types.ObjectId, ref: "queue", autopopulate: true },

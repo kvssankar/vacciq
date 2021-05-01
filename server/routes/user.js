@@ -3,6 +3,7 @@ const bc = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 const { User } = require("../models/User");
+const { Queue } = require("../models/Queue");
 
 router.post("/register", async (req, res) => {
   let user = await User.findOne({ phone: req.body.phone });
@@ -40,6 +41,9 @@ router.post("/reducedlogin", async (req, res) => {
   const { phone, name, qid } = req.body;
   let userExist = await User.findOne({ phone: phone });
   if (!userExist) userExist = await User({ name, phone, queue_id: qid }).save();
+  await Queue.findByIdAndUpdate(qid, {
+    $push: { line: { user: userExist._id } },
+  });
   const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
   return res.json({ token, user: userExist });
 });
