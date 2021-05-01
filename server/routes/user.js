@@ -26,6 +26,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  console.log(req.body);
   const { phone, password } = req.body;
   const userExist = await User.findOne({ phone: phone });
   if (!userExist)
@@ -34,6 +35,7 @@ router.post("/login", async (req, res) => {
   if (!validPassword)
     return res.status(500).json({ status: 1, mssg: "Password does not match" });
   const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
+  console.log(token);
   return res.json({ token, user: userExist });
 });
 

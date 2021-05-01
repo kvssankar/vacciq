@@ -12,7 +12,7 @@ const Signup = () => {
   const done=async()=>{
     //console.log("sssa")
     await dispatch(login(phone,password));
-    history.push('/app');
+    history.push('/userdashboard');
   }
     return (
       <div className="signuppagecontainer container" style={{display:"flex",flexDirection:"column",justifyContent:"center",height:"100vh"}}>

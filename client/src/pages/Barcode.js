@@ -11,7 +11,7 @@ class Barcode extends Component {
       this.setState({
         result: data,
       });
-      document.location.href = "/q" + data;
+      document.location.href = "/quicklogin/" + data;
     }
   };
   handleError = (err) => {
@@ -26,6 +26,7 @@ class Barcode extends Component {
           onScan={this.handleScan}
           style={{ width: "100%" }}
         />
+        <p>{this.state.result}</p>
       </div>
     );
   }

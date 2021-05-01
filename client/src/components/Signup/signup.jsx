@@ -15,7 +15,7 @@ const Signup = () => {
   const done=async()=>{
     //console.log("sssa")
     await dispatch(register(name,email,phone,password,sex));
-    history.push('/app');
+    history.push('/userdashboard');
   }
     return (
       <div className="signuppagecontainer container">
