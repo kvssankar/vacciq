@@ -36,4 +36,12 @@ router.post("/login", async (req, res) => {
   return res.json({ token, user: userExist });
 });
 
+router.post("/reducedlogin", async (req, res) => {
+  const { phone, name, qid } = req.body;
+  let userExist = await User.findOne({ phone: phone });
+  if (!userExist) userExist = await User({ name, phone, queue_id: qid }).save();
+  const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
+  return res.json({ token, user: userExist });
+});
+
 module.exports = router;
