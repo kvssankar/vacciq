@@ -82,9 +82,13 @@ router.post("/reducedlogin", async (req, res) => {
   await Queue.findByIdAndUpdate(qid, {
     $push: { line: { user: userExist._id } },
   });
-  let user = await User.findByIdAndUpdate(userExist._id, {
-    $set: { queue_id: qid },
-  });
+  let user = await User.findByIdAndUpdate(
+    userExist._id,
+    {
+      $set: { queue_id: qid },
+    },
+    { new: true }
+  );
   const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
   return res.json({ token, user });
 });
