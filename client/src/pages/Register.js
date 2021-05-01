@@ -2,12 +2,8 @@ import React from "react";
 import "../css/component.css";
 import SignUp from "../components/Signup/signup";
 
-const Auth = () => {
-  return (
-    <div>
-      <SignUp />
-    </div>
-  )
+const Register = () => {
+  return <SignUp />;
 };
 
-export default Auth;
+export default Register;

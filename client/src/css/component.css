@@ -14,6 +14,11 @@
   margin: 10px;
 }
 
+.primary-button:hover,
+.primary-outline:hover {
+  background-color: #42c3fc;
+}
+
 .form-input {
   background: #e9f4f8;
   border-radius: 12px;
@@ -27,4 +32,34 @@
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: rgb(187, 183, 183);
   opacity: 1; /* Firefox */
+}
+
+.radio-label {
+  user-select: none;
+}
+.radio {
+  display: none;
+}
+
+.radio + .radio-label {
+  z-index: 10;
+  margin: 0 10px 10px 0;
+  position: relative;
+  color: #42c3fc;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+  background-color: #ffffff;
+  border: 2px solid #42c3fc;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.radio:checked + .radio-label {
+  color: white;
+  background-color: #42c3fc;
+}
+
+.radio + .radio-label {
+  padding: 5px 20px;
+  border-radius: 10px;
 }
