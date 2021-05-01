@@ -3,17 +3,44 @@ import "./CustomQueue.css";
 import { useDispatch } from "react-redux";
 import { createQ } from "../../actions/queueActions";
 import { useHistory } from "react-router";
+import axios from "axios";
+
 const CustomQueue = () => {
   const [name,setName]=useState("");
   const [limit,setLimit]=useState();
   const [time,setTime]=useState();
   const dispatch=useDispatch();
   const history=useHistory()
-  const cq=async()=>{
-    await dispatch(createQ(name, limit, time));
-    setTimeout(()=>{history.push("/admin");},[3000])
-    
-  }
+  
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+  if (token) config.headers["auth-token"] = token;
+
+  const cq = ()=> {
+    axios
+      .post("/api/q/create", { name, limit, time }, config)
+      .then(async(res) => {
+        dispatch({
+          type: "UPDATE_USER",
+          payload: res.data.user,
+        });
+        history.push("/admin");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        dispatch({
+          type: "ERROR",
+          payload: err.response.data,
+        });
+        setTimeout(() => {
+          dispatch({ type: "CLEAR_ERROR" });
+        }, [5000]);
+      });
+  };
   return (
     <div class="customqueuecontainer">
       <div className="row d-flex ml-3 mt-3 ">
