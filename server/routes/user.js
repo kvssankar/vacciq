@@ -1,22 +1,21 @@
 const router = require("express").Router();
-const config = require("config");
 const bc = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const config = require("../config");
 const { User } = require("../models/User");
-var generator = require("generate-password");
 
 router.post("/register", async (req, res) => {
-  var password = generator.generate({
-    length: 10,
-    numbers: true,
-  });
-  let user = await User.findOne({ email: req.body.email });
-  if (!user) return res.json({ status: 1, mssg: "Email not found" });
+  let user = await User.findOne({ phone: req.body.phone });
+  if (user)
+    return res
+      .status(400)
+      .json({ status: 1, mssg: "Use different mobile number" });
   user = new User({
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
     password: req.body.password,
+    sex: req.body.sex,
   });
   const newUser = await user.save();
   const token = jwt.sign({ _id: newUser._id }, config.jwt_secret);
@@ -34,3 +33,5 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
   return res.json({ token, user: userExist });
 });
+
+module.exports = router;

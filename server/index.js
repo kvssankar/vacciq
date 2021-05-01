@@ -7,7 +7,8 @@ app.use(express.static("uploads"));
 const server = require("http").createServer(app);
 
 //keys
-const db = "";
+const db =
+  "mongodb+srv://kvssankar:u4I69QktIvLwOk7H@cluster1.uacfw.mongodb.net/vacciq?retryWrites=true&w=majority";
 
 //connect to mongo
 const connect = mongoose
@@ -16,7 +17,7 @@ const connect = mongoose
   .catch((err) => console.log(err));
 
 //routes
-// app.use("/api/club", require("./routes/club"));
+app.use("/api/user", require("./routes/user"));
 // app.use("/api/member", require("./routes/member"));
 // app.use("/api/meeting", require("./routes/meetings"));
 // app.use("/api/event", require("./routes/events"));

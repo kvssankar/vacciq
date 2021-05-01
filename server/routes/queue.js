@@ -14,8 +14,11 @@ const verify = async (req) => {
   }
 };
 
-//TODO:SANKAR
-const addToQ = async (token, center_name, time) => {
+//null : something went wrong
+
+const createQ = async ({ token, name, limit, line, time }) => {
+  const newQ = new Queue({ name, limit, line, time });
+  const addedQ = await newQ.save();
   const userid = await verify(token);
   if (!userid) return null;
   const user = await User.findByIdAndUpdate(
@@ -37,9 +40,7 @@ const addToQ = async (token, center_id) => {
     user._id,
     {
       $set: {
-        queue_no: center.queue.length + 1,
-        entry_time: time,
-        center: center_name,
+        queue_id: center_id,
       },
     },
     { new: true }
@@ -64,7 +65,6 @@ const removeFromQ = async (user_id, queue_id, token) => {
   return { user: owner };
 };
 
-//TODO:CALCULATE SRIESH
 const calculateEstimatedTime = async (center_name) => {
   const users = await User.find({ center: center_name });
   const center = await Center.find({ name: center_name });
