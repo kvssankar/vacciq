@@ -18,7 +18,7 @@ const QueueDetails = ({user}) => {
             <div className="rectanglebackground2 flex-fill p-2 col-example ">
                 <div className="flexdirection" style={{alignItems:"center"}}>
                 <div className="fontstyle1small textcenter p-2 col-example ">Estimated Time</div>
-                <div className="fontstyle1small textcenter p-2 col-example ">10:00:00</div>
+                <div className="fontstyle1small textcenter p-2 col-example ">{qno*user.center_id.limit}</div>
                 </div>
             </div>
             <div className="rectanglebackground2_1 flex-fill  p-2 col-example justify-content-center align-items-center">
