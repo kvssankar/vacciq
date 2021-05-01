@@ -6,7 +6,15 @@ import "../css/landing.css";
 
 const Landing = () => {
   return (
-    <div className="container column-flex">
+    <div
+      className="container column-flex"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
       <img src={logo} alt="VacciQ" />
       <img
         src={couple}
