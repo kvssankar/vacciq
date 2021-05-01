@@ -15,6 +15,8 @@ const userSchema = new Schema({
   center_id: { type: Schema.Types.ObjectId, ref: "queue", autopopulate: true },
   queue_id: { type: Schema.Types.ObjectId, ref: "queue", autopopulate: true },
   notify_id: String,
+  latitude: String,
+  longitude: String,
 });
 
 userSchema.plugin(require("mongoose-autopopulate"));

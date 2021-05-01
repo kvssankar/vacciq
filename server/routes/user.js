@@ -4,6 +4,26 @@ const jwt = require("jsonwebtoken");
 const config = require("../config");
 const { User } = require("../models/User");
 const { Queue } = require("../models/Queue");
+const verify = require("../verify");
+const { default: axios } = require("axios");
+
+router.post("/token", verify, async (req, res) => {
+  User.findByIdAndUpdate(req.user._id, { $set: { notify_id: req.body.token } });
+});
+
+router.post("/directions", async (req, res) => {
+  const { user_id, center_id } = req.body;
+  const owner = await User.findOne({ center_id: center_id });
+  const user = await User.findById(user_id);
+  axios
+    .get(
+      `https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${user.longitude},${user.latitude};${owner.longitude},${owner.latitude}?approaches=curb;curb;curb&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
+    )
+    .then((data) => {
+      console.log(data.data);
+      res.json(data);
+    });
+});
 
 router.post("/register", async (req, res) => {
   let user = await User.findOne({ phone: req.body.phone });

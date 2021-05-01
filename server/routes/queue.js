@@ -3,6 +3,47 @@ const config = require("../config");
 const { User } = require("../models/User");
 const { Queue } = require("../models/Queue");
 const verify = require("../verify");
+const axios = require("axios");
+
+const notify = async (notify_id, title, mssg) => {
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+      Authorization:
+        "key=AAAA17rD_-Q:APA91bE92fSSSJZO9LmGtShC8v43wiAUldddG-Dt572cP9nciVmDJ4CmHJiM5yGMsQOdC-EXKAm5C8FjDLrnd4eG62NX0RDnTzXJ5MJDOAW6p8vrnjqj0aqpKmrKpfCN9SlTD1NtYH3J",
+    },
+  };
+  axios
+    .post(
+      "https://fcm.googleapis.com/fcm/send",
+      {
+        registration_ids: [notify_id],
+        notification: {
+          sound: "default",
+          body: mssg,
+          title: title,
+          image: url,
+          icon:
+            "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
+          content_available: true,
+          priority: "high",
+        },
+        data: {
+          sound: "default",
+          body: mssg,
+          title: title,
+          image: url,
+          icon:
+            "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
+          content_available: true,
+          priority: "high",
+        },
+      },
+      config
+    )
+    .then((res) => {})
+    .catch((err) => {});
+};
 
 router.post("/details", async (req, res) => {
   const { qid, sankar } = req.body;
