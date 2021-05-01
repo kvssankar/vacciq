@@ -1,6 +1,9 @@
 .footer {
-  /* position: fixed; */
+  border-top:1px solid grey;
+  /* position: absolute; */
   bottom: 0px;
+  margin:0;
+  padding:0
 }
 .footer1 {
     float:left;
