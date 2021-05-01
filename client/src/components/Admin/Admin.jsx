@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Admin.css";
-import Button from "../CustomButton";
 
 const Admin = () => {
     return (
       <div className="signuppagecontainer container">
         <div className="row d-flex ml-3 mt-3 ">
-          <img src="/imgs/back.png"></img>
+          <img src="/imgs/back.png" alt="loading..."></img>
         </div>
         <div className="mt-5 row justify-content-center d-flex">
-           <img src="/imgs/barcodeexample.png"></img>
+           <img src="/imgs/barcodeexample.png" alt="loading..."></img>
         </div>
         <div className="d-flex justify-content-between row">
             <div className="rectanglebackground2 flex-fill mt-5 p-2 col-example ">

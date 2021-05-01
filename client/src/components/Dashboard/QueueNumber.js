@@ -1,7 +1,5 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
 import "./QueueNumber.scss";
-import QueueTable from "./QueueTable";
 
 const QueueNumber = (props) => {
   return (
