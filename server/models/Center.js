@@ -15,6 +15,7 @@ const centerSchema = new Schema({
   queue: [{ type: Schema.Types.ObjectId, ref: "user", autopopulate: true }],
   esitimated_time: { type: String },
   limit: { type: Number, default: 5 },
+  location: String,
 });
 
 centerSchema.plugin(require("mongoose-autopopulate"));

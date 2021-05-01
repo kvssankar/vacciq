@@ -1,14 +1,9 @@
 import React from "react";
 import "../css/component.css";
+import Signin from "../components/Signin/signin";
+
 const Login = () => {
-  return (
-    <div className="container">
-      <input type="text" className="form-input" placeholder="Email" />
-      <input type="text" className="form-input" placeholder="Email" />
-      <input type="text" className="form-input" placeholder="Email" />
-      <input type="text" className="form-input" placeholder="Email" />
-    </div>
-  );
+  return <Signin />;
 };
 
 export default Login;
