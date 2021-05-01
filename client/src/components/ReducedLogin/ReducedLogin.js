@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 const ReducedLogin = ({ qid }) => {
   const [q, setQ] = useState();
   const [name, setName] = useState("");
@@ -13,12 +14,13 @@ const ReducedLogin = ({ qid }) => {
       setQ(res.data.q);
     });
   }, [qid]);
+  const history = useHistory();
   const send = () => {
     axios
       .post("/api/user/reducedlogin", { qid, name, phone })
       .then(async (res) => {
         await dispatch({ type: "UPDATE_USER", payload: res.data.user });
-        document.location.href = "/dashboard";
+        history.push("/dashboard");
       });
   };
   return (

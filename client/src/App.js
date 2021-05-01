@@ -31,7 +31,7 @@ function App() {
     //     await socket.emit("getdata", {
     //       id: user._id,
     //     });
-    //   }, [5000]);
+    //   }, [10000]);
     socket.on("userdata", (data) => {
       console.log(data);
       dispatch({ type: "UPDATE_USER", payload: data });
