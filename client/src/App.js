@@ -11,6 +11,9 @@ import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AdminPage from "./pages/Admin";
+import QueueCreate from "./pages/CreateQueue";
+import LoginReduced from "./pages/ReducedLogin";
+import Profile from "./pages/Profile";
 
 function App() {
   let data = {
@@ -32,6 +35,9 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
         <Route path="/admin" exact component={AdminPage} />
+        <Route path ="/create" exact component={QueueCreate} />
+        <Route path ="/quicklogin" exact component={LoginReduced} />
+        <Route path ="/profile" exact component={Profile} />
         {/*  <Route
           path="/about"
           render={(props) => (

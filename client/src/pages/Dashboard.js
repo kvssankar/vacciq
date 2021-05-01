@@ -11,11 +11,11 @@ const Dashboard = () => {
     <div>
       <Navbar />
       <div className="container" >
+      <QueueDetails />  
         <h5 className="fontstyle1 mt-5 ml-2">
           Good Morning, <br></br>Sriesh
         </h5>
         <QueueNumber />
-        <QueueDetails />
         <QueueTable />
       </div>
       <Footer />
