@@ -27,12 +27,12 @@ function App() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (isLogin)
-      setInterval(async () => {
-        await socket.emit("getdata", {
-          id: user._id,
-        });
-      }, [10000]);
+    // if (isLogin)
+    //   setInterval(async () => {
+    //     await socket.emit("getdata", {
+    //       id: user._id,
+    //     });
+    //   }, [10000]);
     socket.on("userdata", (data) => {
       console.log(data);
       dispatch({ type: "UPDATE_USER", payload: data });

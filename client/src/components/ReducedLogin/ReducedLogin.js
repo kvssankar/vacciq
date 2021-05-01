@@ -12,36 +12,19 @@ const ReducedLogin = ({ qid }) => {
   const isLogin = useSelector((state) => state.userReducer.isLogin);
   const user = useSelector((state) => state.userReducer.user);
 
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
-  if (token) config.headers["auth-token"] = token;
-
   useEffect(() => {
     async function aq() {
       if (isLogin) {
         setName(user.name);
         setPhone(user.phone);
         axios
-          .post("/api/q/add", { center_id: qid }, config)
+          .post("/api/user/reducedlogin", { name, phone, qid })
           .then(async (res) => {
             await dispatch({
               type: "UPDATE_USER",
               payload: res.data.user,
             });
             history.push("/dashboard");
-          })
-          .catch((err) => {
-            console.log(err.response.data);
-            dispatch({
-              type: "ERROR",
-              payload: err.response.data,
-            });
-            setTimeout(() => {
-              dispatch({ type: "CLEAR_ERROR" });
-            }, [5000]);
           });
       }
     }

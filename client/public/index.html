@@ -125,6 +125,25 @@
         function success(position) {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
+          const token = localStorage.getItem("token");
+          const config = {
+            headers: {
+              "Content-type": "application/json",
+            },
+          };
+          if (token) config.headers["auth-token"] = token;
+          axios
+            .post(
+              "/api/user/addloc",
+              {
+                latitude,
+                longitude,
+              },
+              config
+            )
+            .then((res) => {});
+          localStorage.setItem("fcmtoken", currentToken);
+          console.log(currentToken);
         }
 
         function error() {

@@ -9,6 +9,20 @@ const { default: axios } = require("axios");
 
 router.post("/token", verify, async (req, res) => {
   User.findByIdAndUpdate(req.user._id, { $set: { notify_id: req.body.token } });
+  res.send("done");
+});
+
+router.post("/addloc", verify, async (req, res) => {
+  console.log(req.user);
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $set: { latitude: req.body.latitude, longitude: req.body.longitude },
+    },
+    { new: true }
+  );
+  console.log(user);
+  res.json(user);
 });
 
 router.post("/directions", async (req, res) => {
@@ -17,12 +31,13 @@ router.post("/directions", async (req, res) => {
   const user = await User.findById(user_id);
   axios
     .get(
-      `https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${user.longitude},${user.latitude};${owner.longitude},${owner.latitude}?approaches=curb;curb;curb&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
+      `https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${user.longitude},${user.latitude};${owner.longitude},${owner.latitude}?approaches=curb;curb&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
     )
     .then((data) => {
-      console.log(data.data);
-      res.json(data);
-    });
+      console.log(data.data.durations[0][1]);
+      res.json(data.data.durations[0][1]);
+    })
+    .catch((err) => console.log(err));
 });
 
 router.post("/register", async (req, res) => {
@@ -62,12 +77,28 @@ router.post("/login", async (req, res) => {
 router.post("/reducedlogin", async (req, res) => {
   const { phone, name, qid } = req.body;
   let userExist = await User.findOne({ phone: phone });
-  if (!userExist) userExist = await User({ name, phone, queue_id: qid }).save();
+  if (!userExist)
+    userExist = await new User({ name, phone, queue_id: qid }).save();
   await Queue.findByIdAndUpdate(qid, {
     $push: { line: { user: userExist._id } },
   });
+  let user = await User.findByIdAndUpdate(userExist._id, {
+    $set: { queue_id: qid },
+  });
   const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
-  return res.json({ token, user: userExist });
+  return res.json({ token, user });
+});
+
+router.post("/getloc", verify, async (req, res) => {
+  const user = await User.findById(req.body.user_id);
+  axios
+    .post(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/chester.json?proximity=${user.longitude},${user.latitude}&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
+    )
+    .then((data) => {
+      console.log(data.data.features[0].place_name);
+      res.json(data.data.features[0].place_name);
+    });
 });
 
 module.exports = router;

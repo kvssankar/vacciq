@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Route, Redirect } from "react-router-dom";
+import axios from "axios";
 import "../Dashboard/QueueTable.css";
 const QueueTable = ({ user }) => {
+  const token = localStorage.getItem("token");
+const config = {
+  headers: {
+    "Content-type": "application/json",
+  },
+};
+if (token) config.headers["auth-token"] = token;
   const [line, setLine] = useState([]);
   useEffect(() => {
     setLine(user.center_id.line);
     console.log(user.center_id.line);
   }, [user]);
+  const getloc=async(a)=>{
+    let ans;
+    await axios.post("/api/user/getloc",{user_id:a},config).then(res=>ans= res.data)
+    console.log(ans)
+    //return ans;
+  }
   return (
     <div className="mt-4 queuetablecontainer" style={{ marginBottom: "5rem" }}>
       <h5 className="ml-2 ">Queue Table</h5>
