@@ -1,14 +1,16 @@
 import React from "react";
+import QRCode from "qrcode.react";
 import "./Admin.css";
 
-const Admin = () => {
+const Admin = ({user}) => {
+  
     return (
       <div className="signuppagecontainer container">
         <div className="row d-flex ml-3 mt-3 ">
           <img src="/imgs/back.png" alt="loading..."></img>
         </div>
         <div className="mt-5 row justify-content-center d-flex">
-           <img src="/imgs/barcodeexample.png" alt="loading..."></img>
+        <QRCode value={user.center_id}/>
         </div>
         <div className="d-flex justify-content-between row">
             <div className="rectanglebackground2 flex-fill mt-5 p-2 col-example ">

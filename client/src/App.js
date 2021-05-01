@@ -16,6 +16,7 @@ import socketIOClient from "socket.io-client";
 import QueueCreate from "./pages/CreateQueue";
 import LoginReduced from "./pages/ReducedLogin";
 import Profile from "./pages/Profile";
+import Barcode from "./pages/Barcode";
 const ENDPOINT = "http://localhost:5000/";
 
 function App() {
@@ -52,11 +53,13 @@ function App() {
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/login" exact component={Login} />
+        <Route path="/scan" exact component={Barcode} />
         <PrivateRoute path="/app" component={Profile} />
         <Route path="/register" exact component={Register} />
+        <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/admin" exact component={AdminPage} />
         <Route path="/create" exact component={QueueCreate} />
-        <Route path="/quicklogin" exact component={LoginReduced} />
+        <Route path="/quicklogin/:qid" component={LoginReduced} />
         <Route path="/profile" exact component={Profile} />
         {/*  <Route
           path="/about"

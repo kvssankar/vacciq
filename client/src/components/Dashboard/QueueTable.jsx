@@ -1,39 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Redirect } from "react-router-dom";
 import "./QueueTable.css";
-const QueueTable = ({}) => {
+const QueueTable = ({user}) => {
+  const [line,setLine]=useState([]);
+  useEffect(()=>{
+    setLine(user.queue_id.line);
+    console.log(user.queue_id.line)
+  },[user])
   return (
-    <div className="mt-4 queuetablecontainer">
+    <div className="mt-4 queuetablecontainer" style={{marginBottom:"5rem"}}>
       <h5 className="ml-2 ">Queue Table</h5>
-      <div className="rectanglebackground profile d-flex justify-content-between align-items-center">
+     
+     {line.map((lineuser,i)=>(
+        <div key={i} className="rectanglebackground profile d-flex justify-content-between align-items-center">
         <div className="queuetablepart1 p-2 col-example text-left">
-          <img className="profilepictable" src="/imgs/profile.png"></img>
+          <img className="profilepictable" src="/imgs/profile.png" alt="loading..."></img>
         </div>
         <div className="queuetablepart2 p-2 col-example text-left">
           <div className=" d-flex flexcolumn">
-            <h6 className="queuetablepart2h6">Sriesh Agrawal</h6>
+            <h6 className="queuetablepart2h6">{lineuser.user.name}</h6>
             <h6 className="fontstyle1small queuetablepart2h6">Area</h6>
           </div>
         </div>
         <div className="queuetablepart3 p-2 col-example text-left">
-         <h4 className="queuetablepart3h4">1</h4>
+         <h4 className="queuetablepart3h4">{i+1}</h4>
         </div>
       </div>
+     ))}
 
-      <div className="rectanglebackground profile d-flex justify-content-between align-items-center">
-        <div className="queuetablepart1 p-2 col-example text-left">
-          <img className="profilepictable" src="/imgs/profile.png"></img>
-        </div>
-        <div className="queuetablepart2 p-2 col-example text-left">
-          <div className=" d-flex flexcolumn">
-            <h6 className="queuetablepart2h6">Sriesh Agrawal(2)</h6>
-            <h6 className="fontstyle1small queuetablepart2h6">Area(2)</h6>
-          </div>
-        </div>
-        <div className="queuetablepart3 p-2 col-example text-left">
-         <h4 className="queuetablepart3h4">2</h4>
-        </div>
-      </div>
+      
     </div>
   );
 };

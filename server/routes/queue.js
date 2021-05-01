@@ -4,23 +4,33 @@ const { User } = require("../models/User");
 const { Queue } = require("../models/Queue");
 const verify = require("../verify");
 
+router.post("/details", async (req, res) => {
+  const { qid, sankar } = req.body;
+  console.log(sankar);
+  const q = await Queue.findById(qid);
+  console.log(q);
+  res.json({ q: q });
+});
+
 router.post("/create", verify, async (req, res) => {
-  const { name, limit, line, time } = req;
-  const newQ = new Queue({ name, limit, line, time });
+  const { name, limit, time } = req.body;
+  const newQ = new Queue({ name, limit, time });
   const addedQ = await newQ.save();
-  const userid = req.user;
+  const userid = req.user._id;
+  console.log(userid);
+  console.log("working");
   if (!userid) return null;
   const user = await User.findByIdAndUpdate(
     userid,
     { $set: { center_id: addedQ._id } },
     { new: true }
   );
-  return { user: user };
+  return res.json({ user: user });
 });
 
 router.post("/add", verify, async (req, res) => {
-  const { center_id } = req;
-  const userid = req.user;
+  const { center_id } = req.body;
+  const userid = req.user._id;
   if (!userid) return null;
   const user = await User.findOne({ _id: userid });
   const center = await Queue.findByIdAndUpdate(center_id, {
@@ -35,12 +45,12 @@ router.post("/add", verify, async (req, res) => {
     },
     { new: true }
   );
-  return { user: updatedUser };
+  return res.json({ user: updatedUser });
 });
 
 router.post("/remove", verify, async (req, res) => {
-  const { user_id, queue_id } = req;
-  const ownerid = req.user;
+  const { user_id, queue_id } = req.body;
+  const ownerid = req.user._id;
   if (!ownerid) return null;
   let owner = await User.findOne({ _id: ownerid, center_id: queue_id });
   if (!owner) return null;
@@ -53,18 +63,18 @@ router.post("/remove", verify, async (req, res) => {
     $set: { queue_id: null },
   });
   owner = await User.findOne({ _id: ownerid, center_id: queue_id });
-  return { user: owner };
+  return res.json({ user: owner });
 });
 
 router.post("/view", async (req, res) => {
-  const { queue_id } = req;
+  const { queue_id } = req.body;
   const queue = await Queue.findById(queue_id);
   res.json({ queue: queue });
 });
 
 router.post("/delete", verify, async (req, res) => {
-  const { center_id } = req;
-  const ownerid = req.user;
+  const { center_id } = req.body;
+  const ownerid = req.user._id;
   const owner = await User.findByIdAndUpdate(
     center_id,
     {
