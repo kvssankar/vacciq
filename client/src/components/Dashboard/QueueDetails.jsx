@@ -6,7 +6,8 @@ const QueueDetails = ({user}) => {
     setQno();
     for(var i=0;i<user.queue_id.line.length;i++){
       setQno(i+1);
-      if(user.queue_id.line[i]===user._id){
+      console.log(user.queue_id.line[i].user._id)
+      if(user.queue_id.line[i].user._id===user._id){
         break;
       }
     }
