@@ -18,7 +18,11 @@ const ReducedLogin = ({ qid }) => {
         setName(user.name);
         setPhone(user.phone);
         axios
-          .post("/api/user/reducedlogin", { name, phone, qid })
+          .post("/api/user/reducedlogin", {
+            name: user.name,
+            phone: user.phone,
+            qid,
+          })
           .then(async (res) => {
             await dispatch({
               type: "UPDATE_USER",

@@ -40,7 +40,6 @@ if (token) config.headers["auth-token"] = token;
           <div className="queuetablepart2 p-2 col-example text-left">
             <div className=" d-flex flexcolumn">
               <h6 className="queuetablepart2h6">{lineuser.user.name}</h6>
-              <h6 className="fontstyle1small queuetablepart2h6">Area</h6>
             </div>
           </div>
           <div className="queuetablepart3 p-2 col-example text-left">
