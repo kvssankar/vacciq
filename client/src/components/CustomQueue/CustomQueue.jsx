@@ -11,7 +11,8 @@ const CustomQueue = () => {
   const history=useHistory()
   const cq=async()=>{
     await dispatch(createQ(name, limit, time));
-    history.push("/admin");
+    setTimeout(()=>{history.push("/admin");},[3000])
+    
   }
   return (
     <div class="customqueuecontainer">

@@ -32,6 +32,8 @@ router.post("/add", verify, async (req, res) => {
   const { center_id } = req.body;
   const userid = req.user._id;
   if (!userid) return null;
+  const exist = await User.findOne({ _id: userid, queue_id: center_id });
+  if (exist) return res.json({ user: exist });
   const user = await User.findOne({ _id: userid });
   const center = await Queue.findByIdAndUpdate(center_id, {
     $push: { line: { user: userid } },

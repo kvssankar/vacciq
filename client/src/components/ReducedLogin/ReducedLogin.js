@@ -16,7 +16,9 @@ const ReducedLogin = ({ qid }) => {
         setName(user.name);
         setPhone(user.phone);
         await dispatch(addToQ(qid));
-        //history.push("/dashboard");
+        setTimeout(() => {
+          history.push("/dashboard");
+        }, [3000]);
       }
     }
     aq();
