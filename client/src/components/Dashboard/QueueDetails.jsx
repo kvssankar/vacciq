@@ -10,6 +10,9 @@ const QueueDetails = (props) => {
                 <div className="fontstyle1small textcenter p-2 col-example ">10:00:00</div>
                 </div>
             </div>
+            {/* <div className="circlepositiondiv  p-2 col-example ">
+               <div className="circleposition">1</div>
+            </div> */}
             <div className="rectanglebackground2_1 flex-fill  p-2 col-example justify-content-center align-items-center">
                 <div className="flexdirection">
                 <div className="fontstyle1small textcenter p-2 col-example ">Your Position</div>
