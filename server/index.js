@@ -6,6 +6,10 @@ app.use(express.json());
 app.use(express.static("uploads"));
 const server = require("http").createServer(app);
 
+const socketIo = require("socket.io");
+const io = socketIo(server);
+const { User } = require("./models/User");
+
 //keys
 const db =
   "mongodb+srv://kvssankar:u4I69QktIvLwOk7H@cluster1.uacfw.mongodb.net/vacciq?retryWrites=true&w=majority";
@@ -16,8 +20,24 @@ const connect = mongoose
   .then(() => console.log("Mondo db connected...."))
   .catch((err) => console.log(err));
 
+io.on("connection", (socket) => {
+  console.log("New client connected");
+  socket.on("getdata", ({ id }) => {
+    let user;
+    async function getData() {
+      user = await User.findById(id);
+      socket.emit("userdata", user);
+    }
+    getData();
+  });
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
+  });
+});
+
 //routes
 app.use("/api/user", require("./routes/user"));
+app.use("/api/q", require("./routes/queue"));
 // app.use("/api/member", require("./routes/member"));
 // app.use("/api/meeting", require("./routes/meetings"));
 // app.use("/api/event", require("./routes/events"));

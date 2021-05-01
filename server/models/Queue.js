@@ -8,7 +8,7 @@ const queueSchema = new Schema({
     {
       user: { type: Schema.Types.ObjectId, ref: "user" },
       entry_time: { type: Date, default: Date.now },
-      estimated_time: { type: Date.now }, //for below 15 (time-this) for abv 15 (time)
+      estimated_time: { type: Date }, //for below 15 (time-this) for abv 15 (time)
     },
   ],
   time: Number, //in mins

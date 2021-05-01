@@ -10,13 +10,14 @@ const userSchema = new Schema({
   email: String,
   name: String,
   password: { type: String, required: true },
-  phone: { type: Number },
+  phone: { type: String },
   sex: { type: Number, default: 1 },
-  center_id: { type: Schema.Types.ObjectId, ref: "queue" },
-  queue_id: { type: Schema.Types.ObjectId, ref: "queue" },
+  center_id: { type: Schema.Types.ObjectId, ref: "queue", autopopulate: true },
+  queue_id: { type: Schema.Types.ObjectId, ref: "queue", autopopulate: true },
   notify_id: String,
 });
 
+userSchema.plugin(require("mongoose-autopopulate"));
 const User = mongoose.model("user", userSchema);
 
 module.exports = { User };

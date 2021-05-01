@@ -1,6 +1,7 @@
 const initialState = {
   user: null,
   err: -1,
+  isLogin: 0,
   mssg: null,
 };
 
@@ -9,7 +10,7 @@ const userReducer = (state = initialState, action) => {
     case "LOGIN":
       localStorage.setItem("token", action.payload.token);
       return {
-        ...state,
+        isLogin: 1,
         user: action.payload.user,
         err: 0,
         mssg: "Successfully logged in !",
@@ -21,6 +22,11 @@ const userReducer = (state = initialState, action) => {
         err: 1,
         mssg: action.payload.mssg || "Something went wrong",
       };
+    case "UPDATE_USER":
+      return {
+        ...state,
+        user: action.payload,
+      };
     case "CLEAR_ERROR":
       return {
         ...state,
@@ -31,7 +37,7 @@ const userReducer = (state = initialState, action) => {
       localStorage.clear("state");
       localStorage.removeItem("token");
       return {
-        isMemAuth: false,
+        isLogin: false,
       };
     default:
       return state;

@@ -10,11 +10,13 @@ router.post("/register", async (req, res) => {
     return res
       .status(400)
       .json({ status: 1, mssg: "Use different mobile number" });
+  const salt = await bc.genSalt(10);
+  const hashed = await bc.hash(req.body.password, salt);
   user = new User({
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
-    password: req.body.password,
+    password: hashed,
     sex: req.body.sex,
   });
   const newUser = await user.save();
@@ -23,8 +25,8 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  const userExist = await User.findOne({ email: email });
+  const { phone, password } = req.body;
+  const userExist = await User.findOne({ phone: phone });
   if (!userExist)
     return res.status(500).json({ status: 1, mssg: "User does not exists" });
   const validPassword = await bc.compare(password, userExist.password);

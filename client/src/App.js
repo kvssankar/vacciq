@@ -1,10 +1,10 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { ProfilePicture } from "./components/ProfilePicture";
 // import { Details } from "./components/Details";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-// import PrivateRoute from "./components/PrivateRote";
+import PrivateRoute from "./components/PrivateRoute";
 import QueueNumber from "./components/Dashboard/QueueNumber";
 import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
@@ -13,8 +13,28 @@ import Login from "./pages/Login";
 import AdminPage from "./pages/Admin";
 import CustomAlert from "./components/CustomAlert";
 import { Profile } from "./pages/Profile";
+import { useDispatch, useSelector } from "react-redux";
+import socketIOClient from "socket.io-client";
+const ENDPOINT = "http://localhost:5000/";
 
 function App() {
+  let isLogin = useSelector((state) => state.userReducer.isLogin);
+  let user = useSelector((state) => state.userReducer.user);
+  const socket = socketIOClient(ENDPOINT);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // if (isLogin)
+    //   setInterval(async () => {
+    //     await socket.emit("getdata", {
+    //       id: user._id,
+    //     });
+    //   }, [5000]);
+    socket.on("userdata", (data) => {
+      console.log(data);
+      dispatch({ type: "UPDATE_USER", payload: data });
+    });
+  }, [isLogin, dispatch, socket, user._id]);
   let data = {
     name: "Vinamra Khoria",
     email: "vinamrakhoria@gmail.com",
@@ -30,8 +50,8 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" exact component={Landing} />
-        <Route path="/app" exact component={Profile} />
         <Route path="/login" exact component={Login} />
+        <PrivateRoute path="/app" component={Profile} />
         <Route path="/register" exact component={Register} />
         <Route path="/admin" exact component={AdminPage} />
         {/*  <Route
