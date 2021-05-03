@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addToQ } from "../../actions/queueActions";
+const token = localStorage.getItem("token");
 const ReducedLogin = ({ qid }) => {
   const [q, setQ] = useState();
   const [name, setName] = useState("");
@@ -10,18 +11,13 @@ const ReducedLogin = ({ qid }) => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.userReducer.isLogin);
   const user = useSelector((state) => state.userReducer.user);
+  const history = useHistory();
+
   useEffect(() => {
-    async function aq() {
-      if (isLogin) {
-        setName(user.name);
-        setPhone(user.phone);
-        await dispatch(addToQ(qid));
-        setTimeout(() => {
-          history.push("/dashboard");
-        }, [5000]);
-      }
+    if (isLogin) {
+      setName(user.name);
+      setPhone(user.phone);
     }
-    aq();
     if (!isLogin)
       axios.post("/api/q/details", { qid, sankar: "sasa" }).then((res) => {
         console.log(res.data.q);
@@ -29,12 +25,18 @@ const ReducedLogin = ({ qid }) => {
         history.push("/dashboard");
       });
   }, [qid]);
-  const history = useHistory();
   const send = () => {
     axios
-      .post("/api/user/reducedlogin", { qid, name, phone })
+      .post("/api/user/reducedlogin", {
+        name: user.name,
+        phone: user.phone,
+        qid,
+      })
       .then(async (res) => {
-        await dispatch({ type: "UPDATE_USER", payload: res.data.user });
+        await dispatch({
+          type: "UPDATE_USER",
+          payload: res.data.user,
+        });
         history.push("/dashboard");
       });
   };

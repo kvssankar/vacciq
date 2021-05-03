@@ -14,50 +14,6 @@ const verify = async (req) => {
   }
 };
 
-const notify = async (notify_id, title, mssg) => {
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-      Authorization:
-        "key=AAAA17rD_-Q:APA91bE92fSSSJZO9LmGtShC8v43wiAUldddG-Dt572cP9nciVmDJ4CmHJiM5yGMsQOdC-EXKAm5C8FjDLrnd4eG62NX0RDnTzXJ5MJDOAW6p8vrnjqj0aqpKmrKpfCN9SlTD1NtYH3J",
-    },
-  };
-  axios
-    .post(
-      "https://fcm.googleapis.com/fcm/send",
-      {
-        registration_ids: [notify_id],
-        notification: {
-          sound: "default",
-          body: mssg,
-          title: title,
-          image: url,
-          icon:
-            "https://res.cloudinary.com/sankarkvs/image/upload/v1613555633/manager_prv1ox.png",
-          content_available: true,
-          priority: "high",
-        },
-        data: {
-          sound: "default",
-          body: mssg,
-          title: title,
-          image: url,
-          icon:
-            "https://res.cloudinary.com/sankarkvs/image/upload/v1613555633/manager_prv1ox.png",
-          content_available: true,
-          priority: "high",
-        },
-      },
-      config
-    )
-    .then((res) => {
-      document.location.reload();
-    })
-    .catch((err) => {
-      alert("Something went wrong");
-    });
-};
-
 const dischargeQ = async (user_id) => {
   const user = await User.findByIdAndUpdate(user_id, {
     $set: { queue_no: -2, estimated_time: null },
@@ -78,27 +34,3 @@ const dischargeQ = async (user_id) => {
 };
 
 module.exports = { addToQ };
-
-// <!-- The core Firebase JS SDK is always required and must be listed first -->
-// <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
-
-// <!-- TODO: Add SDKs for Firebase products that you want to use
-//      https://firebase.google.com/docs/web/setup#available-libraries -->
-// <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
-
-// <script>
-//   // Your web app's Firebase configuration
-//   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-//   var firebaseConfig = {
-//     apiKey: "AIzaSyCgdoGOesEWA9xf4SYbfTm9m1TOH4WgpJ4",
-//     authDomain: "vacciq-90b12.firebaseapp.com",
-//     projectId: "vacciq-90b12",
-//     storageBucket: "vacciq-90b12.appspot.com",
-//     messagingSenderId: "926551375844",
-//     appId: "1:926551375844:web:2fd80e0af934a7cdad11f1",
-//     measurementId: "G-Y2DX6SPSJ7"
-//   };
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
-// </script>

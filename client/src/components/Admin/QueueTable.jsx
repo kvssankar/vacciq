@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Route, Redirect } from "react-router-dom";
 import "../Dashboard/QueueTable.css";
 const QueueTable = ({ user }) => {
+  const token = localStorage.getItem("token");
+const config = {
+  headers: {
+    "Content-type": "application/json",
+  },
+};
+if (token) config.headers["auth-token"] = token;
   const [line, setLine] = useState([]);
   useEffect(() => {
     setLine(user.center_id.line);
     console.log(user.center_id.line);
   }, [user]);
+  // const getloc=async(a)=>{
+  //   let ans;
+  //   await axios.post("/api/user/getloc",{user_id:a},config).then(res=>ans= res.data)
+  //   console.log(ans)
+  //   //return ans;
+  // }
   return (
     <div className="mt-4 queuetablecontainer" style={{ marginBottom: "5rem" }}>
       <h5 className="ml-2 ">Queue Table</h5>
@@ -26,7 +38,6 @@ const QueueTable = ({ user }) => {
           <div className="queuetablepart2 p-2 col-example text-left">
             <div className=" d-flex flexcolumn">
               <h6 className="queuetablepart2h6">{lineuser.user.name}</h6>
-              <h6 className="fontstyle1small queuetablepart2h6">Area</h6>
             </div>
           </div>
           <div className="queuetablepart3 p-2 col-example text-left">
