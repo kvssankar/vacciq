@@ -3,7 +3,6 @@ import "./signin.css";
 import { useHistory } from "react-router-dom";
 import {useDispatch} from 'react-redux'
 import { login } from "../../actions/userActions";
-import axios from "axios";
  
 const Signup = () => {
   const [phone,setPhone]=useState("");
@@ -12,27 +11,7 @@ const Signup = () => {
   const dispatch=useDispatch();
   
   const done = () => {
-    axios
-      .post("/api/user/login", { phone, password })
-      .then(async(res) =>{
-        await dispatch({
-          type: "LOGIN",
-          payload: res.data,
-        });
-        history.push('/userdashboard');
-      }
-
-      )
-      .catch((err) => {
-        console.log(err.response.data);
-        dispatch({
-          type: "ERROR",
-          payload: err.response.data,
-        });
-        setTimeout(() => {
-          dispatch({ type: "CLEAR_ERROR" });
-        }, [5000]);
-      });
+    dispatch(login(phone,password,history));
   };
     return (
       <div className="signuppagecontainer container" style={{display:"flex",flexDirection:"column",justifyContent:"center",height:"100vh"}}>

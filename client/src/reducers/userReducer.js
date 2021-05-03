@@ -3,6 +3,7 @@ const initialState = {
   err: -1,
   isLogin: 0,
   mssg: null,
+  queue: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -15,17 +16,22 @@ const userReducer = (state = initialState, action) => {
         err: 0,
         mssg: "Successfully logged in !",
       };
+    case "GET_QUEUE":
+      return {
+        ...state,
+        queue: action.payload,
+      };
+    case "UPDATE_USER":
+      return {
+        ...state,
+        user: action.payload,
+      };
     case "ERROR":
       console.log(action.payload);
       return {
         ...state,
         err: 1,
         mssg: action.payload.mssg || "Something went wrong",
-      };
-    case "UPDATE_USER":
-      return {
-        ...state,
-        user: action.payload,
       };
     case "CLEAR_ERROR":
       return {

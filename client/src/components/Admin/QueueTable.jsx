@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../Dashboard/QueueTable.css";
-const QueueTable = ({ user }) => {
+const QueueTable = ({ user ,center}) => {
   const token = localStorage.getItem("token");
 const config = {
   headers: {
@@ -10,8 +10,8 @@ const config = {
 if (token) config.headers["auth-token"] = token;
   const [line, setLine] = useState([]);
   useEffect(() => {
-    setLine(user.center_id.line);
-    console.log(user.center_id.line);
+    setLine(center.line);
+    console.log(center.line);
   }, [user]);
   // const getloc=async(a)=>{
   //   let ans;

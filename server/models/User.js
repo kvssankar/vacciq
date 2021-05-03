@@ -19,7 +19,7 @@ const userSchema = new Schema({
   longitude: String,
 });
 
-userSchema.plugin(require("mongoose-autopopulate"));
+//userSchema.plugin(require("mongoose-autopopulate"));
 const User = mongoose.model("user", userSchema);
 
 module.exports = { User };

@@ -14,7 +14,7 @@ const queueSchema = new Schema({
   time: Number, //in mins
 });
 
-queueSchema.plugin(require("mongoose-autopopulate"));
+//queueSchema.plugin(require("mongoose-autopopulate"));
 //create queue
 //clear queue
 //pause queue by some time

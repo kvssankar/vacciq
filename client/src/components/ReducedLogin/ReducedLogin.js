@@ -26,19 +26,7 @@ const ReducedLogin = ({ qid }) => {
       });
   }, [qid]);
   const send = () => {
-    axios
-      .post("/api/user/reducedlogin", {
-        name: user.name,
-        phone: user.phone,
-        qid,
-      })
-      .then(async (res) => {
-        await dispatch({
-          type: "UPDATE_USER",
-          payload: res.data.user,
-        });
-        history.push("/dashboard");
-      });
+    dispatch(addToQ(name, phone, qid));
   };
   return (
     <div class="customqueuecontainer">

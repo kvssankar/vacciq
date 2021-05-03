@@ -105,4 +105,18 @@ router.post("/getloc", verify, async (req, res) => {
     });
 });
 
+router.post("/getuser", async (req, res) => {
+  const fields = req.body.fields;
+  if (fileds === null) {
+    const user = await (await User.findById(req.body.user_id)).select(s);
+    return res.json({ user });
+  }
+  let s = fields[0];
+  for (var i = 1; i < fields.length; i++) {
+    s = s + " " + fields[i];
+  }
+  const user = await (await User.findById(req.body.user_id)).select(s);
+  res.json({ user });
+});
+
 module.exports = router;

@@ -7,6 +7,7 @@ app.use(express.static("uploads"));
 const server = require("http").createServer(app);
 
 const socketIo = require("socket.io");
+const { Queue } = require("./models/Queue");
 const io = socketIo(server);
 const { User } = require("./models/User");
 
@@ -27,6 +28,14 @@ io.on("connection", (socket) => {
     async function getData() {
       user = await User.findById(id);
       socket.emit("userdata", user);
+    }
+    getData();
+  });
+  socket.on("getq", ({ id }) => {
+    let q;
+    async function getData() {
+      q = await Queue.findById(id);
+      socket.emit("qdata", q);
     }
     getData();
   });

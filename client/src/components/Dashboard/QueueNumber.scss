@@ -3,7 +3,7 @@
   padding: 0;
   margin: 0;
   width: 90%;
-  height:140px;
+  height: 140px;
   margin: auto;
   background-image: url(wave.png), url(rectangle.png);
   background-repeat: no-repeat;
@@ -12,7 +12,7 @@
 }
 .texts {
   flex-direction: column;
-  margin:0;
+  margin: 0;
 }
 .textcenter {
   text-align: center;
@@ -44,7 +44,7 @@
   font-size: 21px;
   line-height: 25px;
   letter-spacing: -0.3px;
-  color:#595959;
+  color: #595959;
 }
 .fontstyle1small {
   font-family: Roboto;
@@ -53,34 +53,34 @@
   font-size: 18px;
   line-height: 24px;
   letter-spacing: -0.3px;
-  color:#595959;
+  color: #595959;
   // padding-bottom:30px ;
 }
-.rectanglebackground
-{
-  background-image: url(rectangle.png);
+.rectanglebackground {
+  background: #f2fbff;
+  margin-bottom: 10px;
   background-repeat: no-repeat;
   background-size: 100vw 75px;
-  background-position:top;
+  background-position: top;
   border-radius: 5px;
 }
-.rectanglebackground2
-{
-  background-image: url(rectangle.png);
+.rectanglebackground2 {
+  background: #f2fbff;
+  margin-bottom: 10px;
   background-repeat: no-repeat;
   background-size: 100vw 95px;
-  background-position:top;
+  background-position: top;
   border-radius: 5px;
-  margin-right:10px;
+  margin-right: 10px;
 }
-.rectanglebackground2_1
-{
-  background-image: url(rectangle.png);
+.rectanglebackground2_1 {
+  background: #f2fbff;
+  margin-bottom: 10px;
   background-repeat: no-repeat;
   background-size: 100vw 95px;
-  background-position:top;
+  background-position: top;
   border-radius: 5px;
-  margin-left:10px;
+  margin-left: 10px;
 }
 // .circleposition
 // {

@@ -7,7 +7,7 @@ const config = {
 };
 if (token) config.headers["auth-token"] = token;
 
-export const createQ = (name, limit, time) => (dispatch) => {
+export const createQ = (name, limit, time, history) => (dispatch) => {
   axios
     .post("/api/q/create", { name, limit, time }, config)
     .then((res) => {
@@ -15,6 +15,7 @@ export const createQ = (name, limit, time) => (dispatch) => {
         type: "UPDATE_USER",
         payload: res.data.user,
       });
+      history.push("/admin");
     })
     .catch((err) => {
       console.log(err.response.data);
@@ -28,24 +29,19 @@ export const createQ = (name, limit, time) => (dispatch) => {
     });
 };
 
-export const addToQ = (center_id) => (dispatch) => {
+export const addToQ = (name, phone, qid, history) => (dispatch) => {
   axios
-    .post("/api/q/add", { center_id }, config)
-    .then((res) => {
-      dispatch({
+    .post("/api/user/reducedlogin", {
+      name: name,
+      phone: phone,
+      qid,
+    })
+    .then(async (res) => {
+      await dispatch({
         type: "UPDATE_USER",
         payload: res.data.user,
       });
-    })
-    .catch((err) => {
-      console.log(err.response.data);
-      dispatch({
-        type: "ERROR",
-        payload: err.response.data,
-      });
-      setTimeout(() => {
-        dispatch({ type: "CLEAR_ERROR" });
-      }, [5000]);
+      history.push("/dashboard");
     });
 };
 
@@ -68,4 +64,11 @@ export const removeFromQ = (user_id, queue_id) => (dispatch) => {
         dispatch({ type: "CLEAR_ERROR" });
       }, [5000]);
     });
+};
+
+export const getq = (qid, floading) => (dispatch) => {
+  axios.post("/api/q/getq", { queue_id: qid }, config).then((res) => {
+    dispatch({ type: "GET_QUEUE", payload: res.data.queue });
+    floading();
+  });
 };

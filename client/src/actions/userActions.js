@@ -1,15 +1,18 @@
 import axios from "axios";
 
-export const register = (name, email, phone, password, sex) => (dispatch) => {
+export const register = (name, email, phone, password, sex, history) => (
+  dispatch
+) => {
   console.log("working");
   axios
     .post("/api/user/register", { name, email, phone, password, sex })
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: "LOGIN",
         payload: res.data,
-      })
-    )
+      });
+      history.push("/userdashboard");
+    })
     .catch((err) => {
       console.log(err.response.data);
       dispatch({
@@ -22,16 +25,17 @@ export const register = (name, email, phone, password, sex) => (dispatch) => {
     });
 };
 
-export const login = (phone, password) => (dispatch) => {
+export const login = (phone, password, history) => (dispatch) => {
   console.log("working");
   axios
     .post("/api/user/login", { phone, password })
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: "LOGIN",
         payload: res.data,
-      })
-    )
+      });
+      history.push("/userdashboard");
+    })
     .catch((err) => {
       console.log(err.response.data);
       dispatch({
