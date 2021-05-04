@@ -1,0 +1,24 @@
+{
+  "name": "vacciq",
+  "version": "1.0.0",
+  "description": "cd client\r     npm i\r     npm start",
+  "main": "index.js",
+  "scripts": {
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install ./client && npm run build --prefix client && npm install ./server",
+    "start": "node ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kvssankar/vacciq.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kvssankar/vacciq/issues"
+  },
+  "homepage": "https://github.com/kvssankar/vacciq#readme",
+  "dependencies": {
+    "client": "file:client",
+    "vacciq-api": "file:server"
+  }
+}
