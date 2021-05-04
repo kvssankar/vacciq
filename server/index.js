@@ -2,14 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
-app.use(express.json());
-app.use(express.static("uploads"));
 const server = require("http").createServer(app);
 
 const socketIo = require("socket.io");
 const { Queue } = require("./models/Queue");
 const io = socketIo(server);
 const { User } = require("./models/User");
+app.use(express.json());
 
 //keys
 const db =
@@ -53,16 +52,15 @@ app.use("/api/q", require("./routes/queue"));
 // app.use("/api/role", require("./routes/roles"));
 // app.use("/api/act", require("./routes/act"));
 // app.use("/api/mail", require("./routes/mail"));
-
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("../client/build"));
+  const root = path.resolve(__dirname, "..", "client", "build");
+  app.use(express.static(root));
   app.get("*", (req, res) => {
     res.sendFile(
       path.resolve(__dirname, "..", "client", "build", "index.html")
     );
   });
 }
-
 const port = process.env.PORT || 5000;
 
 server.listen(port, () => console.log(`sever started in ${port}`));
