@@ -60,7 +60,7 @@ router.post("/create", verify, async (req, res) => {
   const userid = req.user._id;
   console.log(userid);
   console.log("working");
-  if (!userid) return null;
+  if (!userid) return res.status(400).json({ mssg: "Something went wrong" });
   const user = await User.findByIdAndUpdate(
     userid,
     { $set: { center_id: addedQ._id } },

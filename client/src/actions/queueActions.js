@@ -18,14 +18,15 @@ export const createQ = (name, limit, time, history) => (dispatch) => {
       history.push("/admin");
     })
     .catch((err) => {
-      console.log(err.response.data);
-      dispatch({
-        type: "ERROR",
-        payload: err.response.data,
-      });
-      setTimeout(() => {
-        dispatch({ type: "CLEAR_ERROR" });
-      }, [5000]);
+      console.log(err);
+      // err.response.data = "Sasas";
+      // dispatch({
+      //   type: "ERROR",
+      //   payload: err.response.data,
+      // });
+      // setTimeout(() => {
+      //   dispatch({ type: "CLEAR_ERROR" });
+      // }, [5000]);
     });
 };
 

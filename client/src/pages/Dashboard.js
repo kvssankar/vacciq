@@ -27,10 +27,10 @@ const Dashboard = () => {
     //     id: queue._id,
     //   });
     // }, [10000]);
-    socket.on("qdata", (data) => {
-      console.log(data);
-      dispatch({ type: "GET_QUEUE", payload: data });
-    });
+    // socket.on("qdata", (data) => {
+    //   console.log(data);
+    //   dispatch({ type: "GET_QUEUE", payload: data });
+    // });
     dispatch(getq(user.queue_id, floading));
   }, [dispatch, socket, user]);
   return (

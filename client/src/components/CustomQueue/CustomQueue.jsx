@@ -20,7 +20,7 @@ const CustomQueue = () => {
   if (token) config.headers["auth-token"] = token;
 
   const cq = ()=> {
-    dispatch(createQ(name, limit, time),history);
+    dispatch(createQ(name, limit, time,history));
   };
   return (
     <div class="customqueuecontainer">
