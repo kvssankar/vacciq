@@ -26,7 +26,7 @@ const ReducedLogin = ({ qid }) => {
       });
   }, [qid]);
   const send = () => {
-    dispatch(addToQ(name, phone, qid));
+    dispatch(addToQ(name, phone, qid, history));
   };
   return (
     <div class="customqueuecontainer">
