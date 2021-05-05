@@ -32,7 +32,7 @@ const AdminPage = () => {
     //   dispatch({ type: "GET_QUEUE", payload: data });
     // });
     dispatch(getq(user.center_id, floading));
-  }, [dispatch, socket, user]);
+  }, []);
   return (
     <>
       {loading === 1 && <Loading />}

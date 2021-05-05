@@ -23,7 +23,7 @@ const QueueDetails = ({user,queue}) => {
         setEt(res.data.MESSAGE)
       })
     
-  },[user])
+  },[queue])
   return (
     <div className="mt-4 queuedetailsconatiner">
         <div className="d-flex justify-content-between row">

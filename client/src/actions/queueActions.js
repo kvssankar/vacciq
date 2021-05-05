@@ -48,19 +48,19 @@ export const addToQ = (name, phone, qid, history) => (dispatch) => {
 
 export const removeFromQ = (user_id, queue_id) => (dispatch) => {
   axios
-    .post("/api/q/add", { user_id, queue_id }, config)
+    .post("/api/q/remove", { user_id, queue_id }, config)
     .then((res) => {
       dispatch({
-        type: "UPDATE_USER",
-        payload: res.data.user,
+        type: "GET_QUEUE",
+        payload: res.data.queue,
       });
     })
     .catch((err) => {
-      console.log(err.response.data);
-      dispatch({
-        type: "ERROR",
-        payload: err.response.data,
-      });
+      // console.log(err.response.data);
+      // dispatch({
+      //   type: "ERROR",
+      //   payload: err.response.data,
+      // });
       setTimeout(() => {
         dispatch({ type: "CLEAR_ERROR" });
       }, [5000]);

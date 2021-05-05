@@ -32,7 +32,7 @@ const Dashboard = () => {
     //   dispatch({ type: "GET_QUEUE", payload: data });
     // });
     dispatch(getq(user.queue_id, floading));
-  }, [dispatch, socket, user]);
+  }, []);
   return (
     <>
       {loading === 1 && <Loading />}

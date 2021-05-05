@@ -17,14 +17,15 @@ const userReducer = (state = initialState, action) => {
         mssg: "Successfully logged in !",
       };
     case "GET_QUEUE":
+      //Object.assign(state.queue, action.payload);
       return {
         ...state,
-        queue: action.payload,
+        queue: { ...action.payload },
       };
     case "UPDATE_USER":
       return {
         ...state,
-        user: action.payload,
+        user: { ...action.payload },
       };
     case "ERROR":
       console.log(action.payload);

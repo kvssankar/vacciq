@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addToQ } from "../../actions/queueActions";
-const token = localStorage.getItem("token");
 const ReducedLogin = ({ qid }) => {
   const [q, setQ] = useState();
   const [name, setName] = useState("");
@@ -59,8 +58,6 @@ const ReducedLogin = ({ qid }) => {
           placeholder="Phone number"
         />
 
-        {/* <input type="text" className="form-input" placeholder="Password" /> */}
-        {/* <input type="checkbox" className="ml-auto form-input" placeholder="Password" /> */}
         <button
           style={{ margin: "auto", width: "100%", padding: "10px" }}
           className="mt-5 primary-button"
