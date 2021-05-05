@@ -21,7 +21,7 @@ const connect = mongoose
   .catch((err) => console.log(err));
 
 io.on("connection", (socket) => {
-  console.log("New client connected");
+  //console.log("New client connected");
   socket.on("getdata", ({ id }) => {
     let user;
     async function getData() {
@@ -39,7 +39,7 @@ io.on("connection", (socket) => {
     getData();
   });
   socket.on("disconnect", () => {
-    console.log("Client disconnected");
+    //console.log("Client disconnected");
   });
 });
 

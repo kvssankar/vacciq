@@ -87,26 +87,32 @@ router.post("/add", verify, async (req, res) => {
       },
     },
     { new: true }
-  );
+  )
+    .populate("line.user")
+    .exec();
   return res.json({ user: updatedUser });
 });
 
 router.post("/remove", verify, async (req, res) => {
+  console.log("sankar wokring");
   const { user_id, queue_id } = req.body;
   const ownerid = req.user._id;
   if (!ownerid) return null;
   let owner = await User.findOne({ _id: ownerid, center_id: queue_id });
-  if (!owner) return null;
+  //if (!owner) return null;
+  console.log(owner);
   const center = await Queue.findByIdAndUpdate(
-    owner.center_id,
-    { $pull: { "line.user": user_id } },
+    queue_id,
+    { $pull: { line: { user: user_id } } },
     { new: true }
-  );
-  const user = await User.findByIdAndRemove(user_id, {
+  )
+    .populate("line.user")
+    .exec();
+  const user = await User.findByIdAndUpdate(user_id, {
     $set: { queue_id: null },
   });
   owner = await User.findOne({ _id: ownerid, center_id: queue_id });
-  return res.json({ user: owner });
+  return res.json({ user: owner, queue: center });
 });
 
 router.post("/getq", async (req, res) => {
