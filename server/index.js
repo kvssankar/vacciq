@@ -113,7 +113,7 @@ io.on("connection", (socket) => {
     }
     setInterval(() => {
       getData();
-    }, [10000]);
+    }, [60000]);
   });
   socket.on("disconnect", () => {
     console.log("Client disconnected");
