@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import "./signin.css";
-import Button from "../CustomButton";
 import { useHistory } from "react-router-dom";
-
+import {useDispatch} from 'react-redux'
+import { login } from "../../actions/userActions";
+ 
 const Signup = () => {
+  const [phone,setPhone]=useState("");
+  const [password,setPassword]=useState("");
   const history=useHistory();
+  const dispatch=useDispatch();
+  
+  const done = () => {
+    dispatch(login(phone,password,history));
+  };
     return (
       <div className="signuppagecontainer container" style={{display:"flex",flexDirection:"column",justifyContent:"center",height:"100vh"}}>
         <div className="row d-flex ml-3 mt-3 ">
@@ -14,19 +22,20 @@ const Signup = () => {
           <h5>Welcome back  !</h5>
         </div>
         <div className="mt-3 ml-4 mr-4 signupform">
-          <input type="text" className="form-input" placeholder="Email Address" />
-          <input type="text" className="form-input" placeholder="Password" />
+        <input type="text" className="form-input" placeholder="Phone Number" value={phone} onChange={(e)=>setPhone(e.target.value)} />
+          <input type="password" className="form-input" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
         </div>
         <div className="mt-5 row justify-content-center d-flex">
             <p>Dont have an account?  <a style={{color:"#42c3fc",textDecoration:"none"}}href="/register">Sign Up</a>    </p>
         </div>
-        <Button
-      style={{ margin:"auto",width: "100%", padding: "10px" }}
-      className="mt-2 primary-button"
-      size="md"
-    >
-      Login
-    </Button>
+        <button
+        style={{ margin:"auto",width: "100%", padding: "10px" }}
+        onClick={done}
+        className="mt-2 primary-button"
+        size="md"
+        >
+          Login
+        </button>
       </div>
     );
   };

@@ -9,17 +9,17 @@ const userSchema = new Schema({
   },
   email: String,
   name: String,
-  password: { type: String, required: true },
-  phone: { type: Number },
-  center: { type: Schema.Types.ObjectId },
-  slot: { type: Date }, // length 1hr
-  queue_no: { type: Number, default: -1 },
-  entry_time: { type: Date },
-  esitimated_time: { type: Date },
+  password: { type: String },
+  phone: { type: String },
+  sex: { type: Number, default: 1 },
+  center_id: { type: Schema.Types.ObjectId, ref: "queue", autopopulate: true },
+  queue_id: { type: Schema.Types.ObjectId, ref: "queue", autopopulate: true },
   notify_id: String,
-  location: String,
+  latitude: String,
+  longitude: String,
 });
 
+//userSchema.plugin(require("mongoose-autopopulate"));
 const User = mongoose.model("user", userSchema);
 
 module.exports = { User };

@@ -1,3 +1,3 @@
 module.exports = {
-  jsontoken: "ssmp",
+  jwt_secret: "vacciq",
 };

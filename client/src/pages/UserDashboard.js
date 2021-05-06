@@ -1,9 +1,8 @@
 import React from "react";
-import "../css/component.css";
 import ProfilePage from "../components/Profile/Profile";
 
-const Profile = () => {
+const UserDashboard = () => {
   return <ProfilePage />;
 };
 
-export default Profile;
+export default UserDashboard;
