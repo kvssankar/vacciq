@@ -7,7 +7,7 @@ const QueueDetails = ({user,queue}) => {
   useEffect(()=>{
     for(var i=0;i<queue.line.length;i++){
       setQno(i+1);
-      console.log(queue.line[i].user._id)
+      //console.log(queue.line[i].user._id)
       if(queue.line[i].user._id===user._id){
         break;
       }

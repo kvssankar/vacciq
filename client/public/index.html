@@ -86,7 +86,9 @@
                         },
                         config
                       )
-                      .then((res) => {});
+                      .then((res) => {
+                        console.log(res.data);
+                      });
                     localStorage.setItem("fcmtoken", currentToken);
                     console.log(currentToken);
                   } else {

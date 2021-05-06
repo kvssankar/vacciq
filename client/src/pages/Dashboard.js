@@ -19,20 +19,22 @@ const Dashboard = () => {
 
   const floading = () => {
     setLoading(0);
+    socket.emit("getq", {
+      qid: queue._id,
+      uid: user._id,
+    });
+    socket.on("qdata", (data) => {
+      console.log(data);
+      dispatch({ type: "GET_QUEUE", payload: data });
+    });
   };
   const dispatch = useDispatch();
+
   useEffect(() => {
-    // setInterval(async () => {
-    //   await socket.emit("getq", {
-    //     id: queue._id,
-    //   });
-    // }, [10000]);
-    // socket.on("qdata", (data) => {
-    //   console.log(data);
-    //   dispatch({ type: "GET_QUEUE", payload: data });
-    // });
-    dispatch(getq(user.queue_id, floading));
+    if (loading === 1) dispatch(getq(user.queue_id, floading));
+    return () => socket.disconnect();
   }, []);
+  //TODO:If no queue_id then redirect
   return (
     <>
       {loading === 1 && <Loading />}

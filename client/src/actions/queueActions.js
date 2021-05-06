@@ -73,3 +73,10 @@ export const getq = (qid, floading) => (dispatch) => {
     floading();
   });
 };
+
+export const exitq = (qid, history) => (dispatch) => {
+  axios.post("/api/q/exitq", { queue_id: qid }, config).then((res) => {
+    dispatch({ type: "GET_QUEUE", payload: null });
+    history.push("/userdashboard");
+  });
+};

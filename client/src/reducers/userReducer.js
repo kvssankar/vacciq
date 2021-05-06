@@ -20,12 +20,12 @@ const userReducer = (state = initialState, action) => {
       //Object.assign(state.queue, action.payload);
       return {
         ...state,
-        queue: { ...action.payload },
+        queue: action.payload,
       };
     case "UPDATE_USER":
       return {
         ...state,
-        user: { ...action.payload },
+        user: action.payload,
       };
     case "ERROR":
       console.log(action.payload);

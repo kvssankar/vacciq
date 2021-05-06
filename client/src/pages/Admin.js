@@ -26,7 +26,7 @@ const AdminPage = () => {
     //   await socket.emit("getq", {
     //     id: queue._id,
     //   });
-    // }, [10000]);
+    // }, [60000]);
     // socket.on("qdata", (data) => {
     //   console.log(data);
     //   dispatch({ type: "GET_QUEUE", payload: data });
