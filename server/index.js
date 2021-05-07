@@ -129,15 +129,11 @@ app.use("/api/q", require("./routes/queue"));
 // app.use("/api/role", require("./routes/roles"));
 // app.use("/api/act", require("./routes/act"));
 // app.use("/api/mail", require("./routes/mail"));
-if (process.env.NODE_ENV === "production") {
-  const root = path.resolve(__dirname, "..", "client", "build");
-  app.use(express.static(root));
-  app.get("*", (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, "..", "client", "build", "index.html")
-    );
-  });
-}
+const root = path.resolve(__dirname, "..", "client", "build");
+app.use(express.static(root));
+app.get("*", (req, res) => {
+  res.sendFile("index.html", { root });
+});
 const port = process.env.PORT || 5000;
 
 server.listen(port, () => console.log(`sever started in ${port}`));
