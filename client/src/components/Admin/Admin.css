@@ -1,0 +1,61 @@
+.round {
+    position: relative;
+  }
+  .round label {
+    background-color: #F2FBFF;
+    border: 1px solid #42C3FC;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 50px;
+    left: -20px;
+    position: absolute;
+    top: -13px;
+    width: 50px;
+  }
+  
+.round label:after {
+    border: 2px solid #42C3FC;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 12px;
+    left: 13px;
+    opacity: 0;
+    position: absolute;
+    top: 15px;
+    transform: rotate(-45deg);
+    width: 24px;
+  }
+
+  .round input[type="checkbox"] {
+    visibility: hidden;
+  }
+  
+  .round input[type="checkbox"]:checked + label {
+    background-color: #F2FBFF;
+    border-color: #42C3FC;
+  }
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+  
+/* .queuetablepart3h4admin
+{
+    color:#42C3FC;
+    font-weight: 600;
+    font-size: 2.5rem;
+    border:1px #42C3FC solid;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:20px;
+    padding-right:20px;
+    border-radius: 5px;
+    text-align: left;
+} */
+
+.queuetablepart2admin
+{
+    max-width: 150px;
+}

@@ -24,6 +24,13 @@
 
 .queuetablepart2h6
 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 25px;
+    letter-spacing: -0.3px;
+    /* color: #595959; */
     text-align: left;
     /* background-color: red; */
 }

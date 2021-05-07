@@ -56,7 +56,7 @@ if (token) config.headers["auth-token"] = token;
       ))}
       {line.length===0 && 
         (<div
-          className="rectanglebackground profile d-flex justify-content-between align-items-center"
+          className="rectanglebackground profile d-flex justify-content-around align-items-center"
         >
           <div className="queuetablepart1 p-2 col-example text-left">
             <img
@@ -65,13 +65,16 @@ if (token) config.headers["auth-token"] = token;
               alt="loading..."
             ></img>
           </div>
-          <div className="queuetablepart2 p-2 col-example text-left">
+          <div className="queuetablepart2admin p-2 col-example text-left">
             <div className=" d-flex flexcolumn">
               <h6 className="queuetablepart2h6">No one yet in the queue</h6>
             </div>
           </div>
           <div className="queuetablepart3 p-2 col-example text-left">
-            <h4 className="queuetablepart3h4">0</h4>
+            <div className="round queuetablepart3h4admin">
+              <input type="checkbox" id="checkbox" />
+              <label for="checkbox"></label>
+            </div>
           </div>
         </div>)
       }

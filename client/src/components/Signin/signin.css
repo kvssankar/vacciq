@@ -3,3 +3,12 @@
     width:50%;
     margin:auto;
 } */
+div p  {
+    padding-left: 1.5em;
+    text-indent:-2.5em;
+}
+
+span p {
+    padding-left: 1.5em;
+    text-indent:-2.5em;
+}

@@ -35,6 +35,10 @@ const Signup = () => {
           <label className="radio-label" checked={!sex} onClick={()=>{setSex(!sex)}} for='female'>Female</label>
           {/* <input type="checkbox" className="ml-auto form-input" placeholder="Password" /> */}
         </div>
+        <div className=" ml-5 mt-2   justify-content-start d-flex">
+      <p style={{display:"inline"}}><input style={{display:"inline"}} type="checkbox" className="mr-4" />
+        I agree to the <span style={{color: "#42C3FC", textDecoration: "none" }}>terms of service</span> and <span style={{ color: "#42c3fc", textDecoration: "none" }}> privacy policy</span></p>
+      </div>
         <div className="mt-5 row justify-content-center d-flex">
             <p>Already have an account?  <a style={{color:"#42c3fc",textDecoration:"none"}}href="/login">Sign In</a>    </p>
         </div>
