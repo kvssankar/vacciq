@@ -28,7 +28,7 @@ const ReducedLogin = ({ qid }) => {
     dispatch(addToQ(name, phone, qid, history));
   };
   return (
-    <div class="customqueuecontainer">
+    <div className="customqueuecontainer">
       <div className="row d-flex ml-3 mt-3 ">
         <img
           src="/imgs/back.png"
