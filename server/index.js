@@ -21,7 +21,7 @@ const connect = mongoose
   .then(() => console.log("Mondo db connected...."))
   .catch((err) => console.log(err));
 
-const notify = async (notify_id, title, mssg, url = null) => {
+const notify = async (notify_id, title, mssg) => {
   const config = {
     headers: {
       "Content-type": "application/json",
@@ -39,7 +39,6 @@ const notify = async (notify_id, title, mssg, url = null) => {
           sound: "default",
           body: mssg,
           title: title,
-          image: url,
           icon:
             "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
           content_available: true,
@@ -49,7 +48,6 @@ const notify = async (notify_id, title, mssg, url = null) => {
           sound: "default",
           body: mssg,
           title: title,
-          image: url,
           icon:
             "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
           content_available: true,

@@ -1,8 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addToQ } from "../../actions/queueActions";
+import axios from "axios";
+
 const ReducedLogin = ({ qid }) => {
   const [q, setQ] = useState();
   const [name, setName] = useState("");
@@ -64,7 +65,7 @@ const ReducedLogin = ({ qid }) => {
           onClick={send}
           size="md"
         >
-          Create
+          Join
         </button>
       </div>
     </div>
