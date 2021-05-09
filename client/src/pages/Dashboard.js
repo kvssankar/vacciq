@@ -19,10 +19,10 @@ const Dashboard = () => {
 
   const floading = () => {
     setLoading(0);
-    socket.emit("getq", {
-      qid: queue._id,
-      uid: user._id,
-    });
+    // socket.emit("getq", {
+    //   qid: queue._id,
+    //   uid: user._id,
+    // });
     socket.on("qdata", (data) => {
       console.log(data);
       dispatch({ type: "GET_QUEUE", payload: data });

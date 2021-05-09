@@ -3,7 +3,7 @@ import axios from "axios"
 const QueueDetails = ({user,queue}) => {
   const [qno,setQno]=useState(0);
   const [rt,setRt]=useState(0);
-  const [et,setEt]=useState(0);
+  const [et,setEt]=useState(10);
   useEffect(()=>{
     for(var i=0;i<queue.line.length;i++){
       setQno(i+1);

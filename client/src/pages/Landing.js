@@ -15,7 +15,7 @@ const Landing = () => {
         height: "100vh",
       }}
     >
-      <img src={logo} alt="VacciQ" />
+      <img src={logo} width="300px" alt="DigiQ" />
       <img
         src={couple}
         height="300px"
