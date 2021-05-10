@@ -3,7 +3,7 @@ import "./QueueNumber.scss";
 
 const QueueNumber = (props) => {
   return (
-    <div className="mt-5  row d-flex justify-content-between queuenumbercontainer">
+    <div className="mt-5  row d-flex shine justify-content-between queuenumbercontainer">
       <div className="p-2 col-example">
         <div className="texts ">
           <h6 className="ml-4 fontstyle1small pb-5 mt-3">
@@ -13,6 +13,7 @@ const QueueNumber = (props) => {
       </div>
       <img
         className=" queuenumberman"
+        style={{ zIndex: 111 }}
         src="/imgs/man.png"
         alt="loading..."
       ></img>
