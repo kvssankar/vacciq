@@ -85,9 +85,12 @@
   border-radius: 5px;
   margin-left: 10px;
 }
-
+.shine {
+  pointer-events: none;
+}
 .shine:after {
   content: "";
+  pointer-events: none;
   top: 0;
   transform: translateX(100%);
   width: 100%;
