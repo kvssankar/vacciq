@@ -25,10 +25,10 @@ const Signup = () => {
           <h5>Sign Up and <br></br> Get Started !</h5>
         </div>
         <div className="mt-3 ml-4 mr-4 signupform">
-          <input type="text" className="form-input" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/>
-          <input type="text" className="form-input" placeholder="Phone Number" value={phone} onChange={(e)=>setPhone(e.target.value)} />
-          <input type="email" className="form-input" placeholder="Email Address" value={email} onChange={(e)=>setEmail(e.target.value)} />
-          <input type="password" className="form-input" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+          <input type="text" className="form-input" required placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/>
+          <input type="text" className="form-input" required placeholder="Phone Number" value={phone} onChange={(e)=>setPhone(e.target.value)} />
+          <input type="email" className="form-input" required placeholder="Email Address" value={email} onChange={(e)=>setEmail(e.target.value)} />
+          <input type="password" className="form-input" required placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
           <input type='radio' className="radio" id='male' checked={sex} onClick={()=>{setSex(!sex)}} name='radio'/>
           <label className="radio-label" for='male'>Male</label>
           <input type='radio' className="radio" id='female' name='radio'/>

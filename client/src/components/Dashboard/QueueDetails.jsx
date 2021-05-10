@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios"
 const QueueDetails = ({user,queue}) => {
   const [qno,setQno]=useState(0);
-  const [rt,setRt]=useState(0);
+  const [rt,setRt]=useState("-");
   const [et,setEt]=useState(10);
   useEffect(()=>{
     for(var i=0;i<queue.line.length;i++){
@@ -18,9 +18,9 @@ const QueueDetails = ({user,queue}) => {
     // })
     let dt=new Date();
       console.log(qno)
+      setEt((+queue.time)*qno)
       axios.get(`https://devsoc2021.herokuapp.com/predict/?pos=${qno}&avg=${queue.limit}&day=${dt.getDay()}`).then(res=>{
         console.log(res.data.MESSAGE)
-        setEt(res.data.MESSAGE)
       })
     
   },[queue])

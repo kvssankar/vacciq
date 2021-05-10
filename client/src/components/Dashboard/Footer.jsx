@@ -13,8 +13,8 @@ const history=useHistory()
     <Container className="themed-container" fluid={true}>
        <div className="footer">
           <div className="d-flex justify-content-between">
-            <div className="p-3 col-example text-left"><a href="/dashboard"><img src={dashboard} alt="loading..."></img></a></div>
-            <div className="p-3 col-example text-left"><a href="/userdashboard"><img src={home} alt="Profile"></img></a></div>
+            <div className="p-3 col-example text-left"><a href="/dashboard"><img src={dashboard} width="24px" alt="loading..."></img></a></div>
+            <div className="p-3 col-example text-left"><a href="/userdashboard"><img src={home} width="24px" alt="Profile"></img></a></div>
             <div className="p-3 col-example text-left"><a href="#" onClick={()=>{localStorage.removeItem("state");history.push("/")}}><img src={logout} alt="Profile"></img></a></div>
           </div>
         </div>

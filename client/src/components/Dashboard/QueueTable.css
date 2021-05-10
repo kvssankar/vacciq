@@ -1,41 +1,38 @@
-.profile
-{
-    width:90%;
-    margin:auto;
-    flex-direction: row;
+.profile {
+  width: 90%;
+  margin: auto;
+  flex-direction: row;
 }
-.profilepictable
-{
-    width:90%;
+.profilepictable {
+  width: 90%;
 }
-.queuetablepart3h4
-{
-    color:aqua;
-    font-weight: 600;
-    font-size: 2.5rem;
-    border:1px aqua solid;
-    padding-top:5px;
-    padding-bottom:5px;
-    padding-left:20px;
-    padding-right:20px;
-    border-radius: 5px;
-    text-align: left;
+.queuetablepart3h4 {
+  color: aqua;
+  font-weight: 600;
+  font-size: 2.5rem;
+  border: 1px aqua solid;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  text-align: left;
 }
 
-.queuetablepart2h6
-{
-    text-align: left;
-    /* background-color: red; */
+.queuetablepart2h6 {
+  text-align: left;
+  /* background-color: red; */
 }
-.queuetablepart3
-{
-   position: relative;
+.queuetablepart3 {
+  position: relative;
 }
-.colorred
-{
-    background-color:red;
+.colorred {
+  background-color: red;
 }
-.colorblue
-{
-    background-color: blue;
+.colorblue {
+  background-color: blue;
+}
+
+.rectanglebackground {
+  margin-bottom: 10px;
 }

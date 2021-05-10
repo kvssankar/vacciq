@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   const floading = () => {
     setLoading(0);
-    if (queue == null) return history.push("/scan");
+    if (queue == null) return history.push("/userdashboard");
     socket.emit("getq", {
       qid: queue._id,
       uid: user._id,

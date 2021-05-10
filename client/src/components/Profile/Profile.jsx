@@ -2,6 +2,7 @@ import React from "react";
 import "./Profile.css";
 import Navbar from "../Dashboard/Navbar";
 import Footer from "../Dashboard/Footer";
+import probilebig from "../../img/man.svg"
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 const Profile = () => {
@@ -16,7 +17,7 @@ const Profile = () => {
       <div className="mt-5 row justify-content-center d-flex">
         <img
           className="profilebigimg"
-          src="/imgs/profilebig.png"
+          src={probilebig}
           alt="loading..."
         ></img>
       </div>

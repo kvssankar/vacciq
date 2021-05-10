@@ -18,7 +18,7 @@ const AdminPage = () => {
 
   const floading = () => {
     setLoading(0);
-    if (center == null) return history.push("/create");
+    if (center == null) return history.push("/userdashboard");
     socket.emit("getc", {
       id: center._id,
     });
