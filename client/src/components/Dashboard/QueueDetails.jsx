@@ -7,6 +7,7 @@ const QueueDetails = ({user,queue}) => {
   useEffect(()=>{
     for(var i=0;i<queue.line.length;i++){
       setQno(i+1);
+      setEt((+queue.time)*(i+1))
       //console.log(queue.line[i].user._id)
       if(queue.line[i].user._id===user._id){
         break;
@@ -18,7 +19,6 @@ const QueueDetails = ({user,queue}) => {
     // })
     let dt=new Date();
       console.log(qno)
-      setEt((+queue.time)*qno)
       axios.get(`https://devsoc2021.herokuapp.com/predict/?pos=${qno}&avg=${queue.limit}&day=${dt.getDay()}`).then(res=>{
         console.log(res.data.MESSAGE)
       })
