@@ -13,7 +13,7 @@ const QueueNumber = (props) => {
       </div>
       <img
         className=" queuenumberman"
-        style={{ zIndex: 111 }}
+        style={{ zIndex: 2 }}
         src="/imgs/man.png"
         alt="loading..."
       ></img>
