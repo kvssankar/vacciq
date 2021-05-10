@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import QrReader from "react-qr-reader";
+import Navbar from "../components/Dashboard/Navbar";
+import Footer from "../components/Dashboard/Footer.jsx";
 
 class Barcode extends Component {
   state = {
@@ -20,6 +22,7 @@ class Barcode extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <QrReader
           delay={300}
           onError={this.handleError}
@@ -27,6 +30,7 @@ class Barcode extends Component {
           style={{ width: "100%" }}
         />
         <p>{this.state.result}</p>
+        <Footer />
       </div>
     );
   }

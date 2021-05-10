@@ -65,15 +65,16 @@ const notify = async (notify_id, title, mssg) => {
 };
 
 io.on("connection", (socket) => {
-  //console.log("New client connected");
-  // socket.on("getdata", ({ id }) => {
-  //   let user;
-  //   async function getData() {
-  //     user = await User.findById(id);
-  //     socket.emit("userdata", user);
-  //   }
-  //   getData();
-  // });
+  socket.on("getc", ({ qid }) => {
+    let q;
+    async function getDataC() {
+      q = await Queue.findById(qid).populate("line.user").exec();
+      socket.emit("qdata", q);
+    }
+    setInterval(() => {
+      getDataC();
+    }, [60000]);
+  });
   socket.on("getq", ({ qid, uid }) => {
     console.log("started", qid, uid);
     let q;
@@ -92,18 +93,22 @@ io.on("connection", (socket) => {
         }
       }
       //console.log(q.line);
-      // if (qno <= q.limit && qno <= 5) {
-      await notify(
-        u.notify_id,
-        `You are on ${qno} position`,
-        `Be ready your turn is coming soon<br> Your estimated time: 10mins`
-      );
-      // }
+      if (qno <= q.limit && qno <= 5) {
+        await notify(
+          u.notify_id,
+          `You are on ${qno} position`,
+          `Be ready your turn is coming soon<br> Your estimated time: ${
+            q.time * qno
+          }mins`
+        );
+      }
       if (qno > q.limit && qno - limit <= 5) {
         await notify(
           u.notify_id,
           `You are on ${qno} position`,
-          `Be ready your turn in queue is comming soon<br> Your estimated time :5mins<br> Your approx reaching time:10mins`
+          `Be ready your turn in queue is comming soon<br> Your estimated time :${
+            q.time * qno
+          }mins`
         );
         //TODO:Add reaching time also and estimated time also
       }
@@ -121,12 +126,7 @@ io.on("connection", (socket) => {
 //routes
 app.use("/api/user", require("./routes/user"));
 app.use("/api/q", require("./routes/queue"));
-// app.use("/api/member", require("./routes/member"));
-// app.use("/api/meeting", require("./routes/meetings"));
-// app.use("/api/event", require("./routes/events"));
-// app.use("/api/role", require("./routes/roles"));
-// app.use("/api/act", require("./routes/act"));
-// app.use("/api/mail", require("./routes/mail"));
+
 if (process.env.NODE_ENV === "production") {
   const root = path.resolve(__dirname, "..", "client", "build");
   app.use(express.static(root));

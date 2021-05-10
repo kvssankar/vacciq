@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { Route, Redirect } from "react-router-dom";
 import QueueNumber from "../components/Dashboard/QueueNumber.js";
 import QueueTable from "../components/Dashboard/QueueTable.jsx";
 import Navbar from "../components/Dashboard/Navbar";
@@ -9,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getq } from "../actions/queueActions.js";
 import Loading from "../components/Loading.js";
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://localhost:5000/";
+import { useHistory } from "react-router";
+const ENDPOINT = "https://vacciq.herokuapp.com/";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -19,17 +19,18 @@ const Dashboard = () => {
 
   const floading = () => {
     setLoading(0);
-    // socket.emit("getq", {
-    //   qid: queue._id,
-    //   uid: user._id,
-    // });
+    if (queue == null) return history.push("/scan");
+    socket.emit("getq", {
+      qid: queue._id,
+      uid: user._id,
+    });
     socket.on("qdata", (data) => {
       console.log(data);
       dispatch({ type: "GET_QUEUE", payload: data });
     });
   };
   const dispatch = useDispatch();
-
+  const history = useHistory();
   useEffect(() => {
     if (loading === 1) dispatch(getq(user.queue_id, floading));
     return () => socket.disconnect();

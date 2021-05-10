@@ -1,14 +1,14 @@
 {
   "short_name": "VacciQ",
-  "name": "No more waiting in queues",
+  "name": "DigiQ | VacciQ",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "digiq_q64.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "digiq_q192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#42c3fc",
+  "background_color": "#bac5e2"
 }

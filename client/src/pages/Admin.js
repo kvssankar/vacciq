@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { Route, Redirect } from "react-router-dom";
-import QueueNumber from "../components/Dashboard/QueueNumber.js";
 import QueueTable from "../components/Admin/QueueTable.jsx";
 import Navbar from "../components/Dashboard/Navbar";
 import Footer from "../components/Dashboard/Footer.jsx";
@@ -9,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getq } from "../actions/queueActions.js";
 import Loading from "../components/Loading.js";
 import socketIOClient from "socket.io-client";
+import { useHistory } from "react-router";
 const ENDPOINT = "http://localhost:5000/";
 
 const AdminPage = () => {
@@ -19,19 +18,22 @@ const AdminPage = () => {
 
   const floading = () => {
     setLoading(0);
+    if (center == null) return history.push("/create");
+    socket.emit("getc", {
+      id: center._id,
+    });
+    socket.on("qdata", (data) => {
+      console.log(data);
+      dispatch({ type: "GET_QUEUE", payload: data });
+    });
   };
   const dispatch = useDispatch();
+  const history = useHistory();
+
   useEffect(() => {
-    // setInterval(async () => {
-    //   await socket.emit("getq", {
-    //     id: queue._id,
-    //   });
-    // }, [60000]);
-    // socket.on("qdata", (data) => {
-    //   console.log(data);
-    //   dispatch({ type: "GET_QUEUE", payload: data });
-    // });
-    dispatch(getq(user.center_id, floading));
+    if (loading === 1) dispatch(getq(user.center_id, floading));
+
+    return () => socket.disconnect();
   }, []);
   return (
     <>

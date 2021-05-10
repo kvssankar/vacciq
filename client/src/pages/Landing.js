@@ -1,7 +1,7 @@
 import React from "react";
 import CustomButton from "../components/CustomButton";
 import logo from "../img/vacciq_logo_1 1.png";
-import couple from "../img/couple.svg";
+import couple from "../img/ASFASF 1.svg";
 import "../css/landing.css";
 
 const Landing = () => {
