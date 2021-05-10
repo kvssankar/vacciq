@@ -4,7 +4,7 @@
   background: white;
   bottom: 0px;
   left: 0;
-  border-top: 1px solid rgb(189, 181, 181);
+  box-shadow: 0px 0 10px rgb(184 175 175 / 80%);
 }
 .footer1 {
   float: left;
@@ -16,4 +16,3 @@
 .footer3 {
   float: right;
 }
-
