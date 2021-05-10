@@ -23,7 +23,7 @@ const CustomQueue = () => {
     dispatch(createQ(name, limit, time,history));
   };
   return (
-    <div class="customqueuecontainer">
+    <div className="customqueuecontainer">
       <div className="row d-flex ml-3 mt-3 ">
         <img
         onClick={()=>history.push('/userdashboard')}
