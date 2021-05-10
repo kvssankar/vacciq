@@ -3,3 +3,6 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: white;
 }
+button {
+  font-family: monospace !important;
+}
