@@ -8,7 +8,7 @@ import { getq } from "../actions/queueActions.js";
 import Loading from "../components/Loading.js";
 import socketIOClient from "socket.io-client";
 import { useHistory } from "react-router";
-const ENDPOINT = "http://localhost:5000/";
+const ENDPOINT = "httpS://vacciq.herokuapp.com/";
 
 const AdminPage = () => {
   let user = useSelector((state) => state.userReducer.user);
