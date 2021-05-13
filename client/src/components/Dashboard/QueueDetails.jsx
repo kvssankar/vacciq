@@ -19,7 +19,7 @@ const QueueDetails = ({user,queue}) => {
     // })
     let dt=new Date();
       console.log(qno)
-      axios.get(`https://devsoc2021.herokuapp.com/predict/?pos=${qno}&avg=${queue.limit}&day=${dt.getDay()}`).then(res=>{
+      axios.get(`http://doofenshmirtz-evil-inc.herokuapp.com/predict/?pos=${qno}&avg=${queue.limit}&day=${dt.getDay()}`).then(res=>{
         console.log(res.data.MESSAGE)
       })
     
