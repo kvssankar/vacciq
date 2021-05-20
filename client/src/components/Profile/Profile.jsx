@@ -17,7 +17,7 @@ const Profile = () => {
       <div className="mt-5 row justify-content-center d-flex">
         <img
           className="profilebigimg"
-          src="/imgs/profilebig.png"
+          src={probilebig}
           alt="loading..."
         ></img>
       </div>

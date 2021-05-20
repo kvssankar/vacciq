@@ -8,8 +8,8 @@ import { getq } from "../actions/queueActions.js";
 import Loading from "../components/Loading.js";
 import socketIOClient from "socket.io-client";
 import { useHistory } from "react-router";
-// const ENDPOINT = "https://vacciq.herokuapp.com/";
-const ENDPOINT = "http://localhost:5000/";
+const ENDPOINT = "https://vacciq.herokuapp.com/";
+//const ENDPOINT = "http://localhost:5000/";
 
 const AdminPage = () => {
   let user = useSelector((state) => state.userReducer.user);
@@ -20,8 +20,9 @@ const AdminPage = () => {
   const floading = () => {
     setLoading(0);
     if (center == null) return history.push("/userdashboard");
-    socket.emit("getc", {
-      id: center._id,
+    socket.emit("joinQ", {
+      qid: user.center_id,
+      uid: null,
     });
     socket.on("qdata", (data) => {
       console.log(data);

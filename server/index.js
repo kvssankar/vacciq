@@ -39,8 +39,7 @@ const notify = async (notify_id, title, mssg) => {
           sound: "default",
           body: mssg,
           title: title,
-          icon:
-            "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
+          icon: "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
           content_available: true,
           priority: "high",
         },
@@ -48,8 +47,7 @@ const notify = async (notify_id, title, mssg) => {
           sound: "default",
           body: mssg,
           title: title,
-          icon:
-            "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
+          icon: "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
           content_available: true,
           priority: "high",
         },
@@ -65,61 +63,47 @@ const notify = async (notify_id, title, mssg) => {
 };
 
 io.on("connection", (socket) => {
-  socket.on("getc", ({ qid }) => {
-    let q;
-    async function getDataC() {
-      q = await Queue.findById(qid).populate("line.user").exec();
-      socket.emit("qdata", q);
-    }
-    setInterval(() => {
-      getDataC();
-    }, [60000]);
-  });
-  socket.on("getq", ({ qid, uid }) => {
-    console.log("started", qid, uid);
-    let q;
+  socket.on("joinQ", ({ qid, uid = null }) => {
+    socket.join(qid);
     async function getData() {
       q = await Queue.findById(qid).populate("line.user").exec();
-      var qno;
-      var u;
-      console.log("user id: ", uid);
-      for (var i = 0; i < q.line.length; i++) {
-        console.log(q.line[i].user._id);
-        if (q.line[i].user._id == uid) {
-          console.log("yayaya");
-          qno = i + 1;
-          u = q.line[i].user;
-          break;
+      if (uid != null) {
+        var qno;
+        var u;
+        console.log("user id: ", uid);
+        for (var i = 0; i < q.line.length; i++) {
+          console.log(q.line[i].user._id);
+          if (q.line[i].user._id == uid) {
+            console.log("yayaya");
+            qno = i + 1;
+            u = q.line[i].user;
+            break;
+          }
         }
-      }
-      //console.log(q.line);
-      if (qno <= q.limit && qno <= 5) {
-        await notify(
-          u.notify_id,
-          `You are on ${qno} position`,
-          `Be ready your turn is coming soon<br> Your estimated time: ${
-            q.time * qno
-          }mins`
-        );
-      }
-      if (qno > q.limit && qno - limit <= 5) {
-        await notify(
-          u.notify_id,
-          `You are on ${qno} position`,
-          `Be ready your turn in queue is comming soon<br> Your estimated time :${
-            q.time * qno
-          }mins`
-        );
-        //TODO:Add reaching time also and estimated time also
+        //console.log(q.line);
+        if (qno <= q.limit && qno <= 5) {
+          await notify(
+            u.notify_id,
+            `You are on ${qno} position`,
+            `Be ready your turn is coming soon<br> Your estimated time: ${
+              q.time * qno
+            }mins`
+          );
+        }
+        if (qno > q.limit && qno - limit <= 5) {
+          await notify(
+            u.notify_id,
+            `You are on ${qno} position`,
+            `Be ready your turn in queue is comming soon<br> Your estimated time :${
+              q.time * qno
+            }mins`
+          );
+          //TODO:Add reaching time also and estimated time also
+        }
       }
       socket.emit("qdata", q);
     }
-    setInterval(() => {
-      getData();
-    }, [60000]);
-  });
-  socket.on("disconnect", () => {
-    console.log("Client disconnected");
+    getData();
   });
 });
 
