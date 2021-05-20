@@ -101,7 +101,7 @@ io.on("connection", (socket) => {
           //TODO:Add reaching time also and estimated time also
         }
       }
-      socket.emit("qdata", q);
+      io.to(qid).emit("qdata", q);
     }
     getData();
   });
