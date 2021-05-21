@@ -15,7 +15,7 @@ export const createQ = (name, limit, time, history) => (dispatch) => {
         type: "UPDATE_USER",
         payload: res.data.user,
       });
-      history.push("/admin");
+      history.push("/userdashboard");
     })
     .catch((err) => {
       console.log(err);
@@ -42,7 +42,7 @@ export const addToQ = (name, phone, qid, history) => (dispatch) => {
         type: "UPDATE_USER",
         payload: res.data.user,
       });
-      history.push("/dashboard");
+      history.push("/userdashboard");
     });
 };
 
