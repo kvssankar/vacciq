@@ -9,8 +9,8 @@ import { getq } from "../actions/queueActions.js";
 import Loading from "../components/Loading.js";
 import socketIOClient from "socket.io-client";
 import { useHistory } from "react-router";
-const ENDPOINT = "https://vacciq.herokuapp.com/";
-//const ENDPOINT = "http://localhost:5000/";
+//const ENDPOINT = "https://vacciq.herokuapp.com/";
+const ENDPOINT = "http://localhost:5000/";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.userReducer.user);

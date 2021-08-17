@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="No more waiting in queues" />
     <link rel="apple-touch-icon" href="./digiq_q.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
@@ -130,8 +130,7 @@
                 console.log(obj);
                 var notification = new Notification(obj.title, {
                   body: obj.body,
-                  icon:
-                    "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
+                  icon: "https://res.cloudinary.com/sankarkvs/image/upload/v1619902128/vacciq_logo_1_1_exhsif.svg",
                 });
               });
             })

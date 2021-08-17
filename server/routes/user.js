@@ -91,7 +91,7 @@ router.post("/reducedlogin", async (req, res) => {
   let user = await User.findByIdAndUpdate(
     userExist._id,
     {
-      $set: { queue_id: qid },
+      $set: { queue_id: qid, entry_time: new Date() },
     },
     { new: true }
   );

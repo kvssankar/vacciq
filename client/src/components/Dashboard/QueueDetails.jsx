@@ -3,11 +3,10 @@ import axios from "axios"
 const QueueDetails = ({user,queue}) => {
   const [qno,setQno]=useState(0);
   const [rt,setRt]=useState("-");
-  const [et,setEt]=useState(10);
+  const [et,setEt]=useState(5);
   useEffect(()=>{
     for(var i=0;i<queue.line.length;i++){
       setQno(i+1);
-      setEt((+queue.time)*(i+1))
       //console.log(queue.line[i].user._id)
       if(queue.line[i].user._id===user._id){
         break;
@@ -17,12 +16,9 @@ const QueueDetails = ({user,queue}) => {
     //   console.log(res.data)
     //   setRt(res.data);
     // })
-    let dt=new Date();
-      console.log(qno)
-      axios.get(`http://doofenshmirtz-evil-inc.herokuapp.com/predict/?pos=${qno}&avg=${queue.limit}&day=${dt.getDay()}`).then(res=>{
-        console.log(res.data.MESSAGE)
-      })
-    
+    if(queue.time && queue.n)
+    setEt(Math.round(queue.time/queue.n));
+    console.log(Math.round(queue.time/queue.n))
   },[queue])
   return (
     <div className="mt-4 queuedetailsconatiner">
@@ -30,7 +26,7 @@ const QueueDetails = ({user,queue}) => {
             <div className="rectanglebackground2 flex-fill p-2 col-example ">
                 <div className="flexdirection" style={{alignItems:"center"}}>
                 <div className="fontstyle1small textcenter p-2 col-example ">Estimated Time</div>
-                <div className="fontstyle1small textcenter p-2 col-example ">{et} mins</div>
+                <div className="fontstyle1small textcenter p-2 col-example ">{et*qno} mins</div>
                 </div>
             </div>
             <div className="rectanglebackground2 flex-fill p-2 col-example ">

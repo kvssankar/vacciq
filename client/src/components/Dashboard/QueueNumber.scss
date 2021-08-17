@@ -87,6 +87,7 @@
 }
 .shine {
   pointer-events: none;
+  overflow-x: hidden;
 }
 .shine:after {
   content: "";

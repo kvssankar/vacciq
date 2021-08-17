@@ -5,21 +5,23 @@ const { Queue } = require("../models/Queue");
 const verify = require("../verify");
 const axios = require("axios");
 
+function diff_minutes(dt2, dt1) {
+  var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+  diff /= 60;
+  return Math.abs(Math.round(diff));
+}
+
 router.post("/details", async (req, res) => {
   const { qid, sankar } = req.body;
-  console.log(sankar);
   const q = await Queue.findById(qid);
-  console.log(q);
   res.json({ q: q });
 });
 
 router.post("/create", verify, async (req, res) => {
-  const { name, limit, time } = req.body;
-  const newQ = new Queue({ name, limit, time });
+  const { name, limit } = req.body;
+  const newQ = new Queue({ name, limit, time: 0 });
   const addedQ = await newQ.save();
   const userid = req.user._id;
-  console.log(userid);
-  console.log("working");
   if (!userid) return res.status(400).json({ mssg: "Something went wrong" });
   const user = await User.findByIdAndUpdate(
     userid,
@@ -30,6 +32,7 @@ router.post("/create", verify, async (req, res) => {
 });
 
 router.post("/add", verify, async (req, res) => {
+  console.log("working");
   const { center_id } = req.body;
   const userid = req.user._id;
   if (!userid) return null;
@@ -44,33 +47,37 @@ router.post("/add", verify, async (req, res) => {
     {
       $set: {
         queue_id: center_id,
+        entry_time: new Date(),
       },
     },
     { new: true }
   )
     .populate("line.user")
     .exec();
+  console.log(updatedUser);
   return res.json({ user: updatedUser });
 });
 
 router.post("/remove", verify, async (req, res) => {
-  console.log("sankar wokring");
   const { user_id, queue_id } = req.body;
   const ownerid = req.user._id;
   if (!ownerid) return null;
   let owner = await User.findOne({ _id: ownerid, center_id: queue_id });
-  //if (!owner) return null;
-  console.log(owner);
+  const user = await User.findByIdAndUpdate(user_id, {
+    $set: { queue_id: null },
+  });
+  console.log(user);
   const center = await Queue.findByIdAndUpdate(
     queue_id,
-    { $pull: { line: { user: user_id } } },
+    {
+      $pull: { line: { user: user_id } },
+      $inc: { n: 1, time: diff_minutes(new Date(), user.entry_time) },
+    },
     { new: true }
   )
     .populate("line.user")
     .exec();
-  const user = await User.findByIdAndUpdate(user_id, {
-    $set: { queue_id: null },
-  });
+
   owner = await User.findOne({ _id: ownerid, center_id: queue_id });
   return res.json({ user: owner, queue: center });
 });
@@ -107,7 +114,10 @@ router.post("/exitq", verify, async (req, res) => {
   );
   await Queue.findByIdAndUpdate(
     queue_id,
-    { $pull: { line: { user: user_id } } },
+    {
+      $pull: { line: { user: user_id } },
+      $inc: { n: 1, time: diff_minutes(new Date(), user.entry_time) },
+    },
     { new: true }
   );
   res.json({ user });

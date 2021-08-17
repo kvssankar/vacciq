@@ -11,7 +11,8 @@ const queueSchema = new Schema({
       estimated_time: { type: Date }, //for below 15 (time-this) for abv 15 (time)
     },
   ],
-  time: Number, //in mins
+  time: { Number, default: 0 },
+  n: { Number, default: 0 },
 });
 
 //queueSchema.plugin(require("mongoose-autopopulate"));
