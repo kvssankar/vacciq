@@ -12,8 +12,7 @@ const { User } = require("./models/User");
 app.use(express.json());
 
 //keys
-const db =
-  "mongodb+srv://kvssankar:u4I69QktIvLwOk7H@cluster1.uacfw.mongodb.net/vacciq?retryWrites=true&w=majority";
+const db = process.env.MONGO_URI;
 
 //connect to mongo
 const connect = mongoose
@@ -25,11 +24,9 @@ const notify = async (notify_id, title, mssg) => {
   const config = {
     headers: {
       "Content-type": "application/json",
-      Authorization:
-        "key=AAAA17rD_-Q:APA91bE92fSSSJZO9LmGtShC8v43wiAUldddG-Dt572cP9nciVmDJ4CmHJiM5yGMsQOdC-EXKAm5C8FjDLrnd4eG62NX0RDnTzXJ5MJDOAW6p8vrnjqj0aqpKmrKpfCN9SlTD1NtYH3J",
+      Authorization: process.env.FCM_AUTH,
     },
   };
-  console.log("started notify");
   axios
     .post(
       "https://fcm.googleapis.com/fcm/send",
