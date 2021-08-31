@@ -19,14 +19,14 @@ export const createQ = (name, limit, time, history) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
-      // err.response.data = "Sasas";
-      // dispatch({
-      //   type: "ERROR",
-      //   payload: err.response.data,
-      // });
-      // setTimeout(() => {
-      //   dispatch({ type: "CLEAR_ERROR" });
-      // }, [5000]);
+      err.response.data = "Sasas";
+      dispatch({
+        type: "ERROR",
+        payload: err.response.data,
+      });
+      setTimeout(() => {
+        dispatch({ type: "CLEAR_ERROR" });
+      }, [5000]);
     });
 };
 
@@ -56,11 +56,11 @@ export const removeFromQ = (user_id, queue_id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      // console.log(err.response.data);
-      // dispatch({
-      //   type: "ERROR",
-      //   payload: err.response.data,
-      // });
+      console.log(err.response.data);
+      dispatch({
+        type: "ERROR",
+        payload: err.response.data,
+      });
       setTimeout(() => {
         dispatch({ type: "CLEAR_ERROR" });
       }, [5000]);
