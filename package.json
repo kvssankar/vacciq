@@ -1,6 +1,6 @@
 {
   "name": "vacciq",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "cd client\r     npm i\r     npm start",
   "main": "index.js",
   "scripts": {
