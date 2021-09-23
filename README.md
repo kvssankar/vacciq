@@ -1,5 +1,5 @@
 
-# DigiQ | VacciQ :man: :blonde_woman: :house: :mask: :pray:
+# DigiQ | LineItOut :man: :blonde_woman: :house: :mask: :pray:
 
 ![No more waiting in queues](https://res.cloudinary.com/sankarkvs/image/upload/v1620535046/digiq_ifkhzv.png)
 

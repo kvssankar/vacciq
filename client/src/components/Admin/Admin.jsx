@@ -12,10 +12,10 @@ const Admin = ({user,center}) => {
       if (navigator.share) {
         navigator.share({
           files: [file],
-          title: `Join the ${center.name} using VacciQ`,
+          title: `Join the ${center.name} using LineItOut`,
           text:
             "Scan the qr code to join the queue or follow the link bellow",
-          url: `https://vacciq.herokuapp.com/quicklogin/${center._id}`,
+          url: `https://lineitout.herokuapp.com/quicklogin/${center._id}`,
         });
       } else {
         alert("this feature is only compactable with mobiles");

@@ -12,7 +12,9 @@ const { User } = require("./models/User");
 app.use(express.json());
 
 //keys
-const db = process.env.MONGO_URI;
+const db =
+  process.env.MONGO_URI ||
+  "mongodb+srv://kvssankar:u4I69QktIvLwOk7H@cluster1.uacfw.mongodb.net/vacciq?retryWrites=true&w=majority";
 
 //connect to mongo
 const connect = mongoose

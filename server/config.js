@@ -1,3 +1,3 @@
 module.exports = {
-  jwt_secret: "vacciq",
+  jwt_secret: "lineitout3000",
 };

@@ -1,5 +1,5 @@
 {
-  "name": "vacciq",
+  "name": "lineitout",
   "version": "1.0.1",
   "description": "cd client\r     npm i\r     npm start",
   "main": "index.js",
@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kvssankar/vacciq.git"
+    "url": "git+https://github.com/Srezzx/LineItOut.git.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kvssankar/vacciq/issues"
+    "url": "https://github.com/Srezzx/LineItOut.git/issues"
   },
-  "homepage": "https://github.com/kvssankar/vacciq#readme",
+  "homepage": "https://github.com/Srezzx/LineItOut.git#readme",
   "dependencies": {
     "client": "file:client",
-    "vacciq-api": "file:server"
+    "lineitout-api": "file:server"
   }
 }
