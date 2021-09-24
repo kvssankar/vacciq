@@ -15,7 +15,7 @@ const Landing = () => {
         height: "100vh",
       }}
     >
-      <img src={logo} width="300px" alt="DigiQ" />
+      <img src={logo} style={{ marginBottom: 35 }} width="200px" alt="DigiQ" />
       <img
         src={couple}
         height="300px"
@@ -23,7 +23,7 @@ const Landing = () => {
         alt="Loading..."
       />
       <CustomButton
-        style={{ width: "100%", padding: "10px" }}
+        style={{ width: "85%", padding: "10px" }}
         className="primary-button"
         size="md"
         href="/register"
@@ -31,7 +31,7 @@ const Landing = () => {
         Register
       </CustomButton>
       <CustomButton
-        style={{ width: "100%", padding: "10px" }}
+        style={{ width: "85%", padding: "10px" }}
         className="primary-outline"
         href="/login"
         size="md"
