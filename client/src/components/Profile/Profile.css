@@ -1,4 +1,21 @@
-.profilebigimg
-{
-    width:60%;
+.profilebigimg {
+  width: 60%;
+}
+
+.statsboxin-right {
+  width: 95%;
+  border-radius: 10px;
+  height: 81px;
+  margin: 0 auto 1em 0;
+}
+
+.statsboxin-left {
+  width: 95%;
+  border-radius: 10px;
+  height: 81px;
+  margin: 0 0 1rem auto;
+}
+.statscont {
+  width: 99%;
+  margin: 0 auto;
 }
