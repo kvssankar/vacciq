@@ -45,7 +45,10 @@ const Dashboard = () => {
           <Navbar />
           <div className="container">
             <QueueDetails user={user} queue={queue} />
-            <h5 className="fontstyle1 mt-5 ml-2">
+            <h5
+              style={{ marginTop: "2rem", marginBottom: "1rem" }}
+              className="fontstyle1 ml-2"
+            >
               Good Morning, <br></br>
               {user.name}
             </h5>
