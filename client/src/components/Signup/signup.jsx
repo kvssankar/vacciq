@@ -17,7 +17,7 @@ const Signup = () => {
     dispatch(register(name,email,phone,password,sex,history));
   };
     return (
-      <div className="signuppagecontainer container">
+      <div className="signuppagecontainer container" style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
         <div className="row d-flex ml-3 mt-3 ">
           <img src="/imgs/back.png" alt="loading..." onClick={()=>history.push("/")}></img>
         </div>
@@ -35,11 +35,11 @@ const Signup = () => {
           <label className="radio-label" checked={!sex} onClick={()=>{setSex(!sex)}} for='female'>Female</label>
           {/* <input type="checkbox" className="ml-auto form-input" placeholder="Password" /> */}
         </div>
-        <div className="mt-5 row justify-content-center d-flex">
+        <div className="mt-3 row justify-content-center d-flex">
             <p>Already have an account?  <a style={{color:"#42c3fc",textDecoration:"none"}}href="/login">Sign In</a>    </p>
         </div>
         <button
-        style={{ margin:"auto",width: "100%", padding: "10px" }}
+        style={{ margin:"auto",width: "85%", padding: "10px" }}
         className="mt-2 primary-button"
         onClick={done}
         size="md"
