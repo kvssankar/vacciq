@@ -4,7 +4,6 @@
   border: none;
   color: white;
   margin: 10px;
-  font-family: monospace !important;
 }
 
 .primary-outline {
@@ -12,7 +11,6 @@
   background: #ffffff;
   border-radius: 10px;
   color: #42c3fc;
-  font-family: monospace !important;
   margin: 10px;
 }
 
