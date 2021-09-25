@@ -2,7 +2,6 @@ import React from "react";
 import "./Profile.css";
 import Navbar from "../Dashboard/Navbar";
 import Footer from "../Dashboard/Footer";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
 // 20564cb3ab3d4d0682b73a2d34d24485
@@ -11,6 +10,7 @@ import { useHistory } from "react-router";
 //           'apiKey=20564cb3ab3d4d0682b73a2d34d24485';
 // https://newsapi.org/docs/get-started#top-headlines
 const Profile = () => {
+  const history = useHistory();
   return (
     <div className="signuppagecontainer container">
       <Navbar />
@@ -28,24 +28,16 @@ const Profile = () => {
           </div>
         </div>
         <img
-          className=" queuenumberman"
-          style={{ zIndex: 2, bottom: 0 }}
-          src="/imgs/lady1.svg"
+          className="queuenumberman"
+          style={{ zIndex: 2,bottom:0 }}
+          src="/imgs/person1.svg"
           alt="loading..."
         ></img>
       </div>
 
-      <div
-        class="btn-group ml-auto pb-2 row mt-4"
-        role="group"
-        aria-label="Basic example"
-      >
-        <button type="button" class="btn btn-primary">
-          JoinQ
-        </button>
-        <button type="button" class="btn btn-secondary">
-          CreateQ
-        </button>
+      <div class="btn-group ml-auto pb-2 row mt-4" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" onClick={() => history.push("/create")}>Create</button>
+        <button type="button" class="btn btn-secondary" onClick={() => history.push("/admin")}>View</button>
       </div>
 
       <div>

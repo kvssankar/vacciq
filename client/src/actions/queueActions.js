@@ -18,8 +18,6 @@ export const createQ = (name, limit, time, history) => (dispatch) => {
       history.push("/userdashboard");
     })
     .catch((err) => {
-      console.log(err);
-      err.response.data = "Sasas";
       dispatch({
         type: "ERROR",
         payload: err.response.data,
@@ -40,6 +38,12 @@ export const addToQ = (name, phone, qid, history) => (dispatch) => {
         payload: res.data.user,
       });
       history.push("/userdashboard");
+    })
+    .catch((err) => {
+      dispatch({
+        type: "ERROR",
+        payload: err.response.data,
+      });
     });
 };
 
@@ -53,7 +57,6 @@ export const removeFromQ = (user_id, queue_id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err.response.data);
       dispatch({
         type: "ERROR",
         payload: err.response.data,
@@ -62,15 +65,31 @@ export const removeFromQ = (user_id, queue_id) => (dispatch) => {
 };
 
 export const getq = (qid, floading) => (dispatch) => {
-  axios.post("/api/q/getq", { queue_id: qid }, config).then((res) => {
-    dispatch({ type: "GET_QUEUE", payload: res.data.queue });
-    floading();
-  });
+  axios
+    .post("/api/q/getq", { queue_id: qid }, config)
+    .then((res) => {
+      dispatch({ type: "GET_QUEUE", payload: res.data.queue });
+      floading();
+    })
+    .catch((err) => {
+      dispatch({
+        type: "ERROR",
+        payload: err.response.data,
+      });
+    });
 };
 
 export const exitq = (qid, history) => (dispatch) => {
-  axios.post("/api/q/exitq", { queue_id: qid }, config).then((res) => {
-    dispatch({ type: "GET_QUEUE", payload: null });
-    history.push("/userdashboard");
-  });
+  axios
+    .post("/api/q/exitq", { queue_id: qid }, config)
+    .then((res) => {
+      dispatch({ type: "GET_QUEUE", payload: null });
+      history.push("/userdashboard");
+    })
+    .catch((err) => {
+      dispatch({
+        type: "ERROR",
+        payload: err.response.data,
+      });
+    });
 };
