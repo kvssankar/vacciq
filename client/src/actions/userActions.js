@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const register =
   (name, email, phone, password, sex, history) => (dispatch) => {
-    console.log("working");
     axios
       .post("/api/user/register", { name, email, phone, password, sex })
       .then((res) => {
@@ -13,7 +12,6 @@ export const register =
         history.push("/userdashboard");
       })
       .catch((err) => {
-        console.log(err.response.data);
         dispatch({
           type: "ERROR",
           payload: err.response.data,
@@ -22,7 +20,6 @@ export const register =
   };
 
 export const login = (phone, password, history) => (dispatch) => {
-  console.log("working");
   axios
     .post("/api/user/login", { phone, password })
     .then((res) => {
@@ -33,7 +30,6 @@ export const login = (phone, password, history) => (dispatch) => {
       history.push("/userdashboard");
     })
     .catch((err) => {
-      console.log(err.response.data);
       dispatch({
         type: "ERROR",
         payload: err.response.data,

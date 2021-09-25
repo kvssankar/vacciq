@@ -19,7 +19,6 @@ router.post("/token", verify, async (req, res) => {
 });
 
 router.post("/addloc", verify, async (req, res) => {
-  //console.log(req.user);
   const user = await User.findByIdAndUpdate(
     req.user._id,
     {
@@ -27,7 +26,6 @@ router.post("/addloc", verify, async (req, res) => {
     },
     { new: true }
   );
-  //console.log(user);
   res.json(user);
 });
 
@@ -40,7 +38,6 @@ router.post("/directions", async (req, res) => {
       `https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${user.longitude},${user.latitude};${owner.longitude},${owner.latitude}?approaches=curb;curb&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
     )
     .then((data) => {
-      //console.log(data.data.durations[0][1]);
       res.json(data.data.durations[0][1]);
     })
     .catch((err) => console.log(err));
@@ -67,7 +64,6 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  //console.log(req.body);
   const { phone, password } = req.body;
   const userExist = await User.findOne({ phone: phone });
   if (!userExist)
@@ -76,7 +72,6 @@ router.post("/login", async (req, res) => {
   if (!validPassword)
     return res.status(400).json({ status: 1, mssg: "Password does not match" });
   const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
-  //console.log(token);
   return res.json({ token, user: userExist });
 });
 
@@ -107,7 +102,6 @@ router.post("/getloc", verify, async (req, res) => {
       `https://api.mapbox.com/geocoding/v5/mapbox.places/chester.json?proximity=${user.longitude},${user.latitude}&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
     )
     .then((data) => {
-      //console.log(data.data.features[0].place_name);
       res.json(data.data.features[0].place_name);
     });
 });
