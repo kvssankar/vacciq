@@ -109,3 +109,7 @@
     transform: rotate(360deg);
   }
 }
+
+.signuppagecontainer {
+  margin-bottom: 100px;
+}

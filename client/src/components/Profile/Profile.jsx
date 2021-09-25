@@ -2,9 +2,14 @@ import React from "react";
 import "./Profile.css";
 import Navbar from "../Dashboard/Navbar";
 import Footer from "../Dashboard/Footer";
-import probilebig from "../../img/man.svg";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+
+// 20564cb3ab3d4d0682b73a2d34d24485
+// var url = 'https://newsapi.org/v2/top-headlines?' +
+//           'country=us&' +
+//           'apiKey=20564cb3ab3d4d0682b73a2d34d24485';
+// https://newsapi.org/docs/get-started#top-headlines
 const Profile = () => {
   let user = useSelector((state) => state.userReducer.user);
   const history = useHistory();
@@ -19,7 +24,7 @@ const Profile = () => {
       >
         <div className="p-2 col-example">
           <div className="texts ">
-            <h6 className="ml-4 fontstyle1small pb-5 mt-3">
+            <h6 className="ml-2 fontstyle1small pb-5 mt-3">
               Stay Home,<br></br>Stay Safe
             </h6>
           </div>
@@ -32,9 +37,13 @@ const Profile = () => {
         ></img>
       </div>
 
-      {/* COVID19 LATEST UPDATES */}
+      <div class="btn-group ml-auto pb-2 row mt-4" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary">JoinQ</button>
+        <button type="button" class="btn btn-secondary">CreateQ</button>
+      </div>
+
       <div>
-        <h6 className="ml-1 fontstyle1small pb-2  mt-5">
+        <h6 className="ml-1 fontstyle1small pb-2  mt-3">
           Covid-19 latest Updates near you
         </h6>
         <div className="row no-gutters justify-content-center statscont">
