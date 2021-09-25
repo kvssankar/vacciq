@@ -80,6 +80,7 @@ router.post("/login", async (req, res) => {
   return res.json({ token, user: userExist });
 });
 
+//getting into queue
 router.post("/reducedlogin", async (req, res) => {
   const { phone, name, qid } = req.body;
   let userExist = await User.findOne({ phone: phone });
@@ -91,7 +92,7 @@ router.post("/reducedlogin", async (req, res) => {
   let user = await User.findByIdAndUpdate(
     userExist._id,
     {
-      $set: { queue_id: qid },
+      $set: { queue_id: qid, enter: new Date() },
     },
     { new: true }
   );
@@ -109,20 +110,6 @@ router.post("/getloc", verify, async (req, res) => {
       //console.log(data.data.features[0].place_name);
       res.json(data.data.features[0].place_name);
     });
-});
-
-router.post("/getuser", async (req, res) => {
-  const fields = req.body.fields;
-  if (fileds === null) {
-    const user = await (await User.findById(req.body.user_id)).select(s);
-    return res.json({ user });
-  }
-  let s = fields[0];
-  for (var i = 1; i < fields.length; i++) {
-    s = s + " " + fields[i];
-  }
-  const user = await (await User.findById(req.body.user_id)).select(s);
-  res.json({ user });
 });
 
 module.exports = router;

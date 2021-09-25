@@ -17,6 +17,7 @@ const userSchema = new Schema({
   notify_id: String,
   latitude: String,
   longitude: String,
+  enter: Date,
 });
 
 //userSchema.plugin(require("mongoose-autopopulate"));

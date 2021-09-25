@@ -7,8 +7,7 @@ const QueueDetails = ({ user, queue }) => {
   useEffect(() => {
     for (var i = 0; i < queue.line.length; i++) {
       setQno(i + 1);
-      setEt(+queue.time * (i + 1));
-      //console.log(queue.line[i].user._id)
+      setEt(queue.time * (i + 1)/queue.n);
       if (queue.line[i].user._id === user._id) {
         break;
       }
@@ -17,17 +16,17 @@ const QueueDetails = ({ user, queue }) => {
     //   console.log(res.data)
     //   setRt(res.data);
     // })
-    let dt = new Date();
-    console.log(qno);
-    axios
-      .get(
-        `http://doofenshmirtz-evil-inc.herokuapp.com/predict/?pos=${qno}&avg=${
-          queue.limit
-        }&day=${dt.getDay()}`
-      )
-      .then((res) => {
-        console.log(res.data.MESSAGE);
-      });
+    // let dt = new Date();
+    // console.log(qno);
+    // axios
+    //   .get(
+    //     `http://doofenshmirtz-evil-inc.herokuapp.com/predict/?pos=${qno}&avg=${
+    //       queue.limit
+    //     }&day=${dt.getDay()}`
+    //   )
+    //   .then((res) => {
+    //     console.log(res.data.MESSAGE);
+    //   });
   }, [queue]);
   return (
     <div className="mt-4 queuedetailsconatiner">

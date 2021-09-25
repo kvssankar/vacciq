@@ -84,18 +84,18 @@ io.on("connection", (socket) => {
           await notify(
             u.notify_id,
             `You are on ${qno} position`,
-            `Be ready your turn is coming soon<br> Your estimated time: ${
-              q.time * qno
-            }mins`
+            `Be ready your turn is coming soon<br> Your estimated time: ${Math.round(
+              (q.time * qno) / q.n
+            )}mins`
           );
         }
         if (qno > q.limit && qno - limit <= 5) {
           await notify(
             u.notify_id,
             `You are on ${qno} position`,
-            `Be ready your turn in queue is comming soon<br> Your estimated time :${
-              q.time * qno
-            }mins`
+            `Be ready your turn in queue is comming soon<br> Your estimated time :${Math.round(
+              (q.time * qno) / q.n
+            )}mins`
           );
           //TODO:Add reaching time also and estimated time also
         }
