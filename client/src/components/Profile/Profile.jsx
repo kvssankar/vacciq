@@ -28,9 +28,9 @@ const Profile = () => {
           </div>
         </div>
         <img
-          className=" queuenumberman"
+          className="queuenumberman"
           style={{ zIndex: 2,bottom:0 }}
-          src="/imgs/lady1.svg"
+          src="/imgs/person1.svg"
           alt="loading..."
         ></img>
       </div>
