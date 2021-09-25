@@ -28,7 +28,7 @@
   margin: 0;
   position: absolute;
   right: 0;
-  bottom: 0;
+  //bottom: 0;
   // background-color: blue;
 }
 .row {
@@ -87,6 +87,8 @@
 }
 .shine {
   pointer-events: none;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 .shine:after {
   content: "";

@@ -52,19 +52,6 @@ const QueueDetails = ({ user, queue }) => {
             </div>
           </div>
         </div>
-        <div
-          style={{ marginLeft: 0 }}
-          className="rectanglebackground2_1 flex-fill  p-2  mt-2 col-example justify-content-center align-items-center"
-        >
-          <div className="flexdirection">
-            <div className="fontstyle1small textcenter p-2 col-example ">
-              Your Position
-            </div>
-            <div className="fontstyle1small textcenter p-2 col-example ">
-              {qno}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

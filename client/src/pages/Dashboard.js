@@ -45,14 +45,14 @@ const Dashboard = () => {
           <Navbar />
           <div className="container">
             <QueueDetails user={user} queue={queue} />
-            <h5
+            {/* <h5
               style={{ marginTop: "2rem", marginBottom: "1rem" }}
               className="fontstyle1 ml-2"
             >
               Good Morning, <br></br>
               {user.name}
-            </h5>
-            <QueueNumber />
+            </h5> */}
+            <QueueNumber user={user} queue={queue} />
             <QueueTable user={user} queue={queue} />
           </div>
           <Footer />

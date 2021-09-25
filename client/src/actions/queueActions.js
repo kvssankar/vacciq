@@ -24,9 +24,6 @@ export const createQ = (name, limit, time, history) => (dispatch) => {
         type: "ERROR",
         payload: err.response.data,
       });
-      setTimeout(() => {
-        dispatch({ type: "CLEAR_ERROR" });
-      }, [5000]);
     });
 };
 
@@ -61,9 +58,6 @@ export const removeFromQ = (user_id, queue_id) => (dispatch) => {
         type: "ERROR",
         payload: err.response.data,
       });
-      setTimeout(() => {
-        dispatch({ type: "CLEAR_ERROR" });
-      }, [5000]);
     });
 };
 

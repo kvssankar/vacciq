@@ -31,7 +31,7 @@ const Profile = () => {
         </div>
         <img
           className=" queuenumberman"
-          style={{ zIndex: 2 }}
+          style={{ zIndex: 2,bottom:0 }}
           src="/imgs/lady1.svg"
           alt="loading..."
         ></img>
