@@ -19,7 +19,6 @@ router.post("/token", verify, async (req, res) => {
 });
 
 router.post("/addloc", verify, async (req, res) => {
-  //console.log(req.user);
   const user = await User.findByIdAndUpdate(
     req.user._id,
     {
@@ -27,7 +26,6 @@ router.post("/addloc", verify, async (req, res) => {
     },
     { new: true }
   );
-  //console.log(user);
   res.json(user);
 });
 
@@ -40,18 +38,37 @@ router.post("/directions", async (req, res) => {
       `https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${user.longitude},${user.latitude};${owner.longitude},${owner.latitude}?approaches=curb;curb&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
     )
     .then((data) => {
-      //console.log(data.data.durations[0][1]);
       res.json(data.data.durations[0][1]);
     })
     .catch((err) => console.log(err));
 });
 
 router.post("/register", async (req, res) => {
-  let user = await User.findOne({ phone: req.body.phone });
-  if (user)
+  var phone = req.body.phone;
+  var name = req.body.name;
+  var password = req.body.password;
+  var email = req.body.email;
+  let user = await User.findOne({ phone });
+  if (phone.length < 10)
     return res
       .status(400)
-      .json({ status: 1, mssg: "Use different mobile number" });
+      .json({ status: 1, mssg: "Please enter a valid phone number" });
+  if (password.length < 6)
+    return res.status(400).json({
+      status: 1,
+      mssg: "Password length should me more than 6 characters",
+    });
+  if (name.length < 1)
+    return res.status(400).json({
+      status: 1,
+      mssg: "A name is required!",
+    });
+  if (user)
+    return res.status(400).json({
+      status: 1,
+      mssg: "User has already been registered, Please use different Phone Number",
+    });
+
   const salt = await bc.genSalt(10);
   const hashed = await bc.hash(req.body.password, salt);
   user = new User({
@@ -67,16 +84,16 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  //console.log(req.body);
   const { phone, password } = req.body;
   const userExist = await User.findOne({ phone: phone });
   if (!userExist)
     return res.status(500).json({ status: 1, mssg: "User does not exists" });
   const validPassword = await bc.compare(password, userExist.password);
   if (!validPassword)
-    return res.status(500).json({ status: 1, mssg: "Password does not match" });
+    return res
+      .status(500)
+      .json({ status: 1, mssg: "Wrong Password, please try again" });
   const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
-  //console.log(token);
   return res.json({ token, user: userExist });
 });
 
@@ -106,7 +123,6 @@ router.post("/getloc", verify, async (req, res) => {
       `https://api.mapbox.com/geocoding/v5/mapbox.places/chester.json?proximity=${user.longitude},${user.latitude}&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
     )
     .then((data) => {
-      //console.log(data.data.features[0].place_name);
       res.json(data.data.features[0].place_name);
     });
 });

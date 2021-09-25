@@ -5,7 +5,7 @@ const Example = (props) => {
   return (
     <div>
       <Navbar color="white" light expand="md">
-        <NavbarBrand href="/">
+        <NavbarBrand href="/userdashboard">
           <img className="logonav" src="/imgs/logo.png" alt="loading..."></img>
         </NavbarBrand>
         <Nav className="mr-auto" navbar></Nav>
