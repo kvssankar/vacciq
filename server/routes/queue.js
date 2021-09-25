@@ -29,30 +29,6 @@ router.post("/create", verify, async (req, res) => {
   return res.json({ user: user });
 });
 
-router.post("/add", verify, async (req, res) => {
-  const { center_id } = req.body;
-  const userid = req.user._id;
-  if (!userid) return null;
-  const exist = await User.findOne({ _id: userid, queue_id: center_id });
-  if (exist) return res.json({ user: exist });
-  const user = await User.findOne({ _id: userid });
-  const center = await Queue.findByIdAndUpdate(center_id, {
-    $push: { line: { user: userid } },
-  });
-  const updatedUser = await User.findByIdAndUpdate(
-    user._id,
-    {
-      $set: {
-        queue_id: center_id,
-      },
-    },
-    { new: true }
-  )
-    .populate("line.user")
-    .exec();
-  return res.json({ user: updatedUser });
-});
-
 router.post("/remove", verify, async (req, res) => {
   console.log("sankar wokring");
   const { user_id, queue_id } = req.body;
@@ -81,20 +57,6 @@ router.post("/getq", async (req, res) => {
   res.json({ queue: queue });
 });
 
-router.post("/delete", verify, async (req, res) => {
-  const { center_id } = req.body;
-  const ownerid = req.user._id;
-  const owner = await User.findByIdAndUpdate(
-    center_id,
-    {
-      $set: { center_id: null },
-    },
-    { new: true }
-  );
-  await Queue.findByIdAndDelete(center_id);
-  res.json({ user: owner });
-});
-
 router.post("/exitq", verify, async (req, res) => {
   const { queue_id } = req.body;
   const userid = req.user._id;
@@ -105,9 +67,11 @@ router.post("/exitq", verify, async (req, res) => {
     },
     { new: true }
   );
+  var diffMs = new Date() - user.enter;
+  var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
   await Queue.findByIdAndUpdate(
     queue_id,
-    { $pull: { line: { user: user_id } } },
+    { $pull: { line: { user: user_id } }, $inc: { time: diffMins, n: 1 } },
     { new: true }
   );
   res.json({ user });

@@ -11,6 +11,7 @@ import QueueCreate from "./pages/CreateQueue";
 import LoginReduced from "./pages/ReducedLogin";
 import Barcode from "./pages/Barcode";
 import UserDashboard from "./pages/UserDashboard";
+import CustomAlert from "./components/CustomAlert";
 
 // import { useDispatch, useSelector } from "react-redux";
 // import socketIOClient from "socket.io-client";
@@ -48,7 +49,7 @@ function App() {
         <Route path="/create" exact component={QueueCreate} />
         <Route path="/quicklogin/:qid" component={LoginReduced} />
       </Switch>
-      {/* <CustomAlert /> */}
+      <CustomAlert />
     </Router>
   );
 }

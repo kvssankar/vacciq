@@ -4,6 +4,7 @@
   margin: 0;
   width: 90%;
   height: 140px;
+  border-radius: 19px;
   margin: auto;
   background-image: url(wave.png), url(rectangle.png);
   background-repeat: no-repeat;
@@ -27,7 +28,7 @@
   margin: 0;
   position: absolute;
   right: 0;
-  bottom: 0;
+  //bottom: 0;
   // background-color: blue;
 }
 .row {
@@ -48,10 +49,10 @@
 .fontstyle1small {
   font-family: Roboto;
   font-style: normal;
-  font-weight: bold;
   font-size: 18px;
   line-height: 24px;
   letter-spacing: -0.3px;
+  font-weight: 700;
   color: #595959;
   // padding-bottom:30px ;
 }
@@ -86,6 +87,8 @@
 }
 .shine {
   pointer-events: none;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 .shine:after {
   content: "";

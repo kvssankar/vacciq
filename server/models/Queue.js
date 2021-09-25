@@ -7,18 +7,13 @@ const queueSchema = new Schema({
   line: [
     {
       user: { type: Schema.Types.ObjectId, ref: "user", autopopulate: true },
-      entry_time: { type: Date, default: Date.now },
-      estimated_time: { type: Date }, //for below 15 (time-this) for abv 15 (time)
     },
   ],
-  time: Number, //in mins
+  time: { type: Number, default: 5 }, //in mins
+  n: { type: Number, default: 1 },
 });
 
 //queueSchema.plugin(require("mongoose-autopopulate"));
-//create queue
-//clear queue
-//pause queue by some time
-//delete queue
 
 const Queue = mongoose.model("queue", queueSchema);
 

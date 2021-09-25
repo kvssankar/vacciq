@@ -17,9 +17,6 @@ export const register =
           type: "ERROR",
           payload: err.response.data,
         });
-        setTimeout(() => {
-          dispatch({ type: "CLEAR_ERROR" });
-        }, [5000]);
       });
   };
 
@@ -39,8 +36,5 @@ export const login = (phone, password, history) => (dispatch) => {
         type: "ERROR",
         payload: err.response.data,
       });
-      setTimeout(() => {
-        dispatch({ type: "CLEAR_ERROR" });
-      }, [5000]);
     });
 };
