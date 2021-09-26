@@ -12,7 +12,6 @@ export const register =
         history.push("/userdashboard");
       })
       .catch((err) => {
-        console.log(err.response.data);
         dispatch({
           type: "ERROR",
           payload: err.response.data,
@@ -31,7 +30,6 @@ export const login = (phone, password, history) => (dispatch) => {
       history.push("/userdashboard");
     })
     .catch((err) => {
-      console.log(err.response.data);
       dispatch({
         type: "ERROR",
         payload: err.response.data,

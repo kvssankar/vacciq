@@ -2,7 +2,6 @@ import React from "react";
 import "./Profile.css";
 import Navbar from "../Dashboard/Navbar";
 import Footer from "../Dashboard/Footer";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
 // 20564cb3ab3d4d0682b73a2d34d24485
@@ -11,6 +10,7 @@ import { useHistory } from "react-router";
 //           'apiKey=20564cb3ab3d4d0682b73a2d34d24485';
 // https://newsapi.org/docs/get-started#top-headlines
 const Profile = () => {
+  const history = useHistory();
   return (
     <div className="signuppagecontainer container">
       <Navbar />
@@ -23,28 +23,34 @@ const Profile = () => {
         <div className="p-2 col-example">
           <div className="texts ">
             <h6 className="ml-2 fontstyle1small pb-5 mt-3">
-              Stay Home,<br></br>Stay Safe
+              Stay Home,<br/>Stay Safe
             </h6>
           </div>
         </div>
         <img
-          className=" queuenumberman"
-          style={{ zIndex: 2, bottom: 0 }}
-          src="/imgs/lady1.svg"
+          className="queuenumberman"
+          style={{ zIndex: 2,bottom:0 }}
+          src="/imgs/person1.svg"
           alt="loading..."
         ></img>
       </div>
 
-      <div
-        class="btn-group ml-auto pb-2 row mt-4"
-        role="group"
-        aria-label="Basic example"
-      >
-        <button type="button" class="btn btn-primary">
-          JoinQ
-        </button>
-        <button type="button" class="btn btn-secondary">
+
+      <div className="mt-3 d-flex justify-content-between">
+      <button
+        style={{ margin:"10px",width: "85%", padding: "10px" }}
+        className="mt-2 primary-button"
+        size="md"
+        >
+          <img className="mr-1" src="/imgs/library_add.svg" alt="Icon" onClick={() => history.push("/create")}/>
           CreateQ
+        </button>
+        <button style={{ margin:"10px",width: "85%", padding: "10px" }}
+        className="mt-2 primary-button"
+        size="md"
+        >
+          <img className="mr-1" src="/imgs/call_made.svg" alt="Icon" onClick={() => history.push("/admin")}/>
+          ViewQ
         </button>
       </div>
 
@@ -64,7 +70,7 @@ const Profile = () => {
               className="row fontstyle1small statsboxin-right"
             >
               <p className="ml-2 mt-1 ">Recovered</p>
-              <div className=" " style={{ margin: "50px 20px 0 auto " }}>
+              <div className=" " style={{ margin: "50px 20px 0 auto" }}>
                 95000
               </div>
             </div>
@@ -80,7 +86,7 @@ const Profile = () => {
               className="row fontstyle1small statsboxin-right"
             >
               <p className="ml-2 mt-1 ">Active</p>
-              <div className=" " style={{ margin: "50px 20px 0 auto " }}>
+              <div style={{ margin: "50px 20px 0 auto" }}>
                 95000
               </div>
             </div>

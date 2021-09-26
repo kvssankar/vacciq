@@ -6,11 +6,9 @@ const verify = require("../verify");
 const axios = require("axios");
 
 router.post("/details", async (req, res) => {
-  const { qid, sankar } = req.body;
-  console.log(sankar);
+  const { qid } = req.body;
   const q = await Queue.findById(qid);
-  console.log(q);
-  res.json({ q: q });
+  res.json({ q: q.name });
 });
 
 router.post("/create", verify, async (req, res) => {
@@ -18,8 +16,6 @@ router.post("/create", verify, async (req, res) => {
   const newQ = new Queue({ name, limit, time });
   const addedQ = await newQ.save();
   const userid = req.user._id;
-  console.log(userid);
-  console.log("working");
   if (!userid) return res.status(400).json({ mssg: "Something went wrong" });
   const user = await User.findByIdAndUpdate(
     userid,
@@ -30,13 +26,10 @@ router.post("/create", verify, async (req, res) => {
 });
 
 router.post("/remove", verify, async (req, res) => {
-  console.log("sankar wokring");
   const { user_id, queue_id } = req.body;
   const ownerid = req.user._id;
   if (!ownerid) return null;
   let owner = await User.findOne({ _id: ownerid, center_id: queue_id });
-  //if (!owner) return null;
-  console.log(owner);
   const center = await Queue.findByIdAndUpdate(
     queue_id,
     { $pull: { line: { user: user_id } } },
@@ -59,7 +52,6 @@ router.post("/getq", async (req, res) => {
 
 router.post("/exitq", verify, async (req, res) => {
   const { queue_id } = req.body;
-  const userid = req.user._id;
   const user = await User.findByIdAndUpdate(
     queue_id,
     {

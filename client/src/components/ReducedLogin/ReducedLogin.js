@@ -5,7 +5,7 @@ import { addToQ } from "../../actions/queueActions";
 import axios from "axios";
 
 const ReducedLogin = ({ qid }) => {
-  const [q, setQ] = useState();
+  const [q, setQ] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const dispatch = useDispatch();
@@ -18,13 +18,11 @@ const ReducedLogin = ({ qid }) => {
       setName(user.name);
       setPhone(user.phone);
     }
-    if (!isLogin)
-      axios.post("/api/q/details", { qid, sankar: "sasa" }).then((res) => {
-        console.log(res.data.q);
-        setQ(res.data.q);
-        history.push("/dashboard");
-      });
-  }, [qid]);
+    axios.post("/api/q/details", { qid }).then((res) => {
+      setQ(res.data.q);
+    });
+  }, [qid, isLogin, user]);
+
   const send = () => {
     dispatch(addToQ(name, phone, qid, history));
   };
@@ -39,7 +37,7 @@ const ReducedLogin = ({ qid }) => {
       </div>
       <div className="row d-flex ml-4 mt-3 ">
         <h5>
-          Join this {q ? q.name : "loading..."} now<br></br> Enter the following
+          Join this {q ? q : "loading..."} now<br></br> Enter the following
           details !
         </h5>
       </div>
