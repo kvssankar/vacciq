@@ -30,33 +30,37 @@ const Profile = () => {
         <div className="p-2 col-example">
           <div className="texts ">
             <h6 className="ml-2 fontstyle1small pb-5 mt-3">
-              Stay Home,<br/>Stay Safe
+              Stay Home,
+              <br />
+              Stay Safe
             </h6>
           </div>
         </div>
         <img
           className="queuenumberman"
-          style={{ zIndex: 2,bottom:0 }}
+          style={{ zIndex: 2, bottom: 0 }}
           src="/imgs/person1.svg"
           alt="loading..."
         ></img>
       </div>
 
-
       <div className="mt-3 d-flex justify-content-between">
-      <button
-        style={{ margin:"10px",width: "85%", padding: "10px" }}
-        className="mt-2 primary-button"
-        size="md"
+        <button
+          onClick={() => history.push("/create")}
+          style={{ margin: "10px", width: "85%", padding: "10px" }}
+          className="mt-2 primary-button"
+          size="md"
         >
-          <img className="mr-1" src="/imgs/library_add.svg" alt="Icon" onClick={() => history.push("/create")}/>
+          <img className="mr-1" src="/imgs/library_add.svg" alt="Icon" />
           CreateQ
         </button>
-        <button style={{ margin:"10px",width: "85%", padding: "10px" }}
-        className="mt-2 primary-button"
-        size="md"
+        <button
+          onClick={() => history.push("/admin")}
+          style={{ margin: "10px", width: "85%", padding: "10px" }}
+          className="mt-2 primary-button"
+          size="md"
         >
-          <img className="mr-1" src="/imgs/call_made.svg" alt="Icon" onClick={() => history.push("/admin")}/>
+          <img className="mr-1" src="/imgs/call_made.svg" alt="Icon" />
           ViewQ
         </button>
       </div>
@@ -93,9 +97,7 @@ const Profile = () => {
               className="row fontstyle1small statsboxin-right"
             >
               <p className="ml-2 mt-1 ">Active</p>
-              <div style={{ margin: "50px 20px 0 auto" }}>
-                95000
-              </div>
+              <div style={{ margin: "50px 20px 0 auto" }}>95000</div>
             </div>
           </div>
           <div className="col-6 d-flex">
