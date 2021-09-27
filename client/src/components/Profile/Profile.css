@@ -19,3 +19,32 @@
   width: 99%;
   margin: 0 auto;
 }
+
+.newscontainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(194, 236, 254, 0.57);
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.newscontainer img {
+  max-height: 70px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.newscontainer .title {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.newscontainer .content {
+  font-size: 12px;
+  margin-bottom: 0;
+  margin-top: 10px;
+}

@@ -1,16 +1,23 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./Profile.css";
 import Navbar from "../Dashboard/Navbar";
 import Footer from "../Dashboard/Footer";
 import { useHistory } from "react-router";
+
+const Headlines = React.lazy(() => import('./Headlines'));
+
+
 
 // 20564cb3ab3d4d0682b73a2d34d24485
 // var url = 'https://newsapi.org/v2/top-headlines?' +
 //           'country=us&' +
 //           'apiKey=20564cb3ab3d4d0682b73a2d34d24485';
 // https://newsapi.org/docs/get-started#top-headlines
+
+
 const Profile = () => {
   const history = useHistory();
+  
   return (
     <div className="signuppagecontainer container">
       <Navbar />
@@ -125,11 +132,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div
-        style={{ marginBottom: "100px", width: "95%", margin: "0 auto" }}
-        className="queuenumbercontainer"
-      ></div>
-
+      <Suspense fallback={<p>Loading Latest news for you...</p>}>
+        <Headlines />
+      </Suspense>       
       <Footer />
     </div>
   );

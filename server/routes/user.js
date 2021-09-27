@@ -128,4 +128,16 @@ router.post("/getloc", verify, async (req, res) => {
     });
 });
 
+router.get("/news/:page", async (req, res) => {
+  const { page } = req.params;
+  let responseData;
+  await axios
+    .get(
+      "https://newsapi.org/v2/top-headlines?country=in&apiKey=20564cb3ab3d4d0682b73a2d34d24485&page=" +
+        page
+    )
+    .then((data) => (responseData = data.data));
+  res.json(responseData);
+});
+
 module.exports = router;
