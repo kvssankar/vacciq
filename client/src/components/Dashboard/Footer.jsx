@@ -10,13 +10,20 @@ const Example = () => {
   return (
     <Container className="themed-container" fluid={true}>
       <div className="footer" style={{ zIndex: 111 }}>
-        <div className="d-flex justify-content-between">
-            <a href="/dashboard" className=" qnodisplay btn btn-outline-primary">
-                QNO: 3
+        <div className="row d-flex justify-content-between">
+          <div className="col-4">
+            <a
+              href="/dashboard"
+              className=" qnodisplay btn btn-outline-primary"
+            >
+              QNO: 3
             </a>
+          </div>
+          <div style={{ marginLeft: "auto auto" }} className="col-4">
+            {" "}
             <button
               style={{
-                margin: "0",
+                marginLeft: "48%",
                 padding: "0",
                 border: "none",
                 backgroundColor: "white",
@@ -27,9 +34,11 @@ const Example = () => {
             >
               <img src={home} width="24px" alt="Profile"></img>
             </button>
+          </div>
+          <div style={{ margin: "auto auto" }} className="col-4">
             <button
               style={{
-                margin: "0",
+                marginLeft: "90%",
                 padding: "0",
                 border: "none",
                 backgroundColor: "white",
@@ -41,6 +50,7 @@ const Example = () => {
             >
               <img src={logout} alt="Profile"></img>
             </button>
+          </div>
         </div>
       </div>
     </Container>

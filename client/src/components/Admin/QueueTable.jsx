@@ -21,7 +21,7 @@ const QueueTable = ({ user, center }) => {
     dispatch(removeFromQ(a, center._id));
   };
   return (
-    <div className="mt-4 queuetablecontainer" style={{ marginBottom: "5rem" }}>
+    <div className=" queuetablecontainer" style={{ marginBottom: "5rem" }}>
       <h5 className="ml-2 ">Queue Table</h5>
 
       {line.length > 0 &&

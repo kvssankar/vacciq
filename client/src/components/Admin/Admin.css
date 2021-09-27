@@ -1,0 +1,23 @@
+.border1 {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+}
+.border2 {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  transform: scaleX(-1);
+}
+.border3 {
+  position: absolute;
+  bottom: -11px;
+  left: -15px;
+  transform: scaleY(-1);
+}
+.border4 {
+  position: absolute;
+  bottom: -11px;
+  right: -15px;
+  transform: scale(-1);
+}
