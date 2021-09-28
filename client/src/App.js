@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import AdminPage from "./pages/Admin";
 import QueueCreate from "./pages/CreateQueue";
 import LoginReduced from "./pages/ReducedLogin";
+import Edit from "./pages/Edit";
 import Barcode from "./pages/Barcode";
 import UserDashboard from "./pages/UserDashboard";
 import CustomAlert from "./components/CustomAlert";
@@ -48,6 +49,7 @@ function App() {
         <PrivateRoute path="/admin" exact component={AdminPage} />
         <Route path="/create" exact component={QueueCreate} />
         <Route path="/quicklogin/:qid" component={LoginReduced} />
+        <Route path="/edit-profile" component={Edit} />
       </Switch>
       <CustomAlert />
     </Router>
