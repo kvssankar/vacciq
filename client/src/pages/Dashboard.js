@@ -25,7 +25,6 @@ const Dashboard = () => {
       uid: user._id,
     });
     socket.on("qdata", (data) => {
-      console.log(data);
       dispatch({ type: "GET_QUEUE", payload: data });
     });
   };

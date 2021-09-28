@@ -3,24 +3,31 @@ import { Container } from "reactstrap";
 import "./Footer.css";
 import logout from "../../img/logout.svg";
 import home from "../../img/home.svg";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { getq } from "../../actions/queueActions";
 
 const Example = () => {
   const history = useHistory();
+  const dispatch=useDispatch();
   const [qno, setQno] = useState(0);
   const queue = useSelector((state) => state.userReducer.queue);
   const user = useSelector((state) => state.userReducer.user);
   useEffect(()=>{
-    if(queue){
-      for (var i = 0; i < queue.line.length; i++) {
-        setQno(i + 1);
-        if (queue.line[i].user._id === user._id) {
-          break;
+    async function temp(){
+      await dispatch(getq(user.queue_id,()=>(null)));
+      console.log(queue)
+      if(queue){
+        for (var i = 0; i < queue.line.length; i++) {
+          setQno(i + 1);
+          if (queue.line[i].user._id === user._id) {
+            break;
+          }
         }
       }
     }
-  },[queue,user])
+    temp();
+  },[])
   return (
     <Container className="themed-container" fluid={true}>
       <div className="footer" style={{ zIndex: 111 }}>
