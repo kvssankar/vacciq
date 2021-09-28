@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CustomButton from "../components/CustomButton";
 import logo from "../img/vacciq_logo_1 1.png";
 import couple from "../img/ASFASF 1.svg";
 import "../css/landing.css";
+import { useHistory } from "react-router";
 
 const Landing = () => {
+  const history = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem("state")) history.push("/userdashboard");
+  }, []);
   return (
     <div
       className="container column-flex"

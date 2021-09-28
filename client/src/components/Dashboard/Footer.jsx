@@ -61,8 +61,9 @@ const Example = () => {
                 border: "none",
                 backgroundColor: "white",
               }}
-              onClick={() => {
-                localStorage.removeItem("state");
+              onClick={async() => {
+                await localStorage.removeItem("state");
+                console.log(localStorage.getItem("state"))
                 history.push("/");
               }}
             >

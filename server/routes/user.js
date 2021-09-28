@@ -103,6 +103,8 @@ router.post("/reducedlogin", async (req, res) => {
   let userExist = await User.findOne({ phone: phone });
   if (!userExist)
     userExist = await new User({ name, phone, queue_id: qid }).save();
+  const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
+  if (userExist.queue_id === qid) res.json({ token, user: userExist });
   await Queue.findByIdAndUpdate(qid, {
     $push: { line: { user: userExist._id } },
   });
@@ -113,7 +115,6 @@ router.post("/reducedlogin", async (req, res) => {
     },
     { new: true }
   );
-  const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
   return res.json({ token, user });
 });
 
@@ -141,5 +142,9 @@ router.get("/news/:page", async (req, res) => {
     .catch((err) => console.log(err));
   res.json(responseData);
 });
+
+// router.get("/sms/:mobile/:message/",async(req,res)=>{
+//   const {messgae,mobile}=req.params;
+// })
 
 module.exports = router;
