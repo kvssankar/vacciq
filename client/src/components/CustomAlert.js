@@ -12,7 +12,7 @@ function CustomAlert() {
   }, [error, mssg, dispatch]);
   return (
     <Alert
-      style={{ display: error === -1 ? "none" : "block" }}
+      style={{ display: error === -1 ? "none" : "block", marginBottom: 80 }}
       color={error === 0 ? "success" : "danger"}
     >
       {mssg === null || mssg === "" ? "Something went wrong" : mssg}

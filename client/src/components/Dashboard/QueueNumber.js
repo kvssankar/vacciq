@@ -10,7 +10,7 @@ const QueueNumber = ({ user, queue }) => {
         break;
       }
     }
-  });
+  }, [user, queue]);
   return (
     <div className="  row d-flex shine justify-content-between queuenumbercontainer">
       <div className="p-2 col-example">

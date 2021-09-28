@@ -6,12 +6,6 @@ import { useHistory } from "react-router";
 
 const Headlines = React.lazy(() => import("./Headlines"));
 
-// 20564cb3ab3d4d0682b73a2d34d24485
-// var url = 'https://newsapi.org/v2/top-headlines?' +
-//           'country=us&' +
-//           'apiKey=20564cb3ab3d4d0682b73a2d34d24485';
-// https://newsapi.org/docs/get-started#top-headlines
-
 const Profile = () => {
   const history = useHistory();
 

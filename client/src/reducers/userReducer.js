@@ -44,7 +44,11 @@ const userReducer = (state = initialState, action) => {
       localStorage.clear("state");
       localStorage.removeItem("token");
       return {
-        isLogin: false,
+        user: null,
+        err: -1,
+        isLogin: 0,
+        mssg: null,
+        queue: null,
       };
     default:
       return state;

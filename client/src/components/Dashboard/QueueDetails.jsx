@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 const QueueDetails = ({ user, queue }) => {
-  const [qno, setQno] = useState(0);
   const [rt] = useState("-");
   const [et, setEt] = useState(10);
   useEffect(() => {
     for (var i = 0; i < queue.line.length; i++) {
-      setQno(i + 1);
       setEt((queue.time * (i + 1)) / queue.n);
       if (queue.line[i].user._id === user._id) {
         break;
@@ -27,7 +24,7 @@ const QueueDetails = ({ user, queue }) => {
     //   .then((res) => {
     //     console.log(res.data.MESSAGE);
     //   });
-  }, [queue]);
+  }, [queue,user]);
   return (
     <div className="mt-4 queuedetailsconatiner">
       <div className="d-flex justify-content-between row">

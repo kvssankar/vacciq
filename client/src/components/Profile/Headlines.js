@@ -21,6 +21,7 @@ const Headlines = () => {
   };
   useEffect(() => {
     fetchData();
+    return () => {};
   }, []);
   return (
     <>
@@ -28,8 +29,8 @@ const Headlines = () => {
         Bored?? Here is the top headlines...
       </h6>
       <div>
-        {news.map((article) => (
-          <div className="newscontainer">
+        {news.map((article, i) => (
+          <div className="newscontainer" key={i}>
             <div className="d-flex align-items-center">
               {article.urlToImage && <img src={article.urlToImage} alt="" />}
               <p className="title">
