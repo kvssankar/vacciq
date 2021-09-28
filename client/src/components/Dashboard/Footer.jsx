@@ -16,7 +16,6 @@ const Example = () => {
   useEffect(()=>{
     async function temp(){
       await dispatch(getq(user.queue_id,()=>(null)));
-      console.log(queue)
       if(queue){
         for (var i = 0; i < queue.line.length; i++) {
           setQno(i + 1);
@@ -69,8 +68,7 @@ const Example = () => {
                 backgroundColor: "white",
               }}
               onClick={async() => {
-                await localStorage.removeItem("state");
-                console.log(localStorage.getItem("state"))
+                dispatch({type:"LOGOUT"});
                 history.push("/");
               }}
             >

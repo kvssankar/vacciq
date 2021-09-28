@@ -4,11 +4,13 @@ import logo from "../img/vacciq_logo_1 1.png";
 import couple from "../img/ASFASF 1.svg";
 import "../css/landing.css";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 const Landing = () => {
   const history = useHistory();
+  const user = useSelector((state) => state.userReducer.user);
   useEffect(() => {
-    if (localStorage.getItem("state")) history.push("/userdashboard");
+    if (user) history.push("/userdashboard");
   }, []);
   return (
     <div

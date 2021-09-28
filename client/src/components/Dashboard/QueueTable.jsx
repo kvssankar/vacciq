@@ -10,7 +10,7 @@ const QueueTable = ({ user, queue }) => {
         setNo(i + 1);
       }
     }
-  }, [queue]);
+  }, [queue,user]);
   return (
     <div className="mt-4 queuetablecontainer" style={{ marginBottom: "5rem" }}>
       <h5 className="ml-2 ">Queue Table</h5>
