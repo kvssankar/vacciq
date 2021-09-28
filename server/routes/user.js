@@ -134,9 +134,11 @@ router.get("/news/:page", async (req, res) => {
   await axios
     .get(
       "https://newsapi.org/v2/top-headlines?country=in&apiKey=20564cb3ab3d4d0682b73a2d34d24485&page=" +
-        page
+        page +
+        "&pageSize=10"
     )
-    .then((data) => (responseData = data.data));
+    .then((data) => (responseData = data.data))
+    .catch((err) => console.log(err));
   res.json(responseData);
 });
 

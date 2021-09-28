@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
 
 import axios from "axios";
+import { Spinner } from "reactstrap";
 
 const Headlines = () => {
   const [news, setNews] = useState([]);
-  const [page, setPage] = useState(0);
-  useEffect(() => {
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(1);
+  const fetchData = () => {
+    setPage(page + 1);
     axios
       .get("/api/user/news/" + page)
-      .then((data) => setNews(data.data.articles));
+      .then((data) => {
+        setIsLoading(0);
+        setNews([...news, ...data.data.articles]);
+      })
+      .catch((err) => {
+        setIsLoading(0);
+      });
+  };
+  useEffect(() => {
+    fetchData();
   }, []);
   return (
     <>
@@ -27,6 +39,21 @@ const Headlines = () => {
             <p className="content">{article.content}</p>
           </div>
         ))}
+      </div>
+      <div className="w-100 d-flex justify-content-center">
+        {!isLoading ? (
+          <button
+            onClick={() => {
+              setIsLoading(1);
+              fetchData();
+            }}
+            className="mt-2 p-1 primary-button"
+          >
+            Load More
+          </button>
+        ) : (
+          <Spinner color="primary" />
+        )}
       </div>
     </>
   );
