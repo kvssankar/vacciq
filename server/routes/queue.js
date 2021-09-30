@@ -47,6 +47,7 @@ router.post("/remove", verify, async (req, res) => {
 router.post("/getq", async (req, res) => {
   const { queue_id } = req.body;
   const queue = await Queue.findById(queue_id).populate("line.user").exec();
+  if (queue_id == null) console.log("error null");
   res.json({ queue: queue });
 });
 

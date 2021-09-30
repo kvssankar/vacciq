@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
@@ -13,29 +13,33 @@ import Edit from "./pages/Edit";
 import Barcode from "./pages/Barcode";
 import UserDashboard from "./pages/UserDashboard";
 import CustomAlert from "./components/CustomAlert";
+import { useDispatch, useSelector } from "react-redux";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import socketIOClient from "socket.io-client";
-// const ENDPOINT = "http://localhost:5000/";
+import { getq } from "./actions/queueActions";
+
+import socketIOClient from "socket.io-client";
+const ENDPOINT = process.env.REACT_APP_ENDPOINT || "http://localhost:5000/";
 
 function App() {
-  // let isLogin = useSelector((state) => state.userReducer.isLogin);
-  // let user = useSelector((state) => state.userReducer.user);
-  // const socket = socketIOClient(ENDPOINT);
+  const user = useSelector((state) => state.userReducer.user);
+  const dispatch = useDispatch();
+  const socket = socketIOClient(ENDPOINT);
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (isLogin)
-  //     setInterval(async () => {
-  //       await socket.emit("getdata", {
-  //         id: user._id,
-  //       });
-  //     }, [60000]);
-  //   socket.on("userdata", (data) => {
-  //     console.log(data);
-  //     dispatch({ type: "UPDATE_USER", payload: data });
-  //   });
-  // }, [dispatch,isLogin,socket,user]);
+  const floading = () => {
+    socket.emit("joinQ", {
+      qid: user.queue_id || user.center_id,
+      uid: null,
+    });
+    socket.on("qdata", (data) => {
+      dispatch({ type: "GET_QUEUE", payload: data });
+    });
+  };
+
+  useEffect(() => {
+    if (user.center_id) dispatch(getq(user.center_id, floading));
+    if (user.queue_id) dispatch(getq(user.queue_id, floading));
+    return () => socket.disconnect();
+  }, []);
 
   return (
     <Router>

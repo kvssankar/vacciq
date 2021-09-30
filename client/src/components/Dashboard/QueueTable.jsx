@@ -4,13 +4,14 @@ const QueueTable = ({ user, queue }) => {
   const [line, setLine] = useState([]);
   const [no, setNo] = useState(0);
   useEffect(() => {
+    console.log(queue)
     setLine(queue.line.slice(0, queue.limit));
     for (var i = 0; i < queue.line.length; i++) {
       if (queue.line[i].user._id === user._id) {
         setNo(i + 1);
       }
     }
-  }, [queue,user]);
+  }, []);
   return (
     <div className="mt-4 queuetablecontainer" style={{ marginBottom: "5rem" }}>
       <h5 className="ml-2 ">Queue Table</h5>

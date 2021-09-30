@@ -24,7 +24,7 @@ const QueueDetails = ({ user, queue }) => {
     //   .then((res) => {
     //     console.log(res.data.MESSAGE);
     //   });
-  }, [queue,user]);
+  }, []);
   return (
     <div className="mt-4 queuedetailsconatiner">
       <div className="d-flex justify-content-between row">

@@ -20,7 +20,7 @@ export const createQ = (name, limit, time, history) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: "ERROR",
-        payload: err.response.data,
+        payload: "something went wrong",
       });
     });
 };
@@ -42,7 +42,7 @@ export const addToQ = (name, phone, qid, history) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: "ERROR",
-        payload: err.response.data,
+        payload: "something went wrong",
       });
     });
 };
@@ -59,7 +59,7 @@ export const removeFromQ = (user_id, queue_id) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: "ERROR",
-        payload: err.response.data,
+        payload: "something went wrong",
       });
     });
 };
@@ -69,12 +69,12 @@ export const getq = (qid, floading) => (dispatch) => {
     .post("/api/q/getq", { queue_id: qid }, config)
     .then((res) => {
       dispatch({ type: "GET_QUEUE", payload: res.data.queue });
-      floading();
+      //floading();
     })
     .catch((err) => {
       dispatch({
         type: "ERROR",
-        payload: err.response.data,
+        payload: "something went wrong",
       });
     });
 };
@@ -89,7 +89,7 @@ export const exitq = (qid, history) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: "ERROR",
-        payload: err.response.data,
+        payload: "something went wrong",
       });
     });
 };
