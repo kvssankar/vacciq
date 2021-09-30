@@ -15,7 +15,7 @@ const Example = () => {
   const user = useSelector((state) => state.userReducer.user);
   useEffect(()=>{
     async function temp(){
-      await dispatch(getq(user.queue_id,()=>(null)));
+      await dispatch(getq(user.queue_id || user.center_id,()=>(null)));
       if(queue){
         for (var i = 0; i < queue.line.length; i++) {
           setQno(i + 1);
@@ -33,7 +33,7 @@ const Example = () => {
         <div className="row d-flex justify-content-between align-items-center">
           <div className="col-4">
             {queue ? <a
-              href="/dashboard"
+              href={user.queue_id ? "/dashboard" : "/admin"}
               className=" qnodisplay btn btn-outline-primary"
             >
               QNO: {qno}
