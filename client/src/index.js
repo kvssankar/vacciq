@@ -33,12 +33,12 @@ const store = createStore(
   allReducer,
   persistedState,
   compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__({
-        trace: true,
-        traceLimit: 25,
-      })
+    applyMiddleware(thunk)
+    //, window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    //   window.__REDUX_DEVTOOLS_EXTENSION__({
+    //   trace: true,
+    //     traceLimit: 25,
+    //  })
   )
 );
 
