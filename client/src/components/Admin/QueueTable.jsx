@@ -22,7 +22,7 @@ const QueueTable = ({ user, center }) => {
   };
   return (
     <div className=" queuetablecontainer" style={{ marginBottom: "5rem" }}>
-      <h5 className="ml-2 ">Queue Table</h5>
+      <h5 className="pt-3 ml-2 ">Queue Table</h5>
 
       {line.length > 0 &&
         line.map((lineuser, i) => (

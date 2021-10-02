@@ -10,7 +10,7 @@ const QueueTable = ({ user, queue }) => {
         setNo(i + 1);
       }
     }
-  }, [queue,user]);
+  }, [queue, user]);
   return (
     <div className="mt-4 queuetablecontainer" style={{ marginBottom: "5rem" }}>
       <h5 className="ml-2 ">Queue Table</h5>
@@ -21,21 +21,57 @@ const QueueTable = ({ user, queue }) => {
             key={i}
             className="rectanglebackground profile d-flex justify-content-between align-items-center"
           >
-            <div className="queuetablepart1 p-2 col-example text-left">
+            {/* <div className="queuetablepart1 p-2 col-example text-left">
               <img
                 className="profilepictable"
                 src="/imgs/profile.png"
                 alt="loading..."
               ></img>
+            </div> */}
+            <div
+              style={{
+                paddingLeft: "15px",
+                paddingTop: "15px",
+                paddingBottom: "15px",
+              }}
+              lassName="queuetablepart2 p-2 col-example text-left"
+            >
+              <div className=" d-flex flexcolumn">
+                <h6
+                  style={{
+                    marginleft: "150px",
+                    color: "rgba(66, 195, 252, 1)",
+                  }}
+                  className="queuetablepart2h6"
+                >
+                  {i + 1}
+                </h6>
+              </div>
             </div>
             <div className="queuetablepart2 p-2 col-example text-left">
               <div className=" d-flex flexcolumn">
-                <h6 className="queuetablepart2h6">{lineuser.user.name}</h6>
-                <h6 className="fontstyle1small queuetablepart2h6">Area</h6>
+                <h6
+                  style={{ color: "rgba(66, 195, 252, 1)" }}
+                  className="queuetablepart2h6"
+                >
+                  {lineuser.user.name}
+                </h6>
+                {/* <h6 className="fontstyle1small queuetablepart2h6">Area</h6> */}
               </div>
             </div>
             <div className="queuetablepart3 p-2 col-example text-left">
-              <h4 className="queuetablepart3h4">{i + 1}</h4>
+              <h6
+                style={{
+                  color: "rgba(66, 195, 252, 1)",
+                  maxWidth: "200px",
+                  overflowWrap: "break-word",
+                  margin: "0",
+                }}
+                className=""
+              >
+                {" "}
+                Location - Shankar nagar
+              </h6>
             </div>
           </div>
         ) : (
