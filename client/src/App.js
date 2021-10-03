@@ -14,29 +14,7 @@ import Barcode from "./pages/Barcode";
 import UserDashboard from "./pages/UserDashboard";
 import CustomAlert from "./components/CustomAlert";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import socketIOClient from "socket.io-client";
-// const ENDPOINT = "http://localhost:5000/";
-
 function App() {
-  // let isLogin = useSelector((state) => state.userReducer.isLogin);
-  // let user = useSelector((state) => state.userReducer.user);
-  // const socket = socketIOClient(ENDPOINT);
-
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (isLogin)
-  //     setInterval(async () => {
-  //       await socket.emit("getdata", {
-  //         id: user._id,
-  //       });
-  //     }, [60000]);
-  //   socket.on("userdata", (data) => {
-  //     console.log(data);
-  //     dispatch({ type: "UPDATE_USER", payload: data });
-  //   });
-  // }, [dispatch,isLogin,socket,user]);
-
   return (
     <Router>
       <Switch>

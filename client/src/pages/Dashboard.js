@@ -12,7 +12,7 @@ import { useHistory } from "react-router";
 const ENDPOINT = process.env.REACT_APP_ENDPOINT || "http://localhost:5000/";
 
 const Dashboard = () => {
-  const user = useSelector((state) => state.userReducer.user);
+  let user = useSelector((state) => state.userReducer.user);
   let queue = useSelector((state) => state.userReducer.queue);
   const [loading, setLoading] = useState(1);
   const socket = socketIOClient(ENDPOINT);
@@ -25,12 +25,14 @@ const Dashboard = () => {
       uid: user._id,
     });
     socket.on("qdata", (data) => {
-      dispatch({ type: "GET_QUEUE", payload: data });
+      dispatch({ type: "GET_QUEUE", payload: data.q });
+      dispatch({ type: "UPDATE_USER", payload: data.user });
     });
   };
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
+    if (!user.queue_id) history.push("/userdashboard");
     if (loading === 1) dispatch(getq(user.queue_id, floading));
     return () => socket.disconnect();
   }, []);

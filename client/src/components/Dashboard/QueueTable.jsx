@@ -19,7 +19,7 @@ const QueueTable = ({ user, queue }) => {
         return lineuser._id !== user._id ? (
           <div
             key={i}
-            className="rectanglebackground profile d-flex justify-content-between align-items-center"
+            className="rectanglebackground profile d-flex  align-items-center"
           >
             {/* <div className="queuetablepart1 p-2 col-example text-left">
               <img
@@ -39,7 +39,6 @@ const QueueTable = ({ user, queue }) => {
               <div className=" d-flex flexcolumn">
                 <h6
                   style={{
-                    marginleft: "150px",
                     color: "rgba(66, 195, 252, 1)",
                   }}
                   className="queuetablepart2h6"
@@ -48,8 +47,8 @@ const QueueTable = ({ user, queue }) => {
                 </h6>
               </div>
             </div>
-            <div className="queuetablepart2 p-2 col-example text-left">
-              <div className=" d-flex flexcolumn">
+            <div className="queuetablepart2 ml-5 col-example">
+              <div className="d-flex flexcolumn">
                 <h6
                   style={{ color: "rgba(66, 195, 252, 1)" }}
                   className="queuetablepart2h6"
@@ -59,7 +58,7 @@ const QueueTable = ({ user, queue }) => {
                 {/* <h6 className="fontstyle1small queuetablepart2h6">Area</h6> */}
               </div>
             </div>
-            <div className="queuetablepart3 p-2 col-example text-left">
+            {/* <div className="queuetablepart3 p-2 col-example text-left">
               <h6
                 style={{
                   color: "rgba(66, 195, 252, 1)",
@@ -72,7 +71,7 @@ const QueueTable = ({ user, queue }) => {
                 {" "}
                 Location - Shankar nagar
               </h6>
-            </div>
+            </div> */}
           </div>
         ) : (
           <div

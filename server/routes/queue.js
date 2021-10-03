@@ -27,33 +27,8 @@ router.post("/create", verify, async (req, res) => {
 
 router.post("/remove", verify, async (req, res) => {
   const { user_id, queue_id } = req.body;
-  const ownerid = req.user._id;
-  if (!ownerid) return null;
-  let owner = await User.findOne({ _id: ownerid, center_id: queue_id });
-  const center = await Queue.findByIdAndUpdate(
-    queue_id,
-    { $pull: { line: { user: user_id } } },
-    { new: true }
-  )
-    .populate("line.user")
-    .exec();
-  const user = await User.findByIdAndUpdate(user_id, {
-    $set: { queue_id: null },
-  });
-  owner = await User.findOne({ _id: ownerid, center_id: queue_id });
-  return res.json({ user: owner, queue: center });
-});
-
-router.post("/getq", async (req, res) => {
-  const { queue_id } = req.body;
-  const queue = await Queue.findById(queue_id).populate("line.user").exec();
-  res.json({ queue: queue });
-});
-
-router.post("/exitq", verify, async (req, res) => {
-  const { queue_id } = req.body;
   const user = await User.findByIdAndUpdate(
-    queue_id,
+    user_id,
     {
       $set: { queue_id: null },
     },
@@ -61,12 +36,18 @@ router.post("/exitq", verify, async (req, res) => {
   );
   var diffMs = new Date() - user.enter;
   var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-  await Queue.findByIdAndUpdate(
+  const queue = await Queue.findByIdAndUpdate(
     queue_id,
     { $pull: { line: { user: user_id } }, $inc: { time: diffMins, n: 1 } },
     { new: true }
   );
-  res.json({ user });
+  return res.json({ queue, user });
+});
+
+router.post("/getq", async (req, res) => {
+  const { queue_id } = req.body;
+  const queue = await Queue.findById(queue_id).populate("line.user").exec();
+  res.json({ queue: queue });
 });
 
 module.exports = router;

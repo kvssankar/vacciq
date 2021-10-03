@@ -3,17 +3,17 @@ import "./Profile.css";
 import Navbar from "../Dashboard/Navbar";
 import Footer from "../Dashboard/Footer";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 const Headlines = React.lazy(() => import("./Headlines"));
 
 const Profile = () => {
   const history = useHistory();
-
+  let user=useSelector(state=>state.userReducer.user);
   return (
     <div className="signuppagecontainer container">
       <Navbar />
 
-      {/* STAY HOME STAY SAFE */}
       <div
         style={{ marginTop: "5rem" }}
         className="  row d-flex  justify-content-between queuenumbercontainer"
@@ -46,9 +46,10 @@ const Profile = () => {
           CreateQ
         </button>
         <button
-          onClick={() => history.push("/admin")}
+          onClick={() => user.queue_id ? history.push("/dashboard") : history.push("/admin")}
           style={{ margin: "10px", width: "85%", padding: "10px" }}
           className="mt-2 primary-button"
+          disabled={!user.queue_id && !user.center_id}
           size="md"
         >
           <img className="mr-1" src="/imgs/call_made.svg" alt="Icon" />

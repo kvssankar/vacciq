@@ -18,7 +18,7 @@ const QueueTable = ({ user, center }) => {
   }, [center]);
   const dispatch = useDispatch();
   const done = (a) => {
-    dispatch(removeFromQ(a, center._id));
+    dispatch(removeFromQ(a, center._id,null));
   };
   return (
     <div className=" queuetablecontainer" style={{ marginBottom: "5rem" }}>

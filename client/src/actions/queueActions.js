@@ -47,7 +47,7 @@ export const addToQ = (name, phone, qid, history) => (dispatch) => {
     });
 };
 
-export const removeFromQ = (user_id, queue_id) => (dispatch) => {
+export const removeFromQ = (user_id, queue_id, history) => (dispatch) => {
   axios
     .post("/api/q/remove", { user_id, queue_id }, config)
     .then((res) => {
@@ -55,6 +55,13 @@ export const removeFromQ = (user_id, queue_id) => (dispatch) => {
         type: "GET_QUEUE",
         payload: res.data.queue,
       });
+      if (history) {
+        dispatch({
+          type: "UPDATE_USER",
+          payload: res.data.user,
+        });
+        history.push("/userdashboard");
+      }
     })
     .catch((err) => {
       dispatch({
@@ -70,21 +77,6 @@ export const getq = (qid, floading) => (dispatch) => {
     .then((res) => {
       dispatch({ type: "GET_QUEUE", payload: res.data.queue });
       floading();
-    })
-    .catch((err) => {
-      dispatch({
-        type: "ERROR",
-        payload: err.response.data,
-      });
-    });
-};
-
-export const exitq = (qid, history) => (dispatch) => {
-  axios
-    .post("/api/q/exitq", { queue_id: qid }, config)
-    .then((res) => {
-      dispatch({ type: "GET_QUEUE", payload: null });
-      history.push("/userdashboard");
     })
     .catch((err) => {
       dispatch({

@@ -65,42 +65,9 @@ io.on("connection", (socket) => {
   socket.on("joinQ", ({ qid, uid = null }) => {
     socket.join(qid);
     async function getData() {
-      q = await Queue.findById(qid).populate("line.user").exec();
-      if (uid != null) {
-        var qno;
-        var u;
-        console.log("user id: ", uid);
-        for (var i = 0; i < q.line.length; i++) {
-          console.log(q.line[i].user._id);
-          if (q.line[i].user._id == uid) {
-            console.log("yayaya");
-            qno = i + 1;
-            u = q.line[i].user;
-            break;
-          }
-        }
-        //console.log(q.line);
-        if (qno <= q.limit && qno <= 5) {
-          await notify(
-            u.notify_id,
-            `You are on ${qno} position`,
-            `Be ready your turn is coming soon<br> Your estimated time: ${Math.round(
-              (q.time * qno) / q.n
-            )}mins`
-          );
-        }
-        if (qno > q.limit && qno - limit <= 5) {
-          await notify(
-            u.notify_id,
-            `You are on ${qno} position`,
-            `Be ready your turn in queue is comming soon<br> Your estimated time :${Math.round(
-              (q.time * qno) / q.n
-            )}mins`
-          );
-          //TODO:Add reaching time also and estimated time also
-        }
-      }
-      io.to(qid).emit("qdata", q);
+      let q = await Queue.findById(qid).populate("line.user").exec();
+      let user = await User.findById(uid);
+      io.to(qid).emit("qdata", { q, user });
     }
     getData();
   });
@@ -122,3 +89,36 @@ if (process.env.NODE_ENV === "production") {
 const port = process.env.PORT || 5000;
 
 server.listen(port, () => console.log(`sever started in ${port}`));
+
+// if (uid != null) {
+//   var qno;
+//   var u;
+//   for (var i = 0; i < q.line.length; i++) {
+//     console.log(q.line[i].user._id);
+//     if (q.line[i].user._id == uid) {
+//       qno = i + 1;
+//       u = q.line[i].user;
+//       break;
+//     }
+//   }
+//   //console.log(q.line);
+//   if (qno <= q.limit && qno <= 5) {
+//     await notify(
+//       u.notify_id,
+//       `You are on ${qno} position`,
+//       `Be ready your turn is coming soon<br> Your estimated time: ${Math.round(
+//         (q.time * qno) / q.n
+//       )}mins`
+//     );
+//   }
+//   if (qno > q.limit && qno - limit <= 5) {
+//     await notify(
+//       u.notify_id,
+//       `You are on ${qno} position`,
+//       `Be ready your turn in queue is comming soon<br> Your estimated time :${Math.round(
+//         (q.time * qno) / q.n
+//       )}mins`
+//     );
+//     //TODO:Add reaching time also and estimated time also
+//   }
+// }

@@ -21,11 +21,11 @@ const AdminPage = () => {
     if (center == null) return history.push("/userdashboard");
     socket.emit("joinQ", {
       qid: user.center_id,
-      uid: null,
+      uid: user._id,
     });
     socket.on("qdata", (data) => {
       console.log(data);
-      dispatch({ type: "GET_QUEUE", payload: data });
+      dispatch({ type: "GET_QUEUE", payload: data.q });
     });
   };
   const dispatch = useDispatch();
