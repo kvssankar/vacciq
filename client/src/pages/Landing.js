@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const Landing = () => {
   const history = useHistory();
-  const user = useSelector((state) => state.userReducer.user);
+  let user = useSelector((state) => state.userReducer.user);
   useEffect(() => {
     if (user) history.push("/userdashboard");
   }, []);

@@ -26,7 +26,7 @@ const Example = () => {
       }
     }
     temp();
-  }, []);
+  }, [queue]);
   return (
     <Container className="themed-container" fluid={true}>
       <div className="footer" style={{ zIndex: 111 }}>

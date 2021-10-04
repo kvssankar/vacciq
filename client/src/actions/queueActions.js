@@ -33,6 +33,7 @@ export const addToQ = (name, phone, qid, history) => (dispatch) => {
       qid,
     })
     .then(async (res) => {
+      localStorage.setItem("token", res.data.token);
       await dispatch({
         type: "UPDATE_USER",
         payload: res.data.user,
