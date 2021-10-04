@@ -25,8 +25,10 @@ const Dashboard = () => {
       uid: user._id,
     });
     socket.on("qdata", (data) => {
-      dispatch({ type: "GET_QUEUE", payload: data.q });
-      dispatch({ type: "UPDATE_USER", payload: data.user });
+      dispatch({ type: "GET_QUEUE", payload: data });
+    });
+    socket.on("udata", (data) => {
+      dispatch({ type: "UPDATE_USER", payload: data });
     });
   };
   const dispatch = useDispatch();

@@ -67,7 +67,8 @@ io.on("connection", (socket) => {
     async function getData() {
       let q = await Queue.findById(qid).populate("line.user").exec();
       let user = await User.findById(uid);
-      io.to(qid).emit("qdata", { q, user });
+      io.in(qid).emit("qdata", q);
+      io.to(qid).emit("udata", user);
     }
     getData();
   });

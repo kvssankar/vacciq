@@ -25,7 +25,7 @@ const AdminPage = () => {
     });
     socket.on("qdata", (data) => {
       console.log(data);
-      dispatch({ type: "GET_QUEUE", payload: data.q });
+      dispatch({ type: "GET_QUEUE", payload: data });
     });
   };
   const dispatch = useDispatch();
