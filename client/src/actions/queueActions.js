@@ -1,5 +1,5 @@
 import axios from "axios";
-const token = localStorage.getItem("token");
+let token = localStorage.getItem("token");
 const config = {
   headers: {
     "Content-type": "application/json",
