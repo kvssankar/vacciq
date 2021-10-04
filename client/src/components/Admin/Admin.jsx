@@ -78,14 +78,14 @@ const Admin = ({ user, center }) => {
                 Queue Count
               </div>
               <div className="fontstyle1small textcenter p-2 col-example ">
-                00:00:00
+                0
               </div>
             </div>
           </div>
           <div className="rectanglebackground2 flex-fill p-2 col-example ">
             <div className="flexdirection" style={{ alignItems: "center" }}>
               <div className="fontstyle1small textcenter p-2 col-example ">
-                Queue Count
+                Queue Time
               </div>
               <div className="fontstyle1small textcenter p-2 col-example ">
                 00:00:00
