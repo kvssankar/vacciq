@@ -72,6 +72,22 @@ io.on("connection", (socket) => {
     }
     getData();
   });
+  socket.on("personRemoved", ({ uid }) => {
+    async function getData() {
+      let user = await User.findById(uid);
+      io.in(qid).emit("removedPerson", user);
+      io.in(qid).emit("qdata", q);
+    }
+    getData();
+  });
+  socket.on("disconnect", () => {
+    async function getData() {
+      let q = await Queue.findById(qid).populate("line.user").exec();
+      let user = await User.findById(uid);
+      io.in(qid).emit("qdata", q);
+    }
+    getData();
+  });
 });
 
 //routes

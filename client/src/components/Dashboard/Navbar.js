@@ -27,9 +27,10 @@ const Example = (props) => {
               className="barcodeimg"
               src="/imgs/exit.png"
               alt="exit queue"
-              onClick={() =>
-                dispatch(removeFromQ(user._id, user.queue_id, history))
-              }
+              onClick={() => {
+                props.socket.emit("personRemoved", { uid: user._id });
+                dispatch(removeFromQ(user._id, user.queue_id, history));
+              }}
             ></img>
           )}
         </NavLink>

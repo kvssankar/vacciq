@@ -37,7 +37,7 @@ export const addToQ = (name, phone, qid, history) => (dispatch) => {
         type: "UPDATE_USER",
         payload: res.data.user,
       });
-      history.push("/userdashboard");
+      history.push("/dashboard");
     })
     .catch((err) => {
       dispatch({

@@ -24,7 +24,6 @@ const AdminPage = () => {
       uid: user._id,
     });
     socket.on("qdata", (data) => {
-      console.log(data);
       dispatch({ type: "GET_QUEUE", payload: data });
     });
   };
@@ -44,7 +43,7 @@ const AdminPage = () => {
           <Navbar />
           <div className="container">
             <Admin user={user} center={center} />
-            <QueueTable user={user} center={center} />
+            <QueueTable socket={socket} user={user} center={center} />
           </div>
           <Footer />
         </>

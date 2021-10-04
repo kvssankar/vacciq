@@ -3,7 +3,7 @@ import "../Dashboard/QueueTable.css";
 import kick from "../../img/checked.png";
 import { useDispatch } from "react-redux";
 import { removeFromQ } from "../../actions/queueActions";
-const QueueTable = ({ user, center }) => {
+const QueueTable = ({ user, center,socket }) => {
   const token = localStorage.getItem("token");
   const config = {
     headers: {
@@ -14,11 +14,11 @@ const QueueTable = ({ user, center }) => {
   const [line, setLine] = useState([]);
   useEffect(() => {
     setLine(center.line);
-    console.log(center.line);
   }, [center]);
   const dispatch = useDispatch();
   const done = (a) => {
     dispatch(removeFromQ(a, center._id,null));
+    socket.emit("personRemoved",{uid:a})
   };
   return (
     <div className=" queuetablecontainer" style={{ marginBottom: "5rem" }}>

@@ -30,6 +30,12 @@ const Dashboard = () => {
     socket.on("udata", (data) => {
       dispatch({ type: "UPDATE_USER", payload: data });
     });
+    socket.on("removedPerson", (data) => {
+      if (data._id === user._id) {
+        dispatch({ type: "UPDATE_USER", payload: data });
+        history.push("/userdashboard");
+      }
+    });
   };
   const dispatch = useDispatch();
   const history = useHistory();
@@ -44,7 +50,7 @@ const Dashboard = () => {
       {loading === 1 && <Loading />}
       {loading === 0 && (
         <>
-          <Navbar />
+          <Navbar socket={socket} />
           <div className="container">
             <QueueDetails user={user} queue={queue} />
             {/* <h5

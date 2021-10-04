@@ -11,8 +11,8 @@ const Example = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [qno, setQno] = useState(0);
-  const queue = useSelector((state) => state.userReducer.queue);
-  const user = useSelector((state) => state.userReducer.user);
+  let queue = useSelector((state) => state.userReducer.queue);
+  let user = useSelector((state) => state.userReducer.user);
   useEffect(() => {
     async function temp() {
       await dispatch(getq(user.queue_id || user.center_id, () => null));
