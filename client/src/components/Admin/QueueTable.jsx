@@ -18,7 +18,7 @@ const QueueTable = ({ user, center,socket }) => {
   const dispatch = useDispatch();
   const done = (a) => {
     dispatch(removeFromQ(a, center._id,null));
-    socket.emit("personRemoved",{uid:a})
+    socket.emit("personRemoved",{uid:a,qid:center._id})
   };
   return (
     <div className=" queuetablecontainer" style={{ marginBottom: "5rem" }}>

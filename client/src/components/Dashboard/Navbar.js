@@ -28,7 +28,10 @@ const Example = (props) => {
               src="/imgs/exit.png"
               alt="exit queue"
               onClick={() => {
-                props.socket.emit("personRemoved", { uid: user._id });
+                props.socket.emit("personRemoved", {
+                  uid: user._id,
+                  qid: user.queue_id,
+                });
                 dispatch(removeFromQ(user._id, user.queue_id, history));
               }}
             ></img>
