@@ -22,13 +22,10 @@ const Dashboard = () => {
     if (queue == null) return history.push("/userdashboard");
     socket.emit("joinQ", {
       qid: queue._id,
-      uid: user._id,
     });
     socket.on("qdata", (data) => {
       dispatch({ type: "GET_QUEUE", payload: data });
-    });
-    socket.on("udata", (data) => {
-      dispatch({ type: "UPDATE_USER", payload: data });
+      //TODO: UTIL FUNCTION TO SEND NOTIFICATION
     });
     socket.on("removedPerson", (data) => {
       if (data._id === user._id) {
@@ -44,7 +41,6 @@ const Dashboard = () => {
     if (loading === 1) dispatch(getq(user.queue_id, floading));
     return () => socket.disconnect();
   }, []);
-  //TODO:If no queue_id then redirect
   return (
     <>
       {loading === 1 && <Loading />}

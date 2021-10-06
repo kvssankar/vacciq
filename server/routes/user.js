@@ -26,16 +26,15 @@ router.post("/addloc", verify, async (req, res) => {
     },
     { new: true }
   );
-  res.json(user);
+  res.json("Updated Location");
 });
 
 router.post("/directions", async (req, res) => {
-  const { user_id, center_id } = req.body;
+  const { center_id, latitude, longitude } = req.body;
   const owner = await User.findOne({ center_id: center_id });
-  const user = await User.findById(user_id);
   axios
     .get(
-      `https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${user.longitude},${user.latitude};${owner.longitude},${owner.latitude}?approaches=curb;curb&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
+      `https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${longitude},${latitude};${owner.longitude},${owner.latitude}?approaches=curb;curb&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
     )
     .then((data) => {
       res.json(data.data.durations[0][1]);
@@ -143,8 +142,46 @@ router.get("/news/:page", async (req, res) => {
   res.json(responseData);
 });
 
-// router.get("/sms/:mobile/:message/",async(req,res)=>{
-//   const {messgae,mobile}=req.params;
-// })
+router.post("/notify", async (req, res) => {
+  const { notify_id, title, mssg } = req.body;
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+      Authorization:
+        process.env.FCM_AUTH ||
+        "key=AAAA17rD_-Q:APA91bE92fSSSJZO9LmGtShC8v43wiAUldddG-Dt572cP9nciVmDJ4CmHJiM5yGMsQOdC-EXKAm5C8FjDLrnd4eG62NX0RDnTzXJ5MJDOAW6p8vrnjqj0aqpKmrKpfCN9SlTD1NtYH3J",
+    },
+  };
+  axios
+    .post(
+      "https://fcm.googleapis.com/fcm/send",
+      {
+        registration_ids: [notify_id],
+        notification: {
+          sound: "default",
+          body: mssg,
+          title: title,
+          icon: "https://res.cloudinary.com/sankarkvs/image/upload/v1632830703/LineItOut_skrrnq.png",
+          content_available: true,
+          priority: "high",
+        },
+        data: {
+          sound: "default",
+          body: mssg,
+          title: title,
+          icon: "https://res.cloudinary.com/sankarkvs/image/upload/v1632830703/LineItOut_skrrnq.png",
+          content_available: true,
+          priority: "high",
+        },
+      },
+      config
+    )
+    .then((res) => {
+      res.json("Send successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 module.exports = router;

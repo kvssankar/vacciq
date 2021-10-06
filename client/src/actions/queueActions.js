@@ -7,23 +7,25 @@ const config = {
 };
 if (token) config.headers["auth-token"] = token;
 
-export const createQ = (name, limit, time, history) => (dispatch) => {
-  axios
-    .post("/api/q/create", { name, limit, time }, config)
-    .then((res) => {
-      dispatch({
-        type: "UPDATE_USER",
-        payload: res.data.user,
+export const createQ =
+  (name, limit, time, history, latitude = null, longitude = null) =>
+  (dispatch) => {
+    axios
+      .post("/api/q/create", { name, limit, time, latitude, longitude }, config)
+      .then((res) => {
+        dispatch({
+          type: "UPDATE_USER",
+          payload: res.data.user,
+        });
+        history.push("/userdashboard");
+      })
+      .catch((err) => {
+        dispatch({
+          type: "ERROR",
+          payload: err.response.data,
+        });
       });
-      history.push("/userdashboard");
-    })
-    .catch((err) => {
-      dispatch({
-        type: "ERROR",
-        payload: err.response.data,
-      });
-    });
-};
+  };
 
 export const addToQ = (name, phone, qid, history) => (dispatch) => {
   axios

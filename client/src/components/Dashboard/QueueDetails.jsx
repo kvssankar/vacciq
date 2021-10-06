@@ -1,30 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { findEstimationTime, findReachingTime } from "../../Util";
+
+
 const QueueDetails = ({ user, queue }) => {
-  const [rt] = useState("-");
+  const [rt,setRt] = useState("-");
   const [et, setEt] = useState(10);
+
   useEffect(() => {
-    for (var i = 0; i < queue.line.length; i++) {
-      setEt((queue.time * (i + 1)) / queue.n);
-      if (queue.line[i].user._id === user._id) {
-        break;
-      }
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(function(position) {
+        localStorage.setItem("latitude",position.coords.latitude)
+        localStorage.setItem("longitude",position.coords.longitude)
+      });
     }
-    // axios.post("/api/user/directions",{user_id:user._id,center_id:user.center_id}).then(res=>{
-    //   console.log(res.data)
-    //   setRt(res.data);
-    // })
-    // let dt = new Date();
-    // console.log(qno);
-    // axios
-    //   .get(
-    //     `http://doofenshmirtz-evil-inc.herokuapp.com/predict/?pos=${qno}&avg=${
-    //       queue.limit
-    //     }&day=${dt.getDay()}`
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data.MESSAGE);
-    //   });
+    setEt(findEstimationTime(user,queue));
+    setRt(findReachingTime(user));
+
+    
   }, [queue,user]);
+
+
   return (
     <div className="mt-4 queuedetailsconatiner">
       <div className="d-flex justify-content-between row">

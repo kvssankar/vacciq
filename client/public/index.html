@@ -137,7 +137,7 @@
       }
       firebase.analytics();
     </script>
-    <script>
+    <!-- <script>
       function geoFindMe() {
         function success(position) {
           const latitude = position.coords.latitude;
@@ -149,7 +149,7 @@
             },
           };
           if (token) config.headers["auth-token"] = token;
-          axios
+          axios 
             .post(
               "/api/user/addloc",
               {
@@ -175,6 +175,6 @@
         }
       }
       geoFindMe();
-    </script>
+    </script> -->
   </body>
 </html>

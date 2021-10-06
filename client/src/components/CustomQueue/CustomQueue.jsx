@@ -20,7 +20,14 @@ const CustomQueue = () => {
   if (token) config.headers["auth-token"] = token;
 
   const cq = () => {
-    dispatch(createQ(name, limit, time, history));
+    let lat,long;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        lat= position.coords.latitude;
+        long= position.coords.longitude;
+      });
+    }
+    dispatch(createQ(name, limit, time, history,lat,long));
   };
   return (
     <div className="customqueuecontainer">

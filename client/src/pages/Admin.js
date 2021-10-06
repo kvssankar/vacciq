@@ -21,7 +21,6 @@ const AdminPage = () => {
     if (center == null) return history.push("/userdashboard");
     socket.emit("joinQ", {
       qid: user.center_id,
-      uid: user._id,
     });
     socket.on("qdata", (data) => {
       dispatch({ type: "GET_QUEUE", payload: data });
@@ -32,9 +31,9 @@ const AdminPage = () => {
 
   useEffect(() => {
     if (loading === 1) dispatch(getq(user.center_id, floading));
-
     return () => socket.disconnect();
   }, []);
+
   return (
     <>
       {loading === 1 && <Loading />}

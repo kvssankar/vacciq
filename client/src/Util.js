@@ -1,0 +1,79 @@
+import axios from "axios";
+
+export const findQueuePosition = (user, queue) => {
+  for (let i = 0; i < queue.line.length; i++) {
+    if (queue.line[i].user._id === user._id) {
+      return i + 1;
+    }
+  }
+  return queue.line.length;
+};
+
+export const findEstimationTime = (user, queue) => {
+  let pos = findQueuePosition(user, queue);
+  return (queue.time * pos) / queue.n;
+};
+
+export const findReachingTime = (user) => {
+  axios
+    .post("/api/user/directions", {
+      latitude: localStorage.getItem("latitude"),
+      longitude: localStorage.getItem("longitude"),
+      center_id: user.center_id,
+    })
+    .then((res) => {
+      return +res.data;
+    });
+};
+
+export const sendNotificationToServer = (notify_id, title, mssg) => {
+  axios.post("/api/user/notify", { notify_id, title, mssg }).then((res) => {
+    console.log("Notification successfull");
+  });
+};
+
+export const notifyMe = (user, queue, force = 0) => {
+  let rt = findReachingTime(user, queue) || Number.MIN_SAFE_INTEGER;
+  let pos = findQueuePosition(user, queue);
+  let est = findEstimationTime(user, queue);
+
+  let notify_id = user.notify_id;
+  let title;
+  let mssg;
+
+  if (force) {
+    title = `LineItOut QPos: ${pos}`;
+    mssg = `Your estimated waiting time is ${est} and your current queue position is ${pos}`;
+    sendNotificationToServer(notify_id, title, mssg);
+  }
+
+  let timeToReachTen = (queue.time * pos - queue.time * 10) / queue.n;
+
+  if (timeToReachTen <= rt) {
+    title = `LineItOut QPos: ${pos} **Alert**`;
+    mssg = `Please start NOW to reach the center at your turn\n. Approx Reaching time: ${rt}\n Estimated waiting time: ${est}`;
+    sendNotificationToServer(notify_id, title, mssg);
+  }
+};
+
+export const addLoc = (latitude, longitude) => {
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+  if (token) config.headers["auth-token"] = token;
+  axios
+    .post(
+      "/api/user/addloc",
+      {
+        latitude,
+        longitude,
+      },
+      config
+    )
+    .then((res) => {
+      console.log("Successfully updated location");
+    });
+};
