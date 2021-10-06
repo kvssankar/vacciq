@@ -32,7 +32,7 @@ export const sendNotificationToServer = (notify_id, title, mssg) => {
   });
 };
 
-export const notifyMe = (user, queue, force = 0) => {
+export const notifyMe = (user, queue) => {
   let rt = findReachingTime(user, queue) || Number.MIN_SAFE_INTEGER;
   let pos = findQueuePosition(user, queue);
   let est = findEstimationTime(user, queue);
@@ -41,17 +41,15 @@ export const notifyMe = (user, queue, force = 0) => {
   let title;
   let mssg;
 
-  if (force) {
-    title = `LineItOut QPos: ${pos}`;
-    mssg = `Your estimated waiting time is ${est} and your current queue position is ${pos}`;
-    sendNotificationToServer(notify_id, title, mssg);
-  }
-
   let timeToReachTen = (queue.time * pos - queue.time * 10) / queue.n;
 
   if (timeToReachTen <= rt) {
     title = `LineItOut QPos: ${pos} **Alert**`;
     mssg = `Please start NOW to reach the center at your turn\n. Approx Reaching time: ${rt}\n Estimated waiting time: ${est}`;
+    sendNotificationToServer(notify_id, title, mssg);
+  } else {
+    title = `LineItOut QPos: ${pos}`;
+    mssg = `Your estimated waiting time is ${est} and your current queue position is ${pos}`;
     sendNotificationToServer(notify_id, title, mssg);
   }
 };

@@ -9,6 +9,8 @@ import { getq } from "../actions/queueActions.js";
 import Loading from "../components/Loading.js";
 import socketIOClient from "socket.io-client";
 import { useHistory } from "react-router";
+import { notifyMe } from "../Util.js";
+
 const ENDPOINT = process.env.REACT_APP_ENDPOINT || "http://localhost:5000/";
 
 const Dashboard = () => {
@@ -25,9 +27,10 @@ const Dashboard = () => {
     });
     socket.on("qdata", (data) => {
       dispatch({ type: "GET_QUEUE", payload: data });
-      //TODO: UTIL FUNCTION TO SEND NOTIFICATION
+      notifyMe(user, queue);
     });
     socket.on("removedPerson", (data) => {
+      notifyMe(user, queue);
       if (data._id === user._id) {
         dispatch({ type: "UPDATE_USER", payload: data });
         history.push("/userdashboard");
