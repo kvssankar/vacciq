@@ -32,12 +32,14 @@ router.post("/addloc", verify, async (req, res) => {
 router.post("/directions", async (req, res) => {
   const { center_id, latitude, longitude } = req.body;
   const owner = await User.findOne({ center_id: center_id });
+  console.log(owner);
+  console.log(longitude, latitude);
   axios
     .get(
-      `https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${longitude},${latitude};${owner.longitude},${owner.latitude}?approaches=curb;curb&access_token=pk.eyJ1Ijoic2Fua2Fya3ZzIiwiYSI6ImNrbzE3cG5tZjA3c3Ayb2xiazJmaHR2ZDkifQ.lr9WJ0GlGHmHp1dsFhyGXA`
+      `https://router.hereapi.com/v8/routes?transportMode=car&origin=${latitude},${longitude}&destination=${owner.latitude},${owner.longitude}&return=summary&apiKey=4mNjNtn6T0co3YYEVnQLk1wiEZoKR61aeHG1h4DA7zU`
     )
     .then((data) => {
-      res.json(data.data.durations[0][1]);
+      res.json(data.data.summary.duration);
     })
     .catch((err) => console.log(err));
 });
@@ -176,7 +178,7 @@ router.post("/notify", async (req, res) => {
       },
       config
     )
-    .then((res) => {
+    .then((data) => {
       res.json("Send successfully");
     })
     .catch((err) => {

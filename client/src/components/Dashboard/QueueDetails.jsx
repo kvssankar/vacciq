@@ -19,6 +19,7 @@ const QueueDetails = ({ user, queue }) => {
     
   }, [queue,user]);
 
+//TODO: On refresh also  do reaching time update
 
   return (
     <div className="mt-4 queuedetailsconatiner">

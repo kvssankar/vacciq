@@ -22,6 +22,7 @@ export const findReachingTime = (user) => {
       center_id: user.center_id,
     })
     .then((res) => {
+      console.log(res.data)
       return +res.data;
     });
 };
