@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { findEstimationTime, findReachingTime } from "../../Util";
+import { findEstimationTime, findReachingTime, secondsToTime } from "../../Util";
 
 
 const QueueDetails = ({ user, queue }) => {
@@ -7,16 +7,14 @@ const QueueDetails = ({ user, queue }) => {
   const [et, setEt] = useState(10);
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(function(position) {
-        localStorage.setItem("latitude",position.coords.latitude)
-        localStorage.setItem("longitude",position.coords.longitude)
-      });
-    }
-    setEt(findEstimationTime(user,queue));
-    setRt(findReachingTime(user));
-
-    
+      if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(function(position) {
+          localStorage.setItem("latitude",position.coords.latitude)
+          localStorage.setItem("longitude",position.coords.longitude)
+        });
+      }
+      setEt(findEstimationTime(user,queue));
+      findReachingTime(user).then(data=>setRt(secondsToTime(data)))
   }, [queue,user]);
 
 //TODO: On refresh also  do reaching time update
@@ -40,7 +38,7 @@ const QueueDetails = ({ user, queue }) => {
               Reaching Time
             </div>
             <div className="fontstyle1small textcenter p-2 col-example ">
-              {rt} mins
+              {rt}
             </div>
           </div>
         </div>

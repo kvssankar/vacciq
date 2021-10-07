@@ -14,17 +14,35 @@ export const findEstimationTime = (user, queue) => {
   return (queue.time * pos) / queue.n;
 };
 
-export const findReachingTime = (user) => {
-  axios
+export const findReachingTime = async (user) => {
+  let time = 0;
+  await axios
     .post("/api/user/directions", {
       latitude: localStorage.getItem("latitude"),
       longitude: localStorage.getItem("longitude"),
       center_id: user.center_id,
     })
     .then((res) => {
-      console.log(res.data)
-      return +res.data;
+      time = res.data;
     });
+  return time;
+};
+
+export const secondsToTime = (sec_num) => {
+  var hours = Math.floor(sec_num / 3600);
+  var minutes = Math.floor((sec_num - hours * 3600) / 60);
+  var seconds = sec_num - hours * 3600 - minutes * 60;
+
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  return hours + ":" + minutes + ":" + seconds;
 };
 
 export const sendNotificationToServer = (notify_id, title, mssg) => {

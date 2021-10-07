@@ -32,14 +32,12 @@ router.post("/addloc", verify, async (req, res) => {
 router.post("/directions", async (req, res) => {
   const { center_id, latitude, longitude } = req.body;
   const owner = await User.findOne({ center_id: center_id });
-  console.log(owner);
-  console.log(longitude, latitude);
   axios
     .get(
       `https://router.hereapi.com/v8/routes?transportMode=car&origin=${latitude},${longitude}&destination=${owner.latitude},${owner.longitude}&return=summary&apiKey=4mNjNtn6T0co3YYEVnQLk1wiEZoKR61aeHG1h4DA7zU`
     )
     .then((data) => {
-      res.json(data.data.summary.duration);
+      res.json(data.data.routes[0].sections[0].summary.duration || 0);
     })
     .catch((err) => console.log(err));
 });
