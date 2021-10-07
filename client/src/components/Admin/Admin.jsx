@@ -22,7 +22,7 @@ const Admin = ({ user, center }) => {
     });
   };
   return (
-    <div className="signuppagecontainer container">
+    <div className="mb-1 container">
       <div className="row d-flex ml-3 mt-3 ">
         <img
           src="/imgs/back.png"

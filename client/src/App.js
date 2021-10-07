@@ -13,6 +13,7 @@ import Edit from "./pages/Edit";
 import Barcode from "./pages/Barcode";
 import UserDashboard from "./pages/UserDashboard";
 import CustomAlert from "./components/CustomAlert";
+import ProfilePage from "./components/ProfilePage/Profile";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/create" exact component={QueueCreate} />
         <Route path="/quicklogin/:qid" component={LoginReduced} />
         <Route path="/edit-profile" component={Edit} />
+        <Route path="/profile" component={ProfilePage} />
       </Switch>
       <CustomAlert />
     </Router>

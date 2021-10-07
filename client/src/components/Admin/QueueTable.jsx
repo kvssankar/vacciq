@@ -3,7 +3,7 @@ import "../Dashboard/QueueTable.css";
 import kick from "../../img/checked.png";
 import { useDispatch } from "react-redux";
 import { removeFromQ } from "../../actions/queueActions";
-const QueueTable = ({ user, center,socket }) => {
+const QueueTable = ({ user, center, socket }) => {
   const token = localStorage.getItem("token");
   const config = {
     headers: {
@@ -17,8 +17,8 @@ const QueueTable = ({ user, center,socket }) => {
   }, [center]);
   const dispatch = useDispatch();
   const done = (a) => {
-    dispatch(removeFromQ(a, center._id,null));
-    socket.emit("personRemoved",{uid:a,qid:center._id})
+    dispatch(removeFromQ(a, center._id, null));
+    socket.emit("personRemoved", { uid: a, qid: center._id });
   };
   return (
     <div className=" queuetablecontainer" style={{ marginBottom: "5rem" }}>
@@ -27,6 +27,7 @@ const QueueTable = ({ user, center,socket }) => {
       {line.length > 0 &&
         line.map((lineuser, i) => (
           <div
+            style={{ boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.1) inset" }}
             key={i}
             className="rectanglebackground profile d-flex justify-content-between align-items-center"
           >
@@ -49,7 +50,10 @@ const QueueTable = ({ user, center,socket }) => {
           </div>
         ))}
       {line.length === 0 && (
-        <div className="rectanglebackground profile d-flex justify-content-between align-items-center">
+        <div
+          style={{ boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.1) inset" }}
+          className="rectanglebackground profile d-flex justify-content-between align-items-center"
+        >
           <div className="queuetablepart1 p-2 col-example text-left">
             <img
               className="profilepictable"
@@ -59,11 +63,13 @@ const QueueTable = ({ user, center,socket }) => {
           </div>
           <div className="queuetablepart2 p-2 col-example text-left">
             <div className=" d-flex flexcolumn">
-              <h6 className="queuetablepart2h6">No one yet in the queue</h6>
+              <h6 style={{ margin: "0" }} className="queuetablepart2h6">
+                No one yet in the queue
+              </h6>
             </div>
           </div>
           <div className="queuetablepart3 p-2 col-example text-left">
-            <h4 className="queuetablepart3h4">0</h4>
+            {/* <h4 className="queuetablepart3h4">0</h4> */}
           </div>
         </div>
       )}
