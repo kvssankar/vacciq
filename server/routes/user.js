@@ -103,6 +103,8 @@ router.post("/reducedlogin", async (req, res) => {
   if (!userExist)
     userExist = await new User({ name, phone, queue_id: qid }).save();
   const token = jwt.sign({ _id: userExist._id }, config.jwt_secret);
+  if (userExist.center_id === qid)
+    res.status(400).json({ status: 1, mssg: "You can't join your own queue" });
   if (userExist.queue_id === qid) res.json({ token, user: userExist });
   await Queue.findByIdAndUpdate(qid, {
     $push: { line: { user: userExist._id } },
