@@ -4,13 +4,6 @@ import kick from "../../img/checked.png";
 import { useDispatch } from "react-redux";
 import { removeFromQ } from "../../actions/queueActions";
 const QueueTable = ({ user, center, socket }) => {
-  const token = localStorage.getItem("token");
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
-  if (token) config.headers["auth-token"] = token;
   const [line, setLine] = useState([]);
   useEffect(() => {
     setLine(center.line);

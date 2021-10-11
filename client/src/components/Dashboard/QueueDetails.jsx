@@ -14,7 +14,7 @@ const QueueDetails = ({ user, queue }) => {
         });
       }
       setEt(findEstimationTime(user,queue));
-      findReachingTime(user).then(data=>setRt(secondsToTime(data)))
+     // findReachingTime(user).then(data=>setRt(secondsToTime(data)))
   }, [queue,user]);
 
 //TODO: On refresh also  do reaching time update

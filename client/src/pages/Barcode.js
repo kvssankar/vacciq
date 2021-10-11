@@ -22,7 +22,7 @@ class Barcode extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <QrReader
           delay={300}
           onError={this.handleError}
@@ -30,10 +30,14 @@ class Barcode extends Component {
           style={{ width: "100%" }}
         />
         <p>{this.state.result}</p>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
 }
 
 export default Barcode;
+
+//TODO: If login show one navbar or else other
+//TODO: if login show one footer or else other
+//TODO: style the page also

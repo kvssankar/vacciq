@@ -74,7 +74,7 @@ export const notifyMe = (user, queue) => {
 };
 
 export const addLoc = (latitude, longitude) => {
-  const token = localStorage.getItem("token");
+  let token = localStorage.getItem("token");
   const config = {
     headers: {
       "Content-type": "application/json",

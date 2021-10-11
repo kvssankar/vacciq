@@ -25,6 +25,7 @@ const userReducer = (state = initialState, action) => {
     case "UPDATE_USER":
       return {
         ...state,
+        isLogin: 1,
         user: action.payload,
       };
     case "ERROR":

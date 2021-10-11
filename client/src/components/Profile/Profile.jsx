@@ -16,7 +16,7 @@ const Profile = () => {
 
       <div
         style={{ marginTop: "5rem" }}
-        className="  row d-flex  justify-content-between queuenumbercontainer"
+        className="row d-flex  justify-content-between queuenumbercontainer"
       >
         <div className="p-2 col-example">
           <div className="texts ">

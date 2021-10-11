@@ -8,7 +8,7 @@ const config = {
 if (token) config.headers["auth-token"] = token;
 
 export const createQ =
-  (name, limit, time, history, latitude = null, longitude = null) =>
+  (name, limit, time, latitude = null, longitude = null, next) =>
   (dispatch) => {
     axios
       .post("/api/q/create", { name, limit, time, latitude, longitude }, config)
@@ -17,13 +17,14 @@ export const createQ =
           type: "UPDATE_USER",
           payload: res.data.user,
         });
-        history.push("/userdashboard");
+        next();
       })
       .catch((err) => {
         dispatch({
           type: "ERROR",
           payload: err.response.data,
         });
+        next();
       });
   };
 
