@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {TransitionGroup,CSSTransition} from 'react-transition-group';
 import "./QueueTable.css";
 const QueueTable = ({ user, queue }) => {
   const [line, setLine] = useState([]);
@@ -8,11 +9,15 @@ const QueueTable = ({ user, queue }) => {
   return (
     <div className="mt-4 queuetablecontainer" style={{ marginBottom: "5rem" }}>
       <h5 className="ml-2 ">Queue Table</h5>
-
+      <TransitionGroup>
       {line.map((lineuser, i) => {
         return (
-          <div
-            key={i}
+         <CSSTransition 
+         key={i}
+         timeout={500}
+         classNames="item"
+         >
+          <div   
             className="rectanglebackground profile d-flex  align-items-center"
           >
             <div
@@ -45,8 +50,10 @@ const QueueTable = ({ user, queue }) => {
               </div>
             </div>
           </div>
+         </CSSTransition>
         )
       })}
+       </TransitionGroup>
     </div>
   );
 };
