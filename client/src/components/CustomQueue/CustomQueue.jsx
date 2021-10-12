@@ -41,7 +41,7 @@ const CustomQueue = () => {
           Create your own Queue <br></br> INSTANTLY !
         </h5>
       </div>
-      <Alert color="warning" className="mt-3">You you have created a queue already it will be vanished</Alert>
+      <Alert color="warning" className="mt-3">If you have created a queue already it will be vanished</Alert>
       <div className="mt-3 ml-4 mr-4 signupform">
         <input
           type="text"

@@ -16,7 +16,7 @@ const Example = () => {
   useEffect(() => {
     async function temp() {
       if(!queue)
-        await dispatch(getq(user.queue_id , () => null));
+        await dispatch(getq(user.queue_id || user.center_id, () => null));
       if (queue) {
         for (var i = 0; i < queue.line.length; i++) {
           setQno(i + 1);

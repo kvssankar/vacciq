@@ -3,6 +3,7 @@ import "./signup.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../actions/userActions";
+import { Spinner } from "reactstrap";
 
 const Signup = () => {
   const [sex, setSex] = useState(1);
@@ -12,9 +13,13 @@ const Signup = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-
+  const [loading,setLoading]=useState(false);
+  const next=()=>{
+    setLoading(false);
+    history.push("/userdashboard");
+  }
   const done = () => {
-    dispatch(register(name, email, phone, password, sex, history));
+    dispatch(register(name, email, phone, password, sex, next));
   };
   return (
     <div
@@ -106,12 +111,12 @@ const Signup = () => {
         </p>
       </div>
       <button
-        style={{ margin: "auto", width: "85%", padding: "10px" }}
+        style={{ margin: "auto", width: "85%", padding: "10px",textAlign:"center" }}
         className="mt-2 primary-button"
         onClick={done}
         size="md"
       >
-        Register
+        {loading ? <Spinner color="light" /> : "Register"}
       </button>
     </div>
   );
