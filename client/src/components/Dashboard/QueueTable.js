@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./QueueTable.css";
+import PropTypes from "prop-types";
+
 const QueueTable = ({ user, queue }) => {
   const [line, setLine] = useState([]);
   useEffect(() => {
@@ -45,10 +47,15 @@ const QueueTable = ({ user, queue }) => {
               </div>
             </div>
           </div>
-        )
+        );
       })}
     </div>
   );
+};
+
+QueueTable.propTypes = {
+  user: PropTypes.object.isRequired,
+  queue: PropTypes.object.isRequired,
 };
 
 export default QueueTable;

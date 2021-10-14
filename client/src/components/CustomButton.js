@@ -2,6 +2,9 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
 import "../css/component.css";
+
+import PropTypes from "prop-types";
+
 const CustomButton = ({ size, children, className, style, href }) => {
   const history = useHistory();
 
@@ -15,6 +18,14 @@ const CustomButton = ({ size, children, className, style, href }) => {
       {children}
     </Button>
   );
+};
+
+CustomButton.propTypes = {
+  size: PropTypes.string,
+  children: PropTypes.node,
+  style: PropTypes.object,
+  className: PropTypes.string,
+  href: PropTypes.string,
 };
 
 export default CustomButton;

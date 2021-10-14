@@ -4,6 +4,9 @@ import { useHistory } from "react-router";
 import { Navbar, NavbarBrand, Nav, NavLink } from "reactstrap";
 import { removeFromQ } from "../../actions/queueActions";
 import "./Navbar.css";
+
+import PropTypes from "prop-types";
+
 const Example = (props) => {
   let user = useSelector((state) => state.userReducer.user);
   const dispatch = useDispatch();
@@ -40,6 +43,10 @@ const Example = (props) => {
       </Navbar>
     </div>
   );
+};
+
+Example.propTypes = {
+  socket: PropTypes.object.isRequired,
 };
 
 export default Example;

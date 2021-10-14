@@ -3,7 +3,9 @@ import "../Dashboard/QueueTable.css";
 import kick from "../../img/checked.png";
 import { useDispatch } from "react-redux";
 import { removeFromQ } from "../../actions/queueActions";
-const QueueTable = ({ user, center, socket }) => {
+import PropTypes from "prop-types";
+
+const QueueTable = ({ center, socket }) => {
   const [line, setLine] = useState([]);
   useEffect(() => {
     setLine(center.line);
@@ -61,13 +63,20 @@ const QueueTable = ({ user, center, socket }) => {
               </h6>
             </div>
           </div>
-          <div className="queuetablepart3 p-2 col-example text-left">
-            {/* <h4 className="queuetablepart3h4">0</h4> */}
-          </div>
+          <div className="queuetablepart3 p-2 col-example text-left"></div>
         </div>
       )}
     </div>
   );
+};
+
+QueueTable.propTypes = {
+  center: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+    line: PropTypes.array.isRequired,
+  }).isRequired,
+  socket: PropTypes.object.isRequired,
 };
 
 export default QueueTable;

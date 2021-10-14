@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import QueueNumber from "../components/Dashboard/QueueNumber.js";
-import QueueTable from "../components/Dashboard/QueueTable.jsx";
+import QueueTable from "../components/Dashboard/QueueTable";
 import Navbar from "../components/Dashboard/Navbar";
-import QueueDetails from "../components/Dashboard/QueueDetails.jsx";
-import Footer from "../components/Dashboard/Footer.jsx";
+import QueueDetails from "../components/Dashboard/QueueDetails";
+import Footer from "../components/Dashboard/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { getq } from "../actions/queueActions.js";
 import Loading from "../components/Loading.js";
-import socketIOClient from "socket.io-client";
+import { io as socketIOClient } from "socket.io-client";
 import { useHistory } from "react-router";
 import { notifyMe } from "../Util.js";
 

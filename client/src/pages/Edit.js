@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/component.css";
-import Edit from "../components/Edit/Edit.jsx";
-import Footer from "../components/Dashboard/Footer.jsx";
+import Edit from "../components/Edit/Edit";
+import Footer from "../components/Dashboard/Footer";
 import Header from "../components/Dashboard/Navbar.js";
 
 const Editcomp = () => {

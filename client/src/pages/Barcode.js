@@ -1,24 +1,27 @@
 import React, { Component } from "react";
 import QrReader from "react-qr-reader";
-import Navbar from "../components/Dashboard/Navbar";
-import Footer from "../components/Dashboard/Footer.jsx";
 
 class Barcode extends Component {
-  state = {
-    result: "No result",
-  };
+  constructor() {
+    super();
+    this.state = {
+      result: "No result",
+    };
+    this.handleScan = this.handleScan.bind(this);
+    this.handleError = this.handleError.bind(this);
+  }
 
-  handleScan = (data) => {
+  handleScan(data) {
     if (data) {
       this.setState({
         result: data,
       });
       document.location.href = "/quicklogin/" + data;
     }
-  };
-  handleError = (err) => {
+  }
+  handleError(err) {
     console.error(err);
-  };
+  }
   render() {
     return (
       <div>

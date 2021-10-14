@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { addToQ } from "../../actions/queueActions";
 import axios from "axios";
 
+import PropTypes from "prop-types";
+
 const ReducedLogin = ({ qid }) => {
   const [q, setQ] = useState("");
   const [name, setName] = useState("");
@@ -68,6 +70,10 @@ const ReducedLogin = ({ qid }) => {
       </div>
     </div>
   );
+};
+
+ReducedLogin.propTypes = {
+  qid: PropTypes.string.isRequired,
 };
 
 export default ReducedLogin;
