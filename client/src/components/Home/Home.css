@@ -1,0 +1,39 @@
+/* Header */
+
+.logonav {
+  max-height: 30px;
+}
+.barcodeimg {
+  width: 40px;
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  width: 100%;
+  background: white;
+  bottom: 0px;
+  left: 0;
+  box-shadow: 0px 0 10px rgb(184 175 175 / 80%);
+  padding: 10px;
+}
+.footer1 {
+  float: left;
+}
+.footer2 {
+  margin-left: 10rem;
+}
+
+.footer3 {
+  float: right;
+}
+
+.qnodisplay {
+  padding-left: 5px;
+  padding-right: 5px;
+  position: relative;
+  overflow: hidden;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+}
