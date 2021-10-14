@@ -1,9 +1,7 @@
 const router = require("express").Router();
-const config = require("../config");
 const { User } = require("../models/User");
 const { Queue } = require("../models/Queue");
 const verify = require("../verify");
-const axios = require("axios");
 
 router.post("/details", async (req, res) => {
   const { qid } = req.body;

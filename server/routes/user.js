@@ -8,7 +8,7 @@ const verify = require("../verify");
 const { default: axios } = require("axios");
 
 router.post("/token", verify, async (req, res) => {
-  let user = await User.findByIdAndUpdate(
+  await User.findByIdAndUpdate(
     req.user._id,
     {
       $set: { notify_id: req.body.token },
@@ -19,7 +19,7 @@ router.post("/token", verify, async (req, res) => {
 });
 
 router.post("/addloc", verify, async (req, res) => {
-  const user = await User.findByIdAndUpdate(
+  await User.findByIdAndUpdate(
     req.user._id,
     {
       $set: { latitude: req.body.latitude, longitude: req.body.longitude },
@@ -46,7 +46,6 @@ router.post("/register", async (req, res) => {
   var phone = req.body.phone;
   var name = req.body.name;
   var password = req.body.password;
-  var email = req.body.email;
   let user = await User.findOne({ phone });
   if (phone.length < 10)
     return res
@@ -178,7 +177,7 @@ router.post("/notify", async (req, res) => {
       },
       config
     )
-    .then((data) => {
+    .then(() => {
       res.json("Send successfully");
     })
     .catch((err) => {
