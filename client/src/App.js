@@ -12,6 +12,8 @@ import LoginReduced from "./pages/ReducedLogin";
 import Edit from "./pages/Edit";
 import Barcode from "./pages/Barcode";
 import UserDashboard from "./pages/UserDashboard";
+import AboutPage from "./pages/About";
+import BusinessPage from "./pages/Business";
 import CustomAlert from "./components/CustomAlert";
 import ProfilePage from "./components/ProfilePage/Profile";
 
@@ -30,6 +32,8 @@ function App() {
         <Route path="/quicklogin/:qid" component={LoginReduced} />
         <Route path="/edit-profile" component={Edit} />
         <Route path="/profile" component={ProfilePage} />
+        <Route path="/about" component={AboutPage} />
+        <Route path="/business" component={BusinessPage} />
       </Switch>
       <CustomAlert />
     </Router>
