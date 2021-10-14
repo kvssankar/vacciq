@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-const Footer = (props) => {
+const Footer = () => {
   return (
     <div>
       <div style={{ backgroundColor: "rgba(235, 243, 250, 1)" }}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "../components/Home/Header";
 import Footer from "../components/Home/Footer";
 import "../css/aboutus.css";
@@ -30,8 +30,8 @@ const Landing = () => {
           Our Team
         </h4>
         <div className="team">
-          <div class="row individual">
-            <div class="col-6">
+          <div className="row individual">
+            <div className="col-6">
               {" "}
               <div className="mt-5 ">
                 <img
@@ -68,7 +68,7 @@ const Landing = () => {
                 </p>
               </div>
             </div>
-            <div class="col-6">
+            <div className="col-6">
               {" "}
               <div className="mt-5 ">
                 <img
@@ -105,7 +105,7 @@ const Landing = () => {
                 </p>
               </div>
             </div>
-            <div class="col-6">
+            <div className="col-6">
               {" "}
               <div className="mt-5 ">
                 <img
@@ -142,7 +142,7 @@ const Landing = () => {
                 </p>
               </div>
             </div>
-            <div class="col-6">
+            <div className="col-6">
               {" "}
               <div className="mt-5 ">
                 <img
