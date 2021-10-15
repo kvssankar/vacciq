@@ -28,26 +28,27 @@ export const createQ =
       });
   };
 
-export const addToQ = (name, phone, qid, history) => (dispatch) => {
+export const addToQ = (name, phone, qid, next) => (dispatch) => {
   axios
     .post("/api/user/reducedlogin", {
       name: name,
       phone: phone,
       qid,
     })
-    .then(async (res) => {
+    .then((res) => {
       localStorage.setItem("token", res.data.token);
-      await dispatch({
+      dispatch({
         type: "UPDATE_USER",
         payload: res.data.user,
       });
-      history.push("/dashboard");
+      next();
     })
     .catch((err) => {
       dispatch({
         type: "ERROR",
         payload: err.response.data,
       });
+      next();
     });
 };
 
