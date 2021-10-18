@@ -3,12 +3,21 @@ import "./Home.css";
 const Footer = (props) => {
   return (
     <div>
-      <div style={{ backgroundColor: "rgba(235, 243, 250, 1)" }}>
-        <p style={{ textAlign: "center" }} className="fontstyle1small">
+      <div
+        style={{
+          backgroundColor: "rgba(235, 243, 250, 1)",
+        }}
+      >
+        <p
+          style={{
+            marginBottom: "0",
+            marginTop: "20px",
+            fontSize: "15px",
+            textAlign: "center",
+          }}
+          className="fontstyle1small"
+        >
           Made with ❤️ by Team Dofenzmrtz Inc
-        </p>
-        <p style={{ textAlign: "center" }} className="fontstyle1small">
-          Copyright @Dofenzmrtz-Inc
         </p>
       </div>
     </div>

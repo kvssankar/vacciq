@@ -1,0 +1,20 @@
+.b_list {
+  margin-left: 13%;
+}
+
+.business_button {
+  border: 1px rgba(66, 195, 252, 1) solid;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 5px 20px 5px 20px;
+  color: rgba(66, 195, 252, 1);
+  font-weight: 600;
+}
+
+.b_plan {
+  width: 80%;
+  margin: 0 auto;
+  background: rgba(242, 251, 255, 1);
+  border-radius: 10px;
+  padding: 10px;
+}
