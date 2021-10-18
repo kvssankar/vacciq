@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./QueueTable.css";
+import PropTypes from "prop-types";
+
 const QueueTable = ({ user, queue }) => {
   const [line, setLine] = useState([]);
   useEffect(() => {
     setLine(queue.line);
   }, [queue, user]);
   return (
-    <div className="mt-4 queuetablecontainer" style={{ marginBottom: "5rem" }}>
-      <h5 className="ml-2 ">Queue Table</h5>
-
+    <div className="mt-4 queuetablecontainer">
       {line.map((lineuser, i) => {
         return (
           <div
@@ -45,10 +45,15 @@ const QueueTable = ({ user, queue }) => {
               </div>
             </div>
           </div>
-        )
+        );
       })}
     </div>
   );
+};
+
+QueueTable.propTypes = {
+  user: PropTypes.object.isRequired,
+  queue: PropTypes.object.isRequired,
 };
 
 export default QueueTable;

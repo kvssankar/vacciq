@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import QueueTable from "../components/Admin/QueueTable.jsx";
+import QueueTable from "../components/Admin/QueueTable";
 import Navbar from "../components/Dashboard/Navbar";
-import Footer from "../components/Dashboard/Footer.jsx";
+import Footer from "../components/Dashboard/Footer";
 import Admin from "../components/Admin/Admin";
 import { useDispatch, useSelector } from "react-redux";
 import { getq } from "../actions/queueActions.js";
 import Loading from "../components/Loading.js";
-import socketIOClient from "socket.io-client";
+import { io as socketIOClient } from "socket.io-client";
 import { useHistory } from "react-router";
 const ENDPOINT = process.env.REACT_APP_ENDPOINT || "http://localhost:5000/";
 

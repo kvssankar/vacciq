@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./QueueNumber.scss";
 
+import PropTypes from "prop-types";
+
 const QueueNumber = ({ user, queue }) => {
   const [qno, setQno] = useState(0);
   useEffect(() => {
@@ -30,4 +32,10 @@ const QueueNumber = ({ user, queue }) => {
     </div>
   );
 };
+
+QueueNumber.propTypes = {
+  user: PropTypes.object.isRequired,
+  queue: PropTypes.object.isRequired,
+};
+
 export default QueueNumber;

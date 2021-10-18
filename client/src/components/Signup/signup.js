@@ -13,11 +13,11 @@ const Signup = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const [loading,setLoading]=useState(false);
-  const next=()=>{
+  const [loading, setLoading] = useState(false);
+  const next = () => {
     setLoading(false);
     history.push("/userdashboard");
-  }
+  };
   const done = () => {
     dispatch(register(name, email, phone, password, sex, next));
   };
@@ -87,7 +87,7 @@ const Signup = () => {
           }}
           name="radio"
         />
-        <label className="radio-label" for="male">
+        <label className="radio-label" htmlFor="male">
           Male
         </label>
         <input type="radio" className="radio" id="female" name="radio" />
@@ -97,7 +97,7 @@ const Signup = () => {
           onClick={() => {
             setSex(!sex);
           }}
-          for="female"
+          htmlFor="female"
         >
           Female
         </label>
@@ -111,7 +111,12 @@ const Signup = () => {
         </p>
       </div>
       <button
-        style={{ margin: "auto", width: "85%", padding: "10px",textAlign:"center" }}
+        style={{
+          margin: "auto",
+          width: "85%",
+          padding: "10px",
+          textAlign: "center",
+        }}
         className="mt-2 primary-button"
         onClick={done}
         size="md"

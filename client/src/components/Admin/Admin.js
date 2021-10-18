@@ -4,7 +4,9 @@ import domtoimage from "dom-to-image";
 import "./Admin.css";
 import { useHistory } from "react-router";
 
-const Admin = ({ user, center }) => {
+import PropTypes from "prop-types";
+
+function Admin({ center }) {
   const history = useHistory();
   const share = () => {
     domtoimage.toBlob(document.querySelector("canvas")).then(function (blob) {
@@ -96,6 +98,13 @@ const Admin = ({ user, center }) => {
       </div>
     </div>
   );
+}
+
+Admin.propTypes = {
+  center: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Admin;

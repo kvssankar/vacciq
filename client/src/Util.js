@@ -46,7 +46,7 @@ export const secondsToTime = (sec_num) => {
 };
 
 export const sendNotificationToServer = (notify_id, title, mssg) => {
-  axios.post("/api/user/notify", { notify_id, title, mssg }).then((res) => {
+  axios.post("/api/user/notify", { notify_id, title, mssg }).then(() => {
     console.log("Notification successfull");
   });
 };
@@ -90,7 +90,7 @@ export const addLoc = (latitude, longitude) => {
       },
       config
     )
-    .then((res) => {
+    .then(() => {
       console.log("Successfully updated location");
     });
 };

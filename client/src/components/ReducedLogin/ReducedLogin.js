@@ -4,10 +4,14 @@ import { useHistory } from "react-router-dom";
 import { addToQ } from "../../actions/queueActions";
 import axios from "axios";
 
+import PropTypes from "prop-types";
+import { Spinner } from "reactstrap";
+
 const ReducedLogin = ({ qid }) => {
   const [q, setQ] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.userReducer.isLogin);
   const user = useSelector((state) => state.userReducer.user);
@@ -23,8 +27,14 @@ const ReducedLogin = ({ qid }) => {
     });
   }, [qid, isLogin, user]);
 
+  const next = () => {
+    setLoading(false);
+    history.push("/dashboard");
+  };
+
   const send = () => {
-    dispatch(addToQ(name, phone, qid, history));
+    setLoading(true);
+    dispatch(addToQ(name, phone, qid, next));
   };
   return (
     <div className="customqueuecontainer">
@@ -58,16 +68,25 @@ const ReducedLogin = ({ qid }) => {
         />
 
         <button
-          style={{ margin: "auto", width: "100%", padding: "10px" }}
+          style={{
+            margin: "auto",
+            width: "100%",
+            padding: "10px",
+            textAlign: "center",
+          }}
           className="mt-5 primary-button"
           onClick={send}
           size="md"
         >
-          Join
+          {loading ? <Spinner color="light" /> : "Join"}
         </button>
       </div>
     </div>
   );
+};
+
+ReducedLogin.propTypes = {
+  qid: PropTypes.string.isRequired,
 };
 
 export default ReducedLogin;

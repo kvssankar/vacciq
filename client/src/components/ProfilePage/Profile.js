@@ -1,13 +1,9 @@
-import React, { Suspense } from "react";
+import React from "react";
 import "./Profile.css";
 import Navbar from "../Dashboard/Navbar";
 import Footer from "../Dashboard/Footer";
-import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
 
 const Profile = () => {
-  const history = useHistory();
-  let user = useSelector((state) => state.userReducer.user);
   return (
     <div className="signuppagecontainer container">
       <Navbar />

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-const Footer = (props) => {
+const Footer = () => {
   return (
     <div>
       <div

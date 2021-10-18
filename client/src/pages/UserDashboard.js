@@ -1,5 +1,5 @@
 import React from "react";
-import ProfilePage from "../components/Profile/Profile.jsx";
+import ProfilePage from "../components/Profile/Profile";
 
 const UserDashboard = () => {
   return <ProfilePage />;

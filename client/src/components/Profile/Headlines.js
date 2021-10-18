@@ -15,7 +15,7 @@ const Headlines = () => {
         setIsLoading(0);
         setNews([...news, ...data.data.articles]);
       })
-      .catch((err) => {
+      .catch(() => {
         setIsLoading(0);
       });
   };
