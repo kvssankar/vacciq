@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addToQ } from "../../actions/queueActions";
 import axios from "axios";
-
+import { io as socketIOClient } from "socket.io-client";
 import PropTypes from "prop-types";
 import { Spinner } from "reactstrap";
+
+// eslint-disable-next-line no-undef
+const ENDPOINT = process.env.REACT_APP_ENDPOINT || "http://localhost:5000/";
 
 const ReducedLogin = ({ qid }) => {
   const [q, setQ] = useState("");
@@ -17,6 +20,8 @@ const ReducedLogin = ({ qid }) => {
   const user = useSelector((state) => state.userReducer.user);
   const history = useHistory();
 
+  const socket = socketIOClient(ENDPOINT);
+
   useEffect(() => {
     if (isLogin) {
       setName(user.name);
@@ -25,10 +30,14 @@ const ReducedLogin = ({ qid }) => {
     axios.post("/api/q/details", { qid }).then((res) => {
       setQ(res.data.q);
     });
+    return () => socket.disconnect();
   }, [qid, isLogin, user]);
 
   const next = () => {
     setLoading(false);
+    socket.emit("joinQ", {
+      qid: qid,
+    });
     history.push("/dashboard");
   };
 
