@@ -2,8 +2,8 @@ import React from "react";
 import Header from "../components/Home/Header";
 import Footer from "../components/Home/Footer";
 // import home from "../../img/home.svg";
-import "../css/business.css";
-const Landing = () => {
+import "../css/pricing.css";
+const Pricing = () => {
   return (
     <div>
       <Header />
@@ -31,7 +31,7 @@ const Landing = () => {
           <hr
             style={{ width: "80%", backgroundColor: "rgba(66, 195, 252, 1)" }}
           ></hr>
-          <div class="b_list">
+          <div className="b_list">
             <img
               className=""
               style={{
@@ -122,7 +122,7 @@ const Landing = () => {
           <hr
             style={{ width: "80%", backgroundColor: "rgba(66, 195, 252, 1)" }}
           ></hr>
-          <div class="b_list">
+          <div className="b_list">
             <img
               className=""
               style={{
@@ -213,7 +213,7 @@ const Landing = () => {
           <hr
             style={{ width: "80%", backgroundColor: "rgba(66, 195, 252, 1)" }}
           ></hr>
-          <div class="b_list">
+          <div className="b_list">
             <img
               className=""
               style={{
@@ -302,7 +302,7 @@ const Landing = () => {
               className="fontstyle1small"
               style={{ display: "inline", fontWeight: "400" }}
             >
-              Waiting time tuned to the organisation's need.
+              Waiting time tuned to the organisation&quot;s need.
             </p>
             <div style={{ display: "block", marginBottom: "10px" }}></div>
           </div>
@@ -316,4 +316,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default Pricing;

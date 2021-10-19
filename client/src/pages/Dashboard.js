@@ -71,11 +71,11 @@ const Dashboard = () => {
   useEffect(() => {
     if (!user.queue_id) history.push("/userdashboard");
     if (loading === 1) dispatch(getq(user.queue_id, floading));
-    if (user.queue_id) {
-      window.onbeforeunload = function () {
-        return "Are you sure you want to leave?";
-      };
-    }
+    // if (user.queue_id) {
+    //   window.onbeforeunload = function () {
+    //     return "Are you sure you want to leave?";
+    //   };
+    // }
     return () => socket.disconnect();
   }, []);
   return (

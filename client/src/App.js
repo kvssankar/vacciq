@@ -13,7 +13,7 @@ import Edit from "./pages/Edit";
 import Barcode from "./pages/Barcode";
 import UserDashboard from "./pages/UserDashboard";
 import AboutPage from "./pages/About";
-import BusinessPage from "./pages/Business";
+import Pricing from "./pages/Pricing";
 import CustomAlert from "./components/CustomAlert";
 import ProfilePage from "./components/ProfilePage/Profile";
 
@@ -33,7 +33,7 @@ function App() {
         <Route path="/edit-profile" component={Edit} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/about" component={AboutPage} />
-        <Route path="/business" component={BusinessPage} />
+        <Route path="/pricing" component={Pricing} />
       </Switch>
       <CustomAlert />
     </Router>
