@@ -1,7 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { Navbar, NavbarBrand } from "reactstrap";
 import "./Home.css";
 const Header = () => {
+  var history = useHistory();
   return (
     <div>
       <Navbar
@@ -16,7 +18,12 @@ const Header = () => {
             position: "absolute",
           }}
         >
-          <img className="logonav" src="/imgs/back.png" alt="loading..."></img>
+          <img
+            className="logonav"
+            src="/imgs/back.png"
+            onClick={() => history.push("/")}
+            alt="loading..."
+          ></img>
         </div>
         <NavbarBrand
           style={{ margin: "0 auto" }}

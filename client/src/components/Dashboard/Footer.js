@@ -5,29 +5,16 @@ import logout from "../../img/logout.svg";
 import home from "../../img/home.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { getq } from "../../actions/queueActions";
+import { findQueuePosition } from "../../Util";
 
-const Example = () => {
+const Footer = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [qno, setQno] = useState(0);
   let queue = useSelector((state) => state.userReducer.queue);
   let user = useSelector((state) => state.userReducer.user);
   useEffect(() => {
-    async function temp() {
-      if(!queue)
-        await dispatch(getq(user.queue_id || user.center_id, () => null));
-      if (queue) {
-        for (var i = 0; i < queue.line.length; i++) {
-          setQno(i + 1);
-          if (queue.line[i].user._id === user._id) {
-            break;
-          }
-        }
-      }
-    }
-    temp();
-    //TODO: UTIL FUNCTION FOR QUEUE
+    if (queue) setQno(findQueuePosition({ _id: 1 }, queue));
   }, [queue]);
   return (
     <Container className="themed-container" fluid={true}>
@@ -87,4 +74,4 @@ const Example = () => {
   );
 };
 
-export default Example;
+export default Footer;

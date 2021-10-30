@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import QrReader from "react-qr-reader";
+import Header from "../components/Home/Header";
 
 class Barcode extends Component {
   constructor() {
@@ -25,7 +26,7 @@ class Barcode extends Component {
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
+        <Header />
         <QrReader
           delay={300}
           onError={this.handleError}
