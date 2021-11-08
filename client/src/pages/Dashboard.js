@@ -52,6 +52,7 @@ const Dashboard = () => {
       notifyMe(user, queue);
       if (data._id === user._id) {
         dispatch({ type: "UPDATE_USER", payload: data });
+        dispatch({ type: "GET_QUEUE", payload: null });
         history.push("/userdashboard");
       }
     });

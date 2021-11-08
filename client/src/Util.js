@@ -11,7 +11,8 @@ export const findQueuePosition = (user, queue) => {
 
 export const findEstimationTime = (user, queue) => {
   let pos = findQueuePosition(user, queue);
-  return (queue.time * pos) / queue.n;
+  let est = (queue.time * pos) / queue.n;
+  return Math.round(est * 100) / 100;
 };
 
 export const findReachingTime = async (user) => {

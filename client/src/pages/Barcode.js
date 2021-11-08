@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import QrReader from "react-qr-reader";
+import Footer from "../components/Home/Footer";
 import Header from "../components/Home/Header";
 
 class Barcode extends Component {
@@ -34,7 +35,7 @@ class Barcode extends Component {
           style={{ width: "100%" }}
         />
         <p>{this.state.result}</p>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

@@ -13,6 +13,14 @@ const Footer = () => {
   const [qno, setQno] = useState(0);
   let queue = useSelector((state) => state.userReducer.queue);
   let user = useSelector((state) => state.userReducer.user);
+  const logoutFunc = async () => {
+    if (user.password == null) {
+      history.push("/edit-profile");
+    } else {
+      await dispatch({ type: "LOGOUT" });
+      history.push("/");
+    }
+  };
   useEffect(() => {
     if (queue) setQno(findQueuePosition({ _id: 1 }, queue));
   }, [queue]);
@@ -60,10 +68,7 @@ const Footer = () => {
                 border: "none",
                 backgroundColor: "white",
               }}
-              onClick={async () => {
-                dispatch({ type: "LOGOUT" });
-                history.push("/");
-              }}
+              onClick={logoutFunc}
             >
               <img src={logout} width="25px" alt="Profile"></img>
             </button>

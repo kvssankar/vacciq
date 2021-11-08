@@ -41,3 +41,24 @@ export const login =
         if (next) next();
       });
   };
+
+export const update =
+  (phone, password, name, email, next = null) =>
+  (dispatch) => {
+    axios
+      .post("/api/user/update", { phone, password, name, email })
+      .then((res) => {
+        dispatch({
+          type: "UPDATE_USER",
+          payload: res.data.user,
+        });
+        if (next) next();
+      })
+      .catch((err) => {
+        dispatch({
+          type: "ERROR",
+          payload: err.response.data,
+        });
+        if (next) next();
+      });
+  };

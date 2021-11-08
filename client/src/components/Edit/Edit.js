@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import "./Edit.css";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { register } from "../../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../actions/userActions";
+import { Spinner } from "reactstrap";
 
 const Edit = () => {
   const history = useHistory();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const user = useSelector((state) => state.userReducer.user);
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [phone, setPhone] = useState(user.phone);
+  const [password, setPassword] = useState();
   const dispatch = useDispatch();
-
-  const done = () => {
-    dispatch(register(name, email, phone, history));
+  const [loading, setLoading] = useState(false);
+  const next = () => {
+    history.push("/userdashboard");
+    setLoading(false);
+  };
+  const done = async () => {
+    setLoading(true);
+    dispatch(update(phone, password, name, email, next));
   };
   return (
     <div
@@ -38,7 +46,7 @@ const Edit = () => {
           type="text"
           className="form-input"
           required
-          placeholder="Enter new Name"
+          placeholder="Change name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -46,7 +54,7 @@ const Edit = () => {
           type="text"
           className="form-input"
           required
-          placeholder="Enter new Phone Number"
+          placeholder="Change Phone Number"
           value={phone}
           pattern="[6-9]{1}[0-9]{9}"
           onChange={(e) => setPhone(e.target.value)}
@@ -55,18 +63,31 @@ const Edit = () => {
           type="email"
           className="form-input"
           required
-          placeholder="Enter new Email Address"
+          placeholder="Change Email Address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <input
+          type="password"
+          className="form-input"
+          required
+          placeholder="Change Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
       </div>
       <button
-        style={{ margin: "auto", width: "85%", padding: "10px" }}
+        style={{
+          margin: "auto",
+          width: "85%",
+          padding: "10px",
+          textAlign: "center",
+        }}
         className="mt-2 primary-button"
         onClick={done}
         size="md"
       >
-        Confirm
+        {loading ? <Spinner color="light" /> : "Confirm"}
       </button>
     </div>
   );

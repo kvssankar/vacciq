@@ -1,0 +1,41 @@
+.home-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(235, 243, 250, 1);
+  margin-top: 20px;
+}
+
+.footer-info {
+  border-top: 4px solid #1a61cc;
+  text-align: center;
+  padding: 10px;
+  margin: 5px auto;
+  background-color: rgb(216, 224, 231);
+  border-radius: 10px;
+}
+
+.underline {
+  position: relative;
+  margin-right: 10px;
+}
+
+.underline::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: #0074d9;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .underline:hover::before {
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
+}

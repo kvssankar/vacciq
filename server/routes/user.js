@@ -96,6 +96,26 @@ router.post("/login", async (req, res) => {
   return res.json({ token, user: userExist });
 });
 
+router.post("/update", async (req, res) => {
+  const { phone, password, name, email } = req.body;
+  const userExist = await User.findOne({ phone: phone });
+  if (!userExist)
+    return res.status(400).json({ status: 1, mssg: "User does not exists" });
+  const salt = await bc.genSalt(10);
+  const hashed = await bc.hash(password, salt);
+  const user = await User.findOneAndUpdate(
+    { phone: phone },
+    {
+      name,
+      email,
+      phone,
+      password: hashed,
+    },
+    { new: true }
+  );
+  return res.json({ user });
+});
+
 //getting into queue
 router.post("/reducedlogin", async (req, res) => {
   const { phone, name, qid } = req.body;

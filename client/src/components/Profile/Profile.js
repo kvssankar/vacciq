@@ -9,7 +9,7 @@ const Headlines = React.lazy(() => import("./Headlines"));
 
 const Profile = () => {
   const history = useHistory();
-  let user=useSelector(state=>state.userReducer.user);
+  let user = useSelector((state) => state.userReducer.user);
   return (
     <div className="signuppagecontainer container">
       <Navbar />
@@ -46,8 +46,11 @@ const Profile = () => {
           CreateQ
         </button>
         <button
-          onClick={() => user.queue_id ? history.push("/dashboard") : history.push("/admin")}
+          onClick={() =>
+            user.queue_id ? history.push("/dashboard") : history.push("/admin")
+          }
           style={{ margin: "10px", width: "85%", padding: "10px" }}
+          color={user.queue_id || user.center_id ? "primary" : "secondary"}
           className="mt-2 primary-button"
           disabled={!user.queue_id && !user.center_id}
           size="md"
