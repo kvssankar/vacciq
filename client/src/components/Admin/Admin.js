@@ -72,6 +72,7 @@ function Admin({ center }) {
           Share ↱
         </button>
       </div>
+      <h3 className="text-center">{center.name}</h3>
       <div className="mt-4 queuedetailsconatiner">
         <div className="d-flex justify-content-between row">
           <div className="rectanglebackground2 flex-fill p-2 col-example ">

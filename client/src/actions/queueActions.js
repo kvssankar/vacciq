@@ -52,7 +52,7 @@ export const addToQ = (name, phone, qid, next) => (dispatch) => {
     });
 };
 
-export const removeFromQ = (user_id, queue_id, history) => (dispatch) => {
+export const removeFromQ = (user_id, queue_id, next) => (dispatch) => {
   axios
     .post("/api/q/remove", { user_id, queue_id }, config)
     .then((res) => {
@@ -60,12 +60,12 @@ export const removeFromQ = (user_id, queue_id, history) => (dispatch) => {
         type: "GET_QUEUE",
         payload: res.data.queue,
       });
-      if (history) {
+      if (next) {
         dispatch({
           type: "UPDATE_USER",
           payload: res.data.user,
         });
-        history.push("/userdashboard");
+        next();
       }
     })
     .catch((err) => {

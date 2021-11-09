@@ -51,4 +51,42 @@ router.post("/getq", async (req, res) => {
   res.json({ queue: queue });
 });
 
+router.post("/addq", verify, async (req, res) => {
+  const { qname } = req.body;
+  const queue = await new Queue({ name: qname }).save();
+  const user_id = req.user._id;
+  const queue_id = queue._id;
+  const user = await User.findByIdAndUpdate(
+    user_id,
+    {
+      $push: { myqueues: queue_id },
+      $set: { center_id: queue_id },
+    },
+    { new: true }
+  )
+    .populate("myqueues")
+    .exec();
+
+  return res.json({ queue, user });
+});
+
+router.post("/setq", verify, async (req, res) => {
+  const { queue_id } = req.body;
+  const user_id = req.user._id;
+  const user = await User.findByIdAndUpdate(
+    user_id,
+    { $set: { center_id: queue_id } },
+    { new: true }
+  )
+    .populate("myqueues")
+    .exec();
+  const queue = await Queue.findById(queue_id);
+  return res.json({ user, queue });
+});
+
+router.get("/getall", verify, async (req, res) => {
+  const user = await User.findById(req.user._id).populate("myqueues").exec();
+  res.json({ user });
+});
+
 module.exports = router;

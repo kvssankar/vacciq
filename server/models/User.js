@@ -18,6 +18,14 @@ const userSchema = new Schema({
   latitude: String,
   longitude: String,
   enter: Date,
+  plan: { type: Number, default: 0 },
+  myqueues: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "queue",
+      autopopulate: true,
+    },
+  ],
 });
 
 //userSchema.plugin(require("mongoose-autopopulate"));

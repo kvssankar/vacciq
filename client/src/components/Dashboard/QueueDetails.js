@@ -45,6 +45,7 @@ const QueueDetails = ({ user, queue }) => {
             </div>
           </div>
         </div>
+        <h3 className="text-center">{queue.name}</h3>
       </div>
     </div>
   );
