@@ -41,7 +41,9 @@ function Admin({ center }) {
         }}
       >
         <div style={{ position: "relative" }}>
-          <QRCode value={center._id} />
+          <QRCode
+            value={"https://lineitout.herokuapp.com/quicklogin/" + center._id}
+          />
           <img
             className="border1"
             src="/imgs/border.svg"

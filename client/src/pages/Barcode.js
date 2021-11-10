@@ -18,7 +18,7 @@ class Barcode extends Component {
       this.setState({
         result: data,
       });
-      document.location.href = "/quicklogin/" + data;
+      document.location.href = data;
     }
   }
   handleError(err) {

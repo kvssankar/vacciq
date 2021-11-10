@@ -48,6 +48,7 @@ router.post("/getq", async (req, res) => {
   const { queue_id } = req.body;
   console.log(queue_id);
   const queue = await Queue.findById(queue_id).populate("line.user").exec();
+  console.log(queue);
   res.json({ queue: queue });
 });
 

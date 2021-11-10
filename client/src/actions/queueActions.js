@@ -83,10 +83,10 @@ export const getq = (qid, floading) => (dispatch) => {
       dispatch({ type: "GET_QUEUE", payload: res.data.queue });
       floading();
     })
-    .catch((err) => {
+    .catch(() => {
       dispatch({
         type: "ERROR",
-        payload: err.response.data,
+        payload: "Something went wrong",
       });
     });
 };

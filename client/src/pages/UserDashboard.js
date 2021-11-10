@@ -14,9 +14,10 @@ const UserDashboard = () => {
   let queue = useSelector((state) => state.userReducer.queue);
   const socket = socketIOClient(ENDPOINT);
   const floading = () => {
-    socket.emit("joinQ", {
-      qid: queue._id,
-    });
+    if (queue._id)
+      socket.emit("joinQ", {
+        qid: queue._id,
+      });
     socket.on("qdata", (data) => {
       dispatch({ type: "GET_QUEUE", payload: data });
       notifyMe(user, queue);

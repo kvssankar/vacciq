@@ -25,6 +25,12 @@ const QueueDetails = ({ user, queue }) => {
   return (
     <div className="mt-4 queuedetailsconatiner">
       <div className="d-flex justify-content-between row">
+        <h4
+          style={{ backgroundColor: "#f2fbff" }}
+          className="text-center border w-100 rounded p-2"
+        >
+          {queue.name}
+        </h4>
         <div className="rectanglebackground2 flex-fill p-2 col-example ">
           <div className="flexdirection" style={{ alignItems: "center" }}>
             <div className="fontstyle1small textcenter p-2 col-example ">
@@ -45,7 +51,6 @@ const QueueDetails = ({ user, queue }) => {
             </div>
           </div>
         </div>
-        <h3 className="text-center">{queue.name}</h3>
       </div>
     </div>
   );
