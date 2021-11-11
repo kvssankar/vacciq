@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import QRCode from "qrcode.react";
 import domtoimage from "dom-to-image";
 import "./Admin.css";
 import { useHistory } from "react-router";
 
 import PropTypes from "prop-types";
+import { findAvgEstinmatedTime } from "../../Util";
 
 function Admin({ center }) {
+  const [avgt, setAvgt] = React.useState(0);
+  useEffect(() => {
+    setAvgt(findAvgEstinmatedTime(center));
+  }, [center]);
   const history = useHistory();
   const share = () => {
     domtoimage.toBlob(document.querySelector("canvas")).then(function (blob) {
@@ -83,17 +88,17 @@ function Admin({ center }) {
                 Queue Count
               </div>
               <div className="fontstyle1small textcenter p-2 col-example ">
-                0
+                {center.line ? center.line.length : 0}
               </div>
             </div>
           </div>
           <div className="rectanglebackground2 flex-fill p-2 col-example ">
             <div className="flexdirection" style={{ alignItems: "center" }}>
               <div className="fontstyle1small textcenter p-2 col-example ">
-                Queue Time
+                Avg Est. Time
               </div>
               <div className="fontstyle1small textcenter p-2 col-example ">
-                00:00:00
+                {avgt}
               </div>
             </div>
           </div>
@@ -107,7 +112,8 @@ Admin.propTypes = {
   center: PropTypes.shape({
     name: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
-  }).isRequired,
+    line: PropTypes.array.isRequired,
+  }),
 };
 
 export default Admin;

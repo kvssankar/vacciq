@@ -4,22 +4,27 @@ import kick from "../../img/checked.png";
 import { useDispatch } from "react-redux";
 import { removeFromQ } from "../../actions/queueActions";
 import PropTypes from "prop-types";
+import { Spinner } from "reactstrap";
 
 const QueueTable = ({ center, socket }) => {
   const [line, setLine] = useState([]);
+  const [loading, setLoading] = useState(0);
   useEffect(() => {
     setLine(center.line);
   }, [center]);
   const dispatch = useDispatch();
   const done = (a) => {
-    dispatch(removeFromQ(a, center._id, null));
+    setLoading(1);
+    dispatch(removeFromQ(a, center._id, () => setLoading(0)));
     socket.emit("personRemoved", { uid: a, qid: center._id });
   };
   return (
     <div className=" queuetablecontainer" style={{ marginBottom: "5rem" }}>
       <h5 className="pt-3 ml-2 ">Queue Table</h5>
 
-      {line.length > 0 &&
+      {loading == 1 ? (
+        <Spinner color="primary" />
+      ) : (
         line.map((lineuser, i) => (
           <div
             style={{ boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.1) inset" }}
@@ -43,7 +48,8 @@ const QueueTable = ({ center, socket }) => {
               ></img>
             </div>
           </div>
-        ))}
+        ))
+      )}
       {line.length === 0 && (
         <div
           style={{ boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.1) inset" }}

@@ -19,6 +19,7 @@ const Signup = () => {
     history.push("/userdashboard");
   };
   const done = () => {
+    setLoading(1);
     dispatch(register(name, email, phone, password, sex, next));
   };
   return (

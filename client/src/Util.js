@@ -15,6 +15,11 @@ export const findEstimationTime = (user, queue) => {
   return Math.round(est * 100) / 100;
 };
 
+export const findAvgEstinmatedTime = (queue) => {
+  let est = queue.time / queue.n;
+  return Math.round(est * 100) / 100;
+};
+
 export const findReachingTime = async (user) => {
   let time = 0;
   await axios

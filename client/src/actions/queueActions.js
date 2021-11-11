@@ -73,6 +73,7 @@ export const removeFromQ = (user_id, queue_id, next) => (dispatch) => {
         type: "ERROR",
         payload: err.response.data,
       });
+      if (next) next();
     });
 };
 

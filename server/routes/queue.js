@@ -33,7 +33,10 @@ router.post("/remove", verify, async (req, res) => {
       $set: { queue_id: null },
     },
     { new: true }
-  );
+  )
+    .populate("myqueues")
+    .exec();
+
   var diffMs = new Date() - user.enter;
   var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
   const queue = await Queue.findByIdAndUpdate(
@@ -41,7 +44,8 @@ router.post("/remove", verify, async (req, res) => {
     { $pull: { line: { user: user_id } }, $inc: { time: diffMins, n: 1 } },
     { new: true }
   );
-  return res.json({ queue, user });
+  const admin = await User.findById(req.user._id);
+  return res.json({ queue, user: admin });
 });
 
 router.post("/getq", async (req, res) => {
