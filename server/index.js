@@ -13,10 +13,7 @@ app.use(express.json());
 
 //keys
 const db =
-  process.env.MONGO_URI ||
-  "mongodb+srv://kvssankar:u4I69QktIvLwOk7H@cluster1.uacfw.mongodb.net/vacciq?retryWrites=true&w=majority";
-// const db =
-//   "mongodb+srv://kvssankar:u4I69QktIvLwOk7H@cluster1.uacfw.mongodb.net/tempq?retryWrites=true&w=majority";
+  process.env.MONGO_URI;
 //connect to mongo
 const connect = mongoose
   .connect(db, { useFindAndModify: false })
