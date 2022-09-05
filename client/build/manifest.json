@@ -1,0 +1,25 @@
+{
+  "short_name": "LineItOut",
+  "name": "LineItOut",
+  "icons": [
+    {
+      "src": "LineItOut64.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "LineItOut192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "LineItOut.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#42c3fc",
+  "background_color": "#bac5e2"
+}

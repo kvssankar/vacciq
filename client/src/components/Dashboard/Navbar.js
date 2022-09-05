@@ -45,7 +45,7 @@ const Example = (props) => {
             )}
           </a>
           <a href="/profile">
-            <img cla src="/imgs/user.png" className="barcodeimg ml-3 mr-0" />
+            <img src="/imgs/user.png" className="barcodeimg ml-3 mr-0" />
           </a>
         </Nav>
       </Navbar>

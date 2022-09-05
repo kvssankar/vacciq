@@ -21,7 +21,7 @@ const QueueTable = ({ user, queue }) => {
                 paddingTop: "15px",
                 paddingBottom: "15px",
               }}
-              lassName="queuetablepart2 p-2 col-example text-left"
+              className="queuetablepart2 p-2 col-example text-left"
             >
               <div className=" d-flex flexcolumn">
                 <h6

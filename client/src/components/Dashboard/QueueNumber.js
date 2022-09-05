@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./QueueNumber.scss";
+import "./QueueNumber.css";
 
 import PropTypes from "prop-types";
 

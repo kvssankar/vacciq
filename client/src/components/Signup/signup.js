@@ -90,15 +90,17 @@ const Signup = () => {
         <label className="radio-label" htmlFor="male">
           Male
         </label>
-        <input type="radio" className="radio" id="female" name="radio" />
-        <label
-          className="radio-label"
+        <input
+          type="radio"
+          className="radio"
+          id="female"
+          name="radio"
           checked={!sex}
           onClick={() => {
             setSex(!sex);
           }}
-          htmlFor="female"
-        >
+        />
+        <label className="radio-label" htmlFor="female">
           Female
         </label>
       </div>
